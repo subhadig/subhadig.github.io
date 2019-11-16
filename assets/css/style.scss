@@ -1,0 +1,21 @@
+---
+---
+@import "{{ site.theme }}";
+
+
+.navButton {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.navButton:hover {
+    text-decoration: none;
+    color: #267ed6;
+}
