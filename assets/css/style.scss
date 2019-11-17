@@ -38,3 +38,26 @@
 #header_wrap .inner {
     padding: 40px 10px 20px 10px;
 }
+
+.aboutRow {
+    display: flex;
+}
+
+.aboutColumnLeft {
+    flex: 40%;
+    padding: 30px;
+}
+
+.aboutColumnRight {
+    flex: 60%;
+    padding: 30px;
+}
+
+.profileImg {
+    border-radius: 50%;
+}
+
+.aboutHeadLine {
+    font-size: large;
+    font-style: italic;
+}
