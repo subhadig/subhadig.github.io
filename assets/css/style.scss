@@ -19,3 +19,18 @@
     text-decoration: none;
     color: #267ed6;
 }
+
+.postEntry {
+    font-weight: bold;
+    font-stretch: ultra-expanded;
+    font-style: italic;
+    font-size: larger;
+}
+
+.postDate {
+    padding-bottom: 10px;
+    font-style: italic;
+    text-align: right;
+    font-size: medium;
+    opacity: 0.7;
+}
