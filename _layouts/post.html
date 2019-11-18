@@ -29,6 +29,16 @@
           <h2>{{ page.title }}</h2>
           <div class="postDate">- Last updated on {{ page.date | date: "%-d %B, %Y" }}</div> 
           {{ content }}
+
+          <div id="tags">
+              <br/>
+              <h4>Tags</h4>
+              <ul>
+              {% for tag in site.tags %}
+                  <li>{{ tag[0] }}</li>
+              {% endfor %}
+              </ul>
+          </div>
       </section>
     </div>
 
