@@ -1,0 +1,63 @@
+---
+---
+@import "{{ site.theme }}";
+
+
+.navButton {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+.navButton:hover {
+    text-decoration: none;
+    color: #267ed6;
+}
+
+.postEntry {
+    font-weight: bold;
+    font-stretch: ultra-expanded;
+    font-style: italic;
+    font-size: larger;
+}
+
+.postDate {
+    padding-bottom: 10px;
+    font-style: italic;
+    text-align: right;
+    font-size: medium;
+    opacity: 0.7;
+}
+
+#header_wrap .inner {
+    padding: 40px 10px 20px 10px;
+}
+
+.aboutRow {
+    display: flex;
+}
+
+.aboutColumnLeft {
+    flex: 40%;
+    padding: 30px;
+}
+
+.aboutColumnRight {
+    flex: 60%;
+    padding: 30px;
+}
+
+.profileImg {
+    border-radius: 50%;
+}
+
+.aboutHeadLine {
+    font-size: large;
+    font-style: italic;
+}
