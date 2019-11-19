@@ -28,6 +28,7 @@
       <section id="main_content" class="inner">
           <h2>{{ page.title }}</h2>
           <div class="postDate">- Last updated on {{ page.date | date: "%-d %B, %Y" }}</div> 
+          
           {{ content }}
 
           <div id="tags">
@@ -35,7 +36,7 @@
               <h4>Tags</h4>
               <ul>
               {% for tag in site.tags %}
-                  <li>{{ tag[0] }}</li>
+              <li><a href="/tags#{{ tag[0] }}">{{ tag[0] }}</a></li>
               {% endfor %}
               </ul>
           </div>
