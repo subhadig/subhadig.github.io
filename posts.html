@@ -7,7 +7,7 @@ title: Posts
 <ul>
   {% for post in site.posts %}
     <li>
-        {{ post.date | date: "%-d %B, %Y" }} - <b><i><a class="postEntry" href="{{ post.url }}">{{ post.title }}</a></i></b>
+        <span style="font-weight: bold;">{{ post.date | date: "%Y-%m-%d" }} - </span><a class="postEntry" href="{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
 </ul>
