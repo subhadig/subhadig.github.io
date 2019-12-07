@@ -1,0 +1,22 @@
+---
+layout: post
+title: Automated Package Installation and Configuration Script for Ubuntu
+date: 2016-12-29
+tags:
+- ubuntu
+- java
+- mysql
+comments: true
+---
+<p>In my last post, I discussed about how I created my first Amazon EC2 instance and ran our Java web server on it. One of the most important things that I have realized over the years is that if you work with a small group of developers, you ought to think about automating certain jobs like testing, deployment, setting up server etc. So that you can concentrate on the real work rather than spending valuable time in doing repetitive tasks. The benefit against spending extra time in writing scripts may not be prominent at first, but over time you will realize the gain in terms of person hours and headaches saved because of the automated scripts.</p>
+
+<p>Soon after creating the remote instance on cloud, I created a simple script to push and deploy the changes to AWS. Nothing fancy, you will still need to trigger it manually, but helpful nonetheless. My plan is to later create a script hooked to our online code repository to detect any changes being pushed and trigger the deployment automatically. But in the next weekend after that, I created a script to quickly configure the server after being created, installing and configuring the most basic packages including Java, Mysql-server, firewall etc.</p>
+<p>The script basically does the below jobs:</p>
+<ol>
+<li>It installs the following packages - default-jre and mysql-server. Along with that, it also installs a couple of packages which are needed to automate the installation of other packages or the execution of other scripts.</li>
+<li>It executes the 'mysql_secure_installation' script to make the mysql server permissions more restricted and to disable some of the default configurations. It uses an expect script to automatically provide the input while the script is executed and it does not require any user interaction.</li>
+<li>It enables the ufw (uncomplicated firewall) and allows the given http port. The port number is mentioned as a configuration in the script itself.</li>
+</ol>
+<p>The script should be run with administrative privilege and the root password for the mysql-server should be passed as the only command line argument to the script. Sample usage command is as followed -</p>
+<pre>sudo ./automate.sh &lt;mysql_root_password&gt;</pre>
+<p>The script is tested on Ubuntu Server 16.04. To execute the script on other versions of Ubuntu, the mysql-server version number needs to be updated in the script. The source code is hosted on my Github account and it can be accessed via <a href="https://github.com/subhadip-ghosh/automated_package_installation">this</a> link.</p>

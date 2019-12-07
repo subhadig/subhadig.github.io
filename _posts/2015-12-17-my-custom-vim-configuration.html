@@ -1,0 +1,21 @@
+---
+layout: post
+title: My Custom Vim Configuration
+date: 2015-12-17
+tags:
+- vim
+comments: true
+---
+<p>Though Vim is my favourite command-line text editor, not all the default configurations suit my taste. Luckily, changing the default configurations of Vim editor on my Xubuntu 14.04 LTS (any Linux based OS for that matter) is fairly easy and so is persisting the changes. Here's what you need to do in order to persist the changed configurations for Vim editor (so that the changes do not disappear after you restart your Vim editor): Create a file with name <em>.vimrc</em> and save it in your home directory. So whatever configurations you write in that <em>.vimrc</em> file of yours, will be picked when you start your Vim editor (after modifying <em>.vimrc</em>, you may need to restart the Vim editor in order for the changes to take effect).</p>
+
+<p>Here's how my <em>.vimrc</em> looks like:</p>
+<pre>" Indent automatically depending on filetype
+filetype indent on
+set autoindent
+" Turn on line numbering. Turn it off with "set nonu"
+set number
+" Change colorscheme from default to elflord
+colorscheme elflord</pre>
+<p>About the last point, I don't like the look of shell scripts under the default colorscheme of Vim editor. So I changed it. Here's how shell scripts look like under elflord.</p>
+<p><img class="size-full wp-image-83" src="{{ site.baseurl }}/assets/custom-vim.png" alt="Vim editor under delek theme" width="550" height="139" /></p>
+<p>I hope that helps.</p>

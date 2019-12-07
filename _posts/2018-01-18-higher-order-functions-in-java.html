@@ -1,0 +1,40 @@
+---
+layout: post
+title: Higher Order Functions in Java?
+date: 2018-01-18
+tags:
+- java
+comments: true
+---
+<p>Higher order functions are those functions that can return functions as their results. The returned function can then be invoked in the same way as you would invoke a normal function. In programming languages like Python, where functional programming is treated as a first class citizen, you can easily define higher order function like this.</p>
+
+{% highlight python %}
+def adder(a):
+ def add(b):
+  return a + b
+ return add
+add_with_5 = adder(5)
+final_value = add_with_5(1)
+{% endhighlight %}
+
+<p>Java on the other hand introduced functional programming in version 1.8. The support is still very primitive and it does not allow one to create higher order functions that return functions.</p>
+<p>Today I had a situation where I desperately needed something similar to a higher order function in Java. I needed the function I was passing to hold something in memory that will be given while the function was created and would be used when executed. After giving it some thought, I came up with a solution. I told myself, you may not create an inner function in Java but there's something you can. Inner classes! Ans so this is what I did.</p>
+
+{% highlight java %}
+class Adder
+{
+ int a;
+ Adder( int a )
+ {
+  this.a = a;
+ }
+ addWith( int b )
+ {
+  return a + b;
+ }
+}
+Function<Interger, Interger> addWith5 = new Adder( 5 )::addWith
+int finalValue = addWith5.apply( 1 )
+{% endhighlight %}
+
+<p>This is the cleanest piece of code I could come up with to achieve the same functionality. It has a lot of similarities with AbstractFactory in Java except that it finally creates functions not class objects and also it's less verbose. I am going to call it FunctionFactory!</p>

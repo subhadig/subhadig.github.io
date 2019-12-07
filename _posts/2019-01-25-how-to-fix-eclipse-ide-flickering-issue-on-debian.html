@@ -1,0 +1,28 @@
+---
+layout: post
+title: How to fix Eclipse IDE flickering issue on Debian
+date: 2019-01-25
+tags:
+- debian
+- eclipse
+- java
+comments: true
+---
+<p>I am using Eclipse IDE (version 2018-12 at the time of writing) on Debian 9 Xfce and the issue with it is that the Eclipse editor windows would flicker around the edges. Sometimes so much so that it's impossible to type inside it. Here's how I fixed it:</p>
+<p>First check the value of GTK_IM_MODULE in your environment by executing</p>
+
+{% highlight bash %}
+echo $GTK_IM_MODULE
+{% endhighlight %}
+
+<p>In my case the output was "xim". But Eclipse expect it to be "ibus". So enter the following command in a terminal session to set it to the value.</p>
+
+{% highlight bash %}
+export GTK_IM_MODULE="ibus"
+{% endhighlight %}
+
+<p>Now if you launch Eclipse from the same terminal session, you should not experience any flickering issue. If you launch eclipse from a desktop menu entry, then edit the .desktop file and put the following string in the beginning of the Exec command:</p>
+
+{% highlight bash %}
+env GTK_IM_MODULE=ibus
+{% endhighlight %}

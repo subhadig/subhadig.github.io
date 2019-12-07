@@ -1,0 +1,16 @@
+---
+layout: post
+title: "[SOLVED] SVN/JavaHL version problem in Ubuntu 13.04 with Eclipse Indigo"
+date: 2013-10-13
+tags:
+- eclipse
+- java
+- ubuntu
+comments: true
+---
+<p>I upgraded my Ubuntu from 12.04. Eclipse 3.7 with Subclipse 1.6 was installed in 12.04. Now after upgrading to 13.04, after I start Eclipse and synchronize my project with the repository, it throws the error message: "Incompatible JavaHL library loaded. 1.6.x or later required."</p>
+
+<p>Possible reason: libsvn-java is needed to be installed in Ubuntu in order to make SVN work in Eclipse. The installed version in Ubuntu 12.04 was 1.6 as far as I remember. But after upgrading to 13.04, the libsvn-java version was also upgraded to 1.7. But the version of Subclipse that is compatible with libsvn-java 1.7 is Subclipse 1.8.</p>
+<p>Solution: Upgrade your Subeclipse to 1.8.</p>
+<p>Source: http://subclipse.tigris.org/servlets/ProjectProcess?pageID=p4wYuA</p>
+<p>Hope this helps somebody. Good Luck.</p>

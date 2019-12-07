@@ -1,0 +1,57 @@
+---
+layout: post
+title: Format USB drive after installing Debian from it
+date: 2018-12-01
+tags:
+- debian
+- ubuntu
+comments: true
+---
+<p>If you have used an USB drive to write iso images to before installing Debian or recent versions of Ubuntu, here are the steps to reclaim it after installation is over.</p>
+<ol>
+<li>Open a terminal and list the available device names using the following command:
+
+{% highlight bash %}
+lsblk
+{% endhighlight %}
+
+<p>which should show you an output like the one below:</p>
+
+<img class="size-full wp-image-1126 aligncenter" src="{{ site.baseurl }}/assets/fomat_pendrive_1.png" alt="" width="447" height="215" /></li>
+
+<li>Identify the device name of your USB drive. Extreme caution should be taken while at it because wrong device names can potentially wipe your entire hard disk. In this case, the USB drive that we want to format is <em>sdb</em>.</li>
+<li>Writing the iso image to the USB drive has made it a read-only device. To change it back, the partition table needs to broken. Issue the below command after replacing <em>sdb </em>with the device name identified in the previous step:
+
+{% highlight bash %}
+sudo dd if=/dev/zero of=/dev/sdb bs=1M && sync
+{% endhighlight %}
+
+<p>This step might take some time to complete depending upon the size of the USB drive. So be patient. When it is over, you should see an output like the below:</p>
+<img class="aligncenter size-large wp-image-1128" src="{{ site.baseurl }}/assets/fomat_pendrive_2.png" alt="" width="605" height="75" /></li>
+<li>Next you need to create a new partition. First enter the following command after replacing <em>sdb</em> with your device name:
+
+{% highlight bash %}
+sudo fdisk /dev/sdb
+{% endhighlight %}
+
+<p>You should see a prompt like below</p>
+<img class="aligncenter size-large wp-image-1129" src="{{ site.baseurl }}/assets/fomat_pendrive_3_1.png" alt="" width="605" height="145" /><br />
+
+Enter <em>n</em> to create a new partition, press enter to go with the default options until the next <em>Command</em> prompt comes, then enter <em>w</em> to write the changes to disk.</p>
+<img class="aligncenter size-large wp-image-1130" src="{{ site.baseurl }}/assets/fomat_pendrive_4.png" alt="" width="605" height="249" /></li>
+<li>Enter the following command to check if the device partition settings have been refreshed. If not, unplug and replug the USB drive.
+
+{% highlight bash %}
+lsblk
+{% endhighlight %}
+
+<img class="aligncenter size-full wp-image-1131" src="{{ site.baseurl }}/assets/fomat_pendrive_5.png" alt="" width="472" height="186" /></li>
+<li>Enter the following command to format the partition to FAT after replacing sdb with your device name and &lt;label&gt; with your label of choice.
+
+{% highlight bash %}
+sudo mkfs.vfat /dev/sdb1 -n <label>
+{% endhighlight %}
+
+</li>
+</ol>
+<p>And now your USB drive should become usable again.</p>

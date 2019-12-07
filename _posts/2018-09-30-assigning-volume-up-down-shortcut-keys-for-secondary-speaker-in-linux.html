@@ -1,0 +1,31 @@
+---
+layout: post
+title: Assigning volume up/down shortcut keys for secondary speaker in Linux
+date: 2018-09-30
+tags:
+- debian
+comments: true
+---
+<p>I have a wireless Bluetooth speaker that I use with my laptop running Debian 9 with Xfce. My laptop also has a primary speaker. So when I connect my Bluetooth speaker to my laptop, my laptop is actually connected to both the primary and secondary speaker at the same time. The laptop volume up/down keys will still be mapped to the primary speaker and if I wish to control the volume of the secondary speaker, I needed to open the Volume Control window from the Panel volume plugin, which was a pain if you had to do it every time.</p>
+
+<p>Here's what I did to simplify it. Debian Linux and most other major Linux distributions use pulse audio to manage all audios and there's a command line utility that comes installed by default to manage pulse audio. It's called <em>pactl</em>. When you connect a speaker to your computer, it creates an audio sink for it to manage it. To get a list of audio sinks that your computer has access to, run the following command in Terminal:</p>
+
+{% highlight bash %}
+pactl list sinks
+{% endhighlight %}
+
+<p>And from the output, look for the speaker you need to manage and the corresponding "Name" string. In my case, it looks like <em>"bluez_sink.&lt;hardware-address&gt;.a2dp_sink"</em> where <em>&lt;hardware-address&gt;</em> is the address by which the computer identifies the particular hardware device. The good thing about this address string is that, it remains unchanged even if you remove it and then connect it back.</p>
+<p>Once you determine the sink name of your audio device, you can do a bunch of operation from the command line on it including setting the volume, increasing/decreasing the volume or mute it. Example: the following command will increase the sink volume by 5%</p>
+
+{% highlight bash %}
+pactl set-sink-volume <sink-name> +5%
+{% endhighlight %}
+
+<p>and to decrease it by 5%</p>
+
+{% highlight bash %}
+pactl set-sink-volume <sink-name> -5%
+{% endhighlight %}
+
+<p>Replace &lt;sink-name&gt; with the name you copied from the previous step.</p>
+<p>And then you can assign keyboard shortcuts to do those operations, so that you can perform them without opening a Terminal. To do that in Xfce, go to <em>Settings &gt; Keyboard &gt; Application Shortcuts</em> and then <em>Add</em> a new shortcut. For other desktop environments, follow the desktop environment specific instructions.</p>

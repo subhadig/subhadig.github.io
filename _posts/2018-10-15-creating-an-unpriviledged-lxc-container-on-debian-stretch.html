@@ -1,0 +1,164 @@
+---
+layout: post
+title: Creating an unpriviledged lxc container on Debian Stretch
+date: 2018-10-15
+tags:
+- debian
+- lxc/lxd
+comments: true
+---
+<p>After a few earlier failed attempts, today I was successfully able to create an unprivileged LXC container on Debian Stretch for the first time. I had experience of using LXC's more user friendly cousin LXD before I moved to Debian but unfortunately LXD is not available on Debian yet. While LXC is more low level compared to LXD, if you just need a basic container, it's still pretty solid. The Debian wiki on LXC container is fairly straight forward and easy to follow, but still for someone who is a novice to both Debian and LXC, it is very easy to get lost. So I am writing this post so that it can be a good place to start if you need a very basic setup.</p>
+<p>LXC containers can be of two types depending on the level of access they have to their host system:</p>
+<ol>
+<li>Privileged containers will have root access to your system.</li>
+<li>Unprivileged containers will not have root access and is more secure by nature but requires a bit more configurations before you can start using them. In this guide, I will be showing how to configure and create one.</li>
+</ol>
+<p>Before I start with the steps, I want to talk a little bit about my system configuration. The installed version of Debian is Stretch and the architecture is amd64. It has two users - root and test which is a non-sudo user. This guide will assume that you will modify the commands as per your system specific configuration instead of blindly copying and running.</p>
+<ol>
+<li><strong>Installed the required packages </strong>as root.
+
+{% highlight bash %}
+apt install lxc libvirt0 libpam-cgroup libpam-cgfs bridge-utils cgroupfs-mount
+{% endhighlight %}
+
+</li>
+<li><strong>Create networking related configurations</strong>: I will be using a virtual interface to create a network bridge that will make use of of the lxc-net package which comes as part of lxc 2.0. This bridge will be shared by the container but will not be accessible from outside of the host.
+<ol>
+<li>Create <tt class="backtick">/etc/default/lxc-net</tt> with the following line:
+
+{% highlight bash %}
+USE_LXC_BRIDGE="true"
+{% endhighlight %}
+
+</li>
+<li>Run the following command as root:
+
+{% highlight bash %}
+service lxc-net restart
+{% endhighlight %}
+
+</li>
+</ol>
+</li>
+<li><strong>Configuring the host system</strong>: The following steps configures the host system for creation of an unprivileged lxc container.
+<ol>
+<li>Run the following command which should return everything as 'enabled' in green. If not, restart your system.
+
+{% highlight bash %}
+$ lxc-checkconfig
+{% endhighlight %}
+
+</li>
+<li>Run the following as root:
+
+{% highlight bash %}
+sh -c 'echo "kernel.unprivileged_userns_clone=1" > /etc/sysctl.d/80-lxc-userns.conf'
+sysctl --system
+{% endhighlight %}
+
+</li>
+<li>Run the following command as the unprivileged user to get the subuids and subguids of the current user:
+
+{% highlight bash %}
+$ cat /etc/s*id|grep $USER
+{% endhighlight %}
+
+<p>In my case, it produced a output like the following:</p>
+
+{% highlight bash %}
+test:100000:65536
+test:100000:65536
+{% endhighlight %}
+
+<p>But it can be different in your case. Note the first number ie 100000.</li>
+<li>Run the following commands as root after replacing 'test' with your username. The first number in the range is the number we noted in the previous step, the last number should be obtained after adding 65536 to the first number:
+
+{% highlight bash %}
+usermod --add-subuids 100000-165536 test
+usermod --add-subgids 100000-165536 test
+{% endhighlight %}
+
+</li>
+<li>Run the following command as root to change permission of some of the directories after replacing test with your username:
+
+{% highlight bash %}
+cd /home/test
+setfacl -m u:100000:x . .local .local/share
+{% endhighlight %}
+
+</li>
+<li>Run the following command as root to configure the virtual network interface for your user after replacing test with your username:
+
+{% highlight bash %}
+echo "test veth lxcbr0 10"| tee -i /etc/lxc/lxc-usernet
+{% endhighlight %}
+
+</li>
+</ol>
+</li>
+<li><strong>Configure LXC for your user </strong>by performing the following steps as your user.
+<ol>
+<li>Create the lxc config folder:
+
+{% highlight bash %}
+$ mkdir -p .config/lxc
+{% endhighlight %}
+
+</li>
+<li>Configure the default template for all the future unprivileged containers after replacing 100000 with the number noted in the "Configuring the host system" step:
+
+{% highlight bash %}
+$ echo \
+'lxc.include = /etc/lxc/default.conf
+# Subuids and subgids mapping
+lxc.id_map = u 0 100000 65536
+lxc.id_map = g 0 100000 65536
+# "Secure" mounting
+lxc.mount.auto = proc:mixed sys:ro cgroup:mixed
+# Network configuration
+lxc.network.type = veth
+lxc.network.link = lxcbr0
+lxc.network.flags = up
+lxc.network.hwaddr = 00:FF:xx:xx:xx:xx'>.config/lxc/default.conf
+{% endhighlight %}
+
+</li>
+</ol>
+</li>
+<li><strong>Reboot</strong> the system.</li>
+<li><strong>Creating the unprivileged container:</strong> Now we are at the end of the guide and hopefully with all the right configurations to create our first unprivileged container. Run the following command as your user to create an ubuntu xenial container:
+
+{% highlight bash %}
+$ lxc-create --name ubuntu -t download
+{% endhighlight %}
+
+<p>Give the following inputs when prompted:</p>
+
+{% highlight bash %}
+Distribution: ubuntu
+Release: bionic
+Architecture: amd64
+{% endhighlight %}
+
+</li>
+<li><strong>Start the container </strong>by running the following command:
+
+{% highlight bash %}
+$ lxc-start --name ubuntu --logfile $HOME/lxc_ubuntu.log --logpriority DEBUG
+{% endhighlight %}
+
+<p>The extra log options will be helpful in debugging if something goes wrong but can be ignored from next time onward.</li>
+<li><strong>To access the newly created container</strong>, run the following command:
+
+{% highlight bash %}
+$ lxc-attach --name ubuntu
+{% endhighlight %}
+
+</li>
+</ol>
+<p>If you have followed all the steps correctly, hopefully you are now running an unprivileged container on your Debian Stretch. Please consider reading the article mentioned in <em>Further Reading</em> section to understand each steps used in this guide in details.</p>
+<p><strong>Further Reading:<br />
+</strong></p>
+<ol>
+<li><a href="https://wiki.debian.org/LXC">LXC - Debian wiki</a></li>
+</ol>

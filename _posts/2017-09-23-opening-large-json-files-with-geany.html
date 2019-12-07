@@ -1,0 +1,17 @@
+---
+layout: post
+title: Opening large JSON files with Geany
+date: 2017-09-23
+tags:
+- geany
+comments: true
+---
+<p>A few days back at work I was trying to open a fairly large unformatted (a single line) JSON file generated through one of the junit tests. At first I tried to open it in Eclipse since my Eclipse JEE IDE contains an inbuilt JSON formatter but it ended in a disaster! So much so that I had to kill the Java process running Eclipse. Then I tried to open it using Mousepad, the default text editor that comes pre-installed with Xubuntu. It also failed and got hung. I even tried with Gedit but still no luck. I copied the file to a Windows machine and opened it using Notepad++. The online JSON formatters were able to prettify it, so I went on with it then. But the fact that I was not able to open it natively on my system was bugging me.</p>
+
+<p>Then later in that day, I was sitting idle and I was thinking about it when suddenly the thought came to my mind that how the other text editors on Linux would handle a file with that size. I had Geany installed, so first tried with that and to my surprise, it opened the file in less than a second! It also detected the source type from the extension and coloured the JSON key values. A quick Googling also gave me the way to format it too. I added the below command to Geany &gt; Edit &gt; Format &gt; Send Selection to &gt; Set Custom Command</p>
+
+{% highlight bash %}
+python -m json.tool
+{% endhighlight %}
+
+<p>And formatted with it. I was so impressed with it that I made Geany my default text editor and small purpose IDE. Thought about sharing!</p>

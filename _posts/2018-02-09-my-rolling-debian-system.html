@@ -1,0 +1,19 @@
+---
+layout: post
+title: My Rolling Debian System
+date: 2018-02-09
+tags:
+- debian
+comments: true
+---
+<p>A few weeks back, I switched my home laptop to Debian and I wanted to write about my reasons behind choosing Debian and my experience with it for the first few days. But before I dive into that, here's a little background about myself. I have been using Ubuntu and later Xubuntu at home and later at office on my Desktop and on my Laptop for more than 7 years now and on the server front, I have worked on both Redhat/Centos and Ubuntu based systems. So I am not new to Linux at all.</p>
+
+<p>Before I switched, I was using the latest LTS (Long Term Support) version of Xubuntu. Why? Because</p>
+<ol>
+<li>I did not want to upgrade to the releases in between 2 LTS releases because from my past experience, I have seen that bugs introduced in the regular releases are sometimes fixed in the next releases which are released every six months. Which is not very helpful, if there's a bug in one of the packages you rely on.</li>
+<li>Too many up-gradations to interim releases leave the system with a lot of junks. Sometimes, a new release replaces a software with something else from the same category. And if you upgrade to it from a previous release, the up-gradation process installs the newer software but also keeps the old one.</li>
+</ol>
+<p>Why did I want a change? The release process of Ubuntu means that if you are using the current version of LTS, packages can be up to 2 and a half years old. That means, if you are using a package from universe repository (still an official Ubuntu repository but packages rarely receive any update after the final release) and it has a bug, you have to wait till up to 2 years to get a fix or you have the following options - start hunting for a PPA or install the upstream release by some other mean. Either of which are not very productive.</p>
+<p>Why did I choose Debian? I wanted a change but I did not want to leave the comfort of using the tools that I have been using for all these years and tools that I have become fond of, including apt. I wanted to still have the ability to use the same set of packages that I was using. I wanted to use a distribution that was maintained and developed completely by the community and without any direct involvement from a business entity and at the same time dependable and trustworthy. So Debian!</p>
+<p>Why did I choose Debian Testing? I did not want my system to be stuck to a particular release. I did not want to upgrade the whole system to a new release when it comes out. But I still wanted the latest versions of the packages in my system. In other words, I wanted a rolling release distribution. But I also wanted a little bit of stability and some sanity for my system and possibly for me. Testing provides the best balance between the two worlds!</p>
+<p>How is it like using Debian Testing? In short, it's a learning experience without going through too much of hassles. Immediately after I installed Debian on my laptop, I found that my external keyboard was not working. I had to load a few extra modules before it started working. I had to add the Debian Unstable repository to install the Firefox regular version from Unstable (Testing has only Firefox ESR). I had to tweak the font settings to get at least a decent font rendering. So you get the idea! It's not quite like a walk in the park. But after the first couple of days, I started to feel at home. Everything began to look familiar. I could use the same apt to update my system except that this time it would also upgrade my Libreoffice to the latest release without me adding any PPA. All my hardwares work flawlessly. And after using it for a few weeks, now I am quite comfortable with my new system. So far I haven't faced any breakage. The system runs quite smoothly. I can use all my software that I was using before. So all in all, it has been a good experience so far!</p>

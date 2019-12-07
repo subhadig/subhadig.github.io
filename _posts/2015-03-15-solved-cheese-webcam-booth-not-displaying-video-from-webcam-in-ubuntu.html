@@ -1,0 +1,13 @@
+---
+layout: post
+title: "[Solved] Cheese Webcam Booth not displaying video from Webcam in Ubuntu"
+date: 2015-03-15
+tags:
+- ubuntu
+comments: true
+---
+<p>I own a Logitech c170 web-cam which has very good Linux support. I bought this web-cam almost 2 years ago and at that time, it worked like a charm on Ubuntu 12.04. I stopped using the web-cam over a year ago and I almost forgot about it. A few days ago, I had an interview on Skype and as my phone front camera does not work well with Skype, I needed to take this one from my Desktop. So I took the web-cam and plugged it in to my computer running Ubuntu 14.04 (yes, I upgraded), launched Cheese (comes pre-installed on Ubuntu 14.04) hoping everything would work just as before. But to my surprise, even though I could take photos using Cheese, I could not see the video stream. Here's what I did to solve the problem:</p>
+
+<p>I went to Cheese -&gt; Preferences -&gt; Webcam tab and brought down the Photo Resolution and Video Resolution to 640 X 480 and then restarted Cheese and re-plugged in the webcam. And then it started working again!</p>
+<img src="{{ site.baseurl }}/assets/cheese-webcam.png"/>
+<p>I thought I would share it with others so that anybody with the same problem will find it easier to fix!</p>
