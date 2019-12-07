@@ -1,0 +1,97 @@
+---
+layout: post
+title: Accessing Mysql database installed in an LXD container
+date: 2017-05-20
+tags:
+- lxc/lxd
+- ubuntu
+comments: true
+---
+<p>This is my second post on LXD containers. Sometimes, using a container is a cleaner way to install and use applications for a number of reasons:</p>
+
+<ul>
+<li>You can install packages from any version of any distribution. That means, even if you are using an LTS release of Ubuntu like me, you don't necessarily have to stick to an older version of a package. Or if some package is only supported on rpm based distributions, you don't need to worry about it.</li>
+<li>You can go ahead and completely uninstall/reinstall it at any time without worrying about residual files or configurations.</li>
+<li>You can roll back to a previous state in no time if something goes wrong unexpectedly (lxd snapshots!)</li>
+<li>And then there is the security perspective also (lxd containers are secure by nature).</li>
+</ul>
+<p>Last weekend I tried running mysql database from a local container and connect to it from my local system. Here's how:</p>
+<ol>
+<li>Create a brand new lxd container:
+
+{% highlight bash %}
+lxc launch ubuntu:xenial mysql-test
+{% endhighlight %}
+
+<br/>
+</li>
+<li>Create a bash session inside the container:
+
+{% highlight bash %}
+lxc exec mysql-test bash
+{% endhighlight %}
+
+<br/>
+</li>
+<li>Install mysql database server within the container:
+
+{% highlight bash %}
+sudo apt install mysql-server
+{% endhighlight %}
+
+<br/>
+</li>
+<li>Access the mysql database from inside the container as the root user:
+
+{% highlight bash %}
+mysql -u root -p
+{% endhighlight %}
+
+<br/>
+</li>
+<li>Allow remote access to root from any host:
+
+{% highlight bash %}
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password'
+{% endhighlight %}
+
+where <em>password</em> is the password to be used while accessing mysql from outside of the container.
+<br/>
+<br/>
+</li>
+<li>Enable built-in firewall configurer and allow mysql access from outside:
+
+{% highlight bash %}
+sudo ufw enable && sudo ufw allow mysql
+{% endhighlight %}
+
+<br/>
+</li>
+<li>Exit the mysql client. Open the file '/etc/mysql/mysql.conf.d/mysqld.cnf' in your favourite text editor and comment the following line out by typing # at the starting of the line:
+
+{% highlight bash %}
+#bind-address = 127.0.0.1
+{% endhighlight %}
+
+<br/>
+</li>
+<li>Restart the mysql service:
+
+{% highlight bash %}
+sudo service mysql restart
+{% endhighlight %}
+
+<br/>
+</li>
+<li>Now exit the container. We need to check the IP of the container to access the database from the host. 'lxc list' should do the trick:<br />
+<img class="alignnone wp-image-792 size-large" src="{{ site.baseurl }}/assets/lxc_list.png" alt="" width="605" height="72" /></li>
+<li>Now from your host machine, try accessing the mysql server with the root password that you set in step #5:
+
+{% highlight bash %}
+mysql -h 10.182.248.44 -u root -p
+{% endhighlight %}
+
+<br/>
+</li>
+</ol>
+<p>You should be all set now. But the IP address of the container box will change every time you start your container. There's a way to stop it from changing. In my next post, I will share how to bind a static IP address to an lxd container.</p>

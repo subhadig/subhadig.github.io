@@ -1,0 +1,33 @@
+---
+layout: post
+title: VLC Player not playing nice with Radeon?
+date: 2018-01-22
+tags:
+- ubuntu
+comments: true
+---
+<p>If you are on Ubuntu 16.04 using radeon open source driver for your graphics card and having issues with playing mp4 or mkv files with VLC media player then read on. If you are not sure what graphics driver is in use in your system, paste the below line in Terminal.</p>
+
+{% highlight bash %}
+lspci -v -s lspci | awk '/VGA/{print $1}'
+{% endhighlight %}
+
+<p>And check for the below line in the output:</p>
+
+{% highlight bash %}
+Kernel driver in use: radeon<br />
+{% endhighlight %}
+
+<p>The issue occurs as soon as you open a media file of type mkv or mp4 with VLC media player. Immediately after opening, it crashes silently. But if you check the /var/log/syslog, you should be able to see segmentation fault messages.</p>
+<p>The issue probably occurs because VLC by default uses VDAPU (a shared API between a number of graphics driver for Linux) for video decoding. To turn it off, go to <em>VLC Player &gt; Tools &gt; Preferences &gt; Input / Codecs</em> and select <em>Disable </em>from the dropdown.</p>
+
+<p><img class="aligncenter wp-image-1057" src="{{ site.baseurl }}/assets/vlc_1.png" alt="" width="480" height="433" /></p>
+
+<p>Also, I changed the <em>Output</em> value at <em>VLC Player &gt; Tools &gt; Preferences &gt; Video</em> to <em>XVideo output (XCB)</em>.</p>
+
+<p><img class="aligncenter wp-image-1058" src="{{ site.baseurl }}/assets/vlc_2.png" alt="" width="480" height="433" /></p>
+<p>And after that, VLC started working fine on my friend's computer. I hope it helps.</p>
+<p>Helpful link:</p>
+<ul>
+<li><a href="https://askubuntu.com/questions/865312/vlc-cannot-play-mkv-and-mp4-formats">vlc cannot play mkv and mp4 formats - AskUbuntu</a></li>
+</ul>

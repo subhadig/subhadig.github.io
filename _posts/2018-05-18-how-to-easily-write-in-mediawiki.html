@@ -1,0 +1,29 @@
+---
+layout: post
+title: How to easily write in MediaWiki
+date: 2018-05-18
+tags:
+- vim
+- markdown
+---
+<p>MediaWiki is a very popular free and open-source wiki software that powers some of the most visited wikis on the Internet including the Wikipedia. You can also host it in your own environment for your own wiki requirements or for your organization.</p>
+
+<p>At my work, we use MediaWiki for our developer's wiki site. When I started working for a new product team sometimes back, I came to know about this wiki format for the first time and I didn't like it very much.</p>
+<p>I usually like to contribute to the wikis more often than not but when I first went on to add my first page to this wiki, I noticed a few annoying things:</p>
+<ul>
+<li>We were using an older version of MediaWiki that does not come with a fancy editor. The web-based editor was pretty dull and inefficient. Also it lacked rich text highlighting.</li>
+<li>The mediawiki source language was having it's own syntax for writing rich text, sort of like markdown but not the same. And I was in no mood to learn a new set of syntax just to write a wiki page.</li>
+</ul>
+<p>Then I turned towards the Internet looking for a solution. The first thing that came to my mind was to use a WYSIWYG editor that generates output in MediaWiki format instead of HTML But the thought of using a web based editor was repulsion enough for me to drive myself towards looking for a better solution.</p>
+<p>Then I came to know about this wonderful command line utility called <em>pandoc </em>that can magically convert virtually any text format into another including markdown to mediawiki. This solution had at least two benefits:</p>
+<ol>
+<li>I was already fond of using markdown. So no learning curve for me.</li>
+<li>I could use Vim! If you know how to use Vim, you'd know that there's no other editor that can make you more productive. And also Vim supports syntax highlighting for markdown out of the box.</li>
+</ol>
+<p>Converting a markdown file to mediawiki is as simple as the below command:</p>
+
+{% highlight bash %}
+pandoc -f markdown -t mediawiki -o sample_wiki.mediawiki sample_wiki.markdown<br />
+{% endhighlight %}
+
+<p>Although initially I had to go through the <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" target="_blank" rel="noopener">markdown documentation page</a> for pandoc to learn a few tricks to ensure that my markdown texts get converted to mediawiki the way I want it to but after a day or two, it felt painless. And the best thing is that you can convert between these two text formats both ways without any distortion.</p>

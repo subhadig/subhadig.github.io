@@ -1,0 +1,15 @@
+---
+layout: post
+title: EntityManager with try-with-resource
+date: 2017-09-11
+tags:
+- java
+comments: true
+---
+<p>try-with-resource is the new feature introduced in Java 1.7 to automatically close a resource after using. It basically helps you to avoid a finally block at the end of the try-catch block to close any resource that needs closing like the BufferedReader. But there's a catch. You can not use any type of resource with a try-with-resource block, only those classes that extend java.lang.AutoCloseable can be used, an interface that has a single method:</p>
+
+{% highlight java %}
+public void close()
+{% endhighlight %}
+
+<p>Today I was writing a Persistence class that uses javax.persistence.EntityManager. Every time I created an instance of EntityManager, I had to manually close it in a finally block. The EntityManager interface also has a close() method with similar signature as above. Only had there been an alternate EntityManager that extended the AutoCloseable interface, I could have avoided the finally block to close it explicitly. Just a thought!</p>

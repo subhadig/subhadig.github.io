@@ -9,6 +9,7 @@ comments: true
 ---
 <h3>The Problem</h3>
 <p>After the release of Debian 10 Buster, I installed it on my Dell Inspiron 3558 laptop which comes with onboard Intel HD Graphics. I am using Xfce desktop environment instead of the default Gnome desktop. After the installation, I would intermittently face the problem where the whole desktop would suddenly just freeze and stop responding to the mouse and the keyboard. Even after hours of waiting the system would never come back to the normal state and the only solution was to hard reboot the whole system. It seemed really weird as prior to installing Debian 10, I had Debian 9 running on it for more than a year and I never had any such issues.</p>
+
 <h3>The Solution</h3>
 <p>This issue was very difficult to reproduce as it did not necessarily follow any pattern and was really unpredictable. After researching on the Internet for days, I finally found out a solution that fixed the issue. As per the official Debian documentation on video drivers, the use of X.org xf86-video-intel driver is discouraged in favour of the newer builtin modesetting driver especially if your hardware is newer than or from 2007. This was the default setting that came with the default Debian Xfce installation. And this was what was causing the freeze. To fix it and use the old xf86-video-intel driver instead, here is what I did.</p>
 <p>Edit the file <em>/etc/X11/xorg.conf</em> and update it with the following content. If the file does not exist, create a new one.</p>

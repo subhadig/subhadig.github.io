@@ -1,0 +1,15 @@
+---
+layout: post
+title: "[Solved] Keyboard Shortcuts with Control key not working under Xubuntu/Xfce"
+date: 2016-03-25
+tags:
+- xubuntu
+- xfce
+comments: true
+---
+<p>Have you ever faced a situation where you are using an IDE like Eclipse that uses a lot of Control + some other key combination shortcuts to do various tasks and you are pretty much used to those shortcuts but those shortcuts do not work under Xfce? Well I like Xubuntu because of the lightweight Xfce desktop environment but being primarily a Java developer, I also use Eclipse IDE a lot and not being able to use the keyboard shortcuts that I am very much used to was a pain. Not anymore. After spending some time looking up on the internet, I found the solution. Here it goes.</p>
+
+<p>Xfce reserves some key combinations for it's Global Keyboard Shortcuts which can not be overridden in any other application. These keyboard shortcuts also include the <em>Control + Function </em>keys that make use of all the F keys from F<em>1</em> to <em>F12</em> which are used for switching to different desktop workspaces.</p>
+<p>Since I don't use a lot of workspaces on my desktop, I cleared those combinations from Global Keyboard Shortcut menus. I went to Settings &gt; Window Manager &gt; Keyboard tab, selected the shortcut keys one by one that I wanted to free for using in other applications and clicked on the Clear button. And that's it.</p>
+<p><img class="alignnone size-full wp-image-198" src="{{ site.baseurl }}/assets/xubuntu-keyboard-shortcut.png" alt="Screenshot - Friday 25 March 2016 - 10:59:02  IST" width="682" height="527" /></p>
+<p>Thanks to <a href="http://stackoverflow.com/questions/8276776/eclipse-hot-keys-dont-work-in-xfce" target="_blank">this</a> post from Stackoverflow.</p>

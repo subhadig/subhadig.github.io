@@ -1,0 +1,20 @@
+---
+layout: post
+title: Invoking Python scripts from test cases running within a venv
+date: 2017-08-05
+tags:
+- python
+comments: true
+---
+<p>Before the final release, I like to test my Python scripts the way these are supposed to be invoked in actual environment, usually with command line arguments. And this is apart from the unit testing and integration testing that I have for the individual modules. I also use Python venv for development because I don't like to directly install all the required libs in my operating system, thus keeping the system PATH clean from the development libs. Invoking a Python script within the test cases is easy, you just need to use the os.system() function. But running a Python script from os.system() using the '<em>python script-name.py</em>' syntax invokes the python executable from the OS even if I am running the outer Python test case from withing a venv.</p>
+
+<p>After looking for a solution for days, I finally found one. It may not be very elegant but it does it's job and it's simple. The code looks as below:</p>
+
+{% highlight python %}
+import os, sys
+executable = sys.executable
+result = os.system('{} path-to-your-python-script.py'.format(executable))
+assert result == 0
+{% endhighlight %}
+
+<p>It first gets the Python executable used to run the original script and then use that to invoke the script to test.</p>

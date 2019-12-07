@@ -1,0 +1,27 @@
+---
+layout: post
+title: The Perfect Javascript Editor
+date: 2016-08-28
+tags:
+- javascript
+- node
+- ubuntu
+---
+<p>Being primarily a Java developer using Eclipse IDE, there are two things I always look for in any IDE - content assist/code completion and syntax checking/highlighting. While the latest version of Eclipse (Neon) has made a lot of improvements over the previous versions in terms of the JSDT plugin for Javascript developers, it's far from perfect. The syntax highlighting works upto some extent but the content assist is still very primitive if at all useful.</p>
+
+<p>Meet <a href="https://atom.io/" target="_blank">Atom</a> - 'A hackable text editor for the 21st Century '. Actually it's much more than just an editor and with the right combination of additional packages installed, you can very well use it like an IDE. Here's how I got the perfect Javascript editor out of it:</p>
+<ol>
+<li>To install Atom, head to <a href="https://atom.io/" target="_blank">atom.io</a>, download and install the appropriate binary for your platform. Ubuntu users can install from the 'webupd8team/atom' ppa to get regular updates.</li>
+<li>The autocomplete-plus package which is responsible for code completion comes preinstalled in Atom but it alone cannot do code completion. I needed to install a code completion provider plugin for Javascript. I chose atom-ternjs package. To install a package, go to Edit &gt; Preferences &gt; Install tab, search for a package and click on Install.</li>
+<li>Mere installing of the provider plugin is not enough though. I need to configure it for every project for which I want the autocomplete feature. To configure, first I added a project folder in Atom via File &gt; Add Project Folder... After which, I clciked on Packages &gt; Atom Ternjs &gt; Configure project. Then I had a tab opened with full of configuations where I had to choose the below options:
+<ol>
+<li>ecmaVersion: The default is ecmaVersion6 and I let it be.</li>
+<li>libs: If you need autocomplete suggestion from browser or jquery lib, check the appropriate checkboxes.</li>
+<li>plugins: This is where I chose which Javascript framework I am using. There are a number of checkboxes and if you are not sure, my suggestion would be to check all the available ckeckboxes. I usually need nodejs related plugins only so I unchecked the angular and requirejs plugin.</li>
+</ol>
+</li>
+<li>Click on Save &amp; Restart Server at the bottom of the tab.</li>
+</ol>
+<p>The step number 3 and 4 are needed to be executed for every new project.</p>
+<p>That should do it. Now I have a perfect Javascript editor. Try writing some real code and see the magic!</p>
+<p><img class=" size-full wp-image-341 aligncenter" src="{{ site.baseurl }}/assets/perfect-javascript-editor.png" alt="Screenshot from 2016-08-27 23-54-08" width="663" height="411" /></p>

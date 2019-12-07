@@ -1,0 +1,31 @@
+---
+layout: post
+title: Automatically dim display when switching to battery power on Ubuntu
+date: 2016-09-21
+tags:
+- ubuntu
+comments: true
+---
+<p>I bought a Dell Inspiron laptop recently which came with Ubuntu 14.04 preinstalled. Something I noticed with the factory Ubuntu 14.04 image was that some of the settings were tweaked to work better with the laptop. One fine example was that the laptop display would automatically dim when I switched to laptop battery from the power supply. It would again go back to full brightness once I connected the adapter back.</p>
+
+<p>I needed to upgrade the system to 16.04 which is the latest LTS version. I instead chose to do clean install with a standard Ubuntu 16.04.1 image. The installation was very smooth and almost everything worked out of the box. Everything except the automatic dim feature. Which was something I really liked because it did save some battery power. Anyway I looked up on the internet and I found something very useful. I did some manual hack and brought back the exact feature. Here's what I did:</p>
+<ol>
+<li><strong>Install laptop-mode-tools:</strong> Laptop-mode-tools is a package available in the standard Ubuntu repository which enables a Linux kernel feature that saves considerable battery power of a laptop. It can be installed from Terminal with the below command or from Synaptic or any other package manager.
+<pre>sudo apt-get install laptop-mode-tools</pre>
+<p>Laptop-mode-tools also has a very premitive gui where a module can be checked/unchecked to enable/disable power management for a specific section of your system.</li>
+<li><strong>Enable and set the brightness settings in laptop-mode-tools:</strong> The brightness management module is disabled in laptop-mode-tools by default. I needed to enable it and set some of the values related to settings. The brightness settings is stored in <em>/etc/laptop-mode/conf.d/lcd-brightness.conf</em> file. The settings in this file vary depending upon laptop hardware and the most confusing task is to find the BRIGHTNESS_OUTPUT file. The developers do mention a few tricks to find the file for your system in the config file itself.
+<ul>
+<li>If your system has the file "/proc/acpi/video/VID/LCD/brightness" (VID may be VID1 or similar), use this file as BRIGHTNESS_OUTPUT.</li>
+<li>If you have a file /sys/class/backlight/.../brightness, then you can use that file as BRIGHTNESS_OUTPUT.</li>
+</ul>
+<p>If the file is found using any of the above two ways (in my case, it was "/sys/class/backlight/intel_backlight/brightness"), then the process is pretty straightforward from there. The value inside the BRIGHTNESS_OUPUT file is the max value for brightness. Anything between 0 and the max value can be chosen as the min value. I had to update the below values in the <em>/etc/laptop-mode/conf.d/lcd-brightness.conf</em> file (opened with root priviledge):</p>
+<pre>CONTROL_BRIGHTNESS=1
+BATT_BRIGHTNESS_COMMAND="echo &lt;min-value&gt;"
+LM_AC_BRIGHTNESS_COMMAND="echo &lt;max-value&gt;"
+NOLM_AC_BRIGHTNESS_COMMAND="echo &lt;max-value&gt;"
+BRIGHTNESS_OUTPUT="/sys/class/backlight/intel_backlight/brightness"</pre>
+<p>&lt;min-value&gt; and &lt;max-value&gt; need to be updated with the chosen min and max brightness value where as <em>/sys/class/backlight/intel_backlight/brightness</em> needs to be changed with the actual BRIGHTNESS_VALUE found.<br />
+In case of Toshiba laptops, the author of the tool says to use the command "toshset" with the -lcd or -inten command. Read the toshset(1) manual page for more information on the parameters for this command. If you use this command, set BRIGHTNESS_OUTPUT to "/dev/null".</li>
+</ol>
+<p>When everything is done, I unplugged the AC power to check if it was working and to my surprise, it really worked! I hope this helps. If you use any other method, I would be glad to learn about it.</p>
+<p>Source: <a href="http://askubuntu.com/questions/183335/reduce-screen-brightness-in-battery-mode-automatically" target="_blank">Ask Ubuntu</a>, <a href="https://wiki.archlinux.org/index.php/Laptop_Mode_Tools">Arch Wiki</a></p>

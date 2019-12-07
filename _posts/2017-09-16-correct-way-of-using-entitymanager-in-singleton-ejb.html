@@ -1,0 +1,43 @@
+---
+layout: post
+title: Correct Way of Using EntityManager in Singleton EJB
+date: 2017-09-16
+tags:
+- java
+comments: true
+---
+<p>This week and last week I spent a lot of time writing code to implement the persistence feature for our module with EJB 3 at work. This is the first time I was working with EJB so there was quite a bit of learnings involved. During this time, I noticed that even some of the most seasoned developers don't have a very clear idea about how the whole Persistence thing in JPA works under the hood. They would take some of the things for granted like if they use an EntityManager in their managed objects, something will auto-magically manage everything for them and in the process, did some rookie mistakes.</p>
+
+<p>Firstly, you should get one thing clear, <a href="https://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html" target="_blank" rel="noopener">EntityManager</a> is not thread-safe. No matter what others say and no matter which application server you are using, you should never design your code based on the assumption of thread safety of the underline implementation of EntityManager. So if you are writing a Singleton EJB, you can not write the below code:</p>
+
+{% highlight java %}
+@Singleton
+public class PersistenceService
+{
+ @PersistenceContext(name="somePU")
+ EntityManager em;
+{% endhighlight %}
+
+<p>In other words, you can not use Container managed persistence context. Then what is the way around? Application managed persistence context is to the rescue!</p>
+<p>Now the second thing to remember, EntityManagerFactory is guaranteed to be thread-safe, always. And injecting it in to your Singleton EJB is as simple as injecting the EntityManager itself. Literally.</p>
+
+{% highlight java %}
+@Singleton
+public class PersistenceService
+{
+ @PersistenceUnit(name="somePU")
+ EntityManagerFactory emf;
+{% endhighlight %}
+
+<p>And creating EntityManager as below:</p>
+
+{% highlight java %}
+public void persistenceMethod(Entity myEntity)
+{
+ EntityManager em = emf.createEntityManager();
+ ... //Persistence operations
+ em.close();
+}
+{% endhighlight %}
+
+<p>Calling the close() method before leaving the method is important. That's it. You can use the above code snippet in any multi-threading environment and rest assured, you will not run into any thread-safety related weird issues related to EntityManager. And the best part is that, you still get to use the Container managed transaction, so you don't need to manually open and commit/rollback transactions (Bean managed transaction).</p>

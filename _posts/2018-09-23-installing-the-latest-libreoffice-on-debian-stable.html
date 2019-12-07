@@ -1,0 +1,43 @@
+---
+layout: post
+title: Installing the latest Libreoffice on Debian stable
+date: 2018-09-23
+tags:
+- debian
+comments: true
+---
+<p>One of the few software that I like to keep always updated to the latest version on my system is Libreoffice, because of the compatibility improvements with the other office suite each new version brings. And while Debian Stable provides a solid and stable base system, the libreoffice package becomes outdated with time. A lot of the guides on updating Libreoffice in Debian on the Internet speak about installing the latest binaries from the Libreoffice website. But the main shortcoming with this approach is that updating to the next version is again a manual task.</p>
+
+<p>I prefer to install it from the Debian backports repository (libreoffice version in stretch-backports is at par with testing repository). Following are the simple steps to install the latest LIbreoffice on Debian Stretch (steps will be slightly different if you're on a different version of Debian).</p>
+<p><strong>1. Add the Stretch backports repository to apt sources</strong> if you have not done already by adding the following line to /etc/apt/sources.list file.</p>
+
+{% highlight bash %}
+deb http://ftp.debian.org/debian stretch-backports main contrib
+{% endhighlight %}
+
+<p>And update repository information.</p>
+
+{% highlight bash %}
+sudo apt update
+{% endhighlight %}
+
+<p><strong>2. Uninstall the older libreoffice</strong> packages and dependencies.</p>
+
+{% highlight bash %}
+sudo apt purge libreoffice*
+sudo apt autoremove
+{% endhighlight %}
+
+<p><strong>3. Install the latest libreoffice</strong> and a couple of other additional packages from the backport repository</p>
+
+{% highlight bash %}
+sudo apt install -t stretch-backports libreoffice libreoffice-gnome libreoffice-help-en-us
+{% endhighlight %}
+
+<p>And that should be all. Open Libreoffice and check the version from Libreoffice &gt; Help &gt; About Libreoffice which should reflect the latest version. A couple of things to note here:</p>
+<ol>
+<li>For Xfce and other gtk based desktop environments, <em>libreoffice-gnome</em> should work fine. If you are using KDE, you should install <em>libreoffice-kde</em> instead.</li>
+<li>If you want to access the built-in Libreoffice help in some other language than US English, replace the <em>libreoffice-help-en-us</em> package with the help package for your language of choice.</li>
+</ol>
+<p><img class="aligncenter size-large wp-image-1121" src="{{ site.baseurl }}/assets/libreoffice_help.png" alt="" width="605" height="361" /></p>
+<p>I hope it helps.</p>

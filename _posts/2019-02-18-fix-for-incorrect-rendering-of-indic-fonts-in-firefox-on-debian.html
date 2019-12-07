@@ -1,0 +1,24 @@
+---
+layout: post
+title: Fix for incorrect rendering of Indic fonts in Firefox on Debian
+date: 2019-02-18
+tags:
+- debian
+- firefox
+comments: true
+---
+<p>Debian Stretch, the current stable release of Debian now comes with Firefox ESR 60. One strange issue I have noticed with the out of the box configuration of Firefox on Debian is that it does not correctly render the Indic fonts on the websites. Most notable issue is that it breaks the connected letters while showing. Here's how I fixed it.</p>
+
+<ol>
+<li>Install the fonts-indic package.<br />
+
+{% highlight bash %}
+sudo apt install fonts-indic
+{% endhighlight %}
+
+</li>
+<br/>
+<li>Now open Firefox and go to Preferences &gt; General &gt; Language and Appearance &gt; Fonts &amp; Colors and click on Advanced. Select the language you want to set fonts for from the "Fonts for" dropdown and select fonts with your specific language support for Serif and Sans-serif fonts, click Ok.
+<p>Here's how my settings looks like:</p>
+<img class=" size-full wp-image-1187 alignleft" src="{{ site.baseurl }}/assets/indic-fonts-firefox-debian.png" alt="indic-fonts-firefox-debian.png" width="701" height="603" /></li>
+</ol>

@@ -1,0 +1,24 @@
+---
+layout: post
+title: Running Java app server on AWS EC2 Ubuntu instance
+date: 2016-11-26
+tags:
+- ubuntu
+- aws
+- java
+comments: true
+---
+<p>Today I will be writing about setting up an Ubuntu instance on the Amazon AWS cloud and running a Java web application on it. We are working on a hobby project that has its back-end written in Java. The app back-end was first hosted on <a href="https://www.heroku.com/" target="_blank">Heroku</a> but due to some issues, we decided to move it to Amazon AWS. I was given the responsibility to set up our server. This was the first time I had an opportunity to work with Amazon AWS. But it turned out to be quite fun.</p>
+
+<p>I did not have an account in Amazon AWS so I had to create one. The process was not complex but a tad lengthy. Although my intention was to use the free tier (an alltotal 750 hours of uptime for any number of t2.micro instances) for now, at least till the project was ready to be rolled out, I still needed to provide the Credit card information. At the end of the registration process, there were links to a a few tutorials including <a href="https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/" target="_blank">How to Launch a Linux Virtual Machine</a> which was quite helpful.</p>
+<p>The default tutorial takes through the process of creating an instance of Amazon Linux which is a spin of RedHat Enterprise Linux. But the steps are identical for any available Linux image (I chose Ubuntu 16.04 since I was more familiar with Ubuntu). The free tier was only available for t2.micro instances which with 1 Gig of primary memory and 1vCPU was sufficient for the kind of usage we were looking for. But before I could proceed, I had to create a .pem key which will be needed to access the VMs later on. Be sure to keep the key safely because after it is created, as it can be downloaded only once.</p>
+<p>Next is accessing the newly created instance from my local system using ssh.</p>
+<pre>ssh -i [path to your .pem key] [username]@[remote machine ip]</pre>
+<p>The user name for all Ubuntu images are "ubuntu" by default. The remote machine ip changes every time you stop and start the instance.</p>
+<p>After I was done with creating the instance, I installed the pending updates and also some required packages for our server eg. default-jre, mysql-server. Also I ran the mysql_secure_installation to tweak some of the default configurations to enhance the security of mysql.</p>
+<p>Although AWS comes with it's own firewall I enabled Ubuntu's own firewall ufw which comes disabled by default. And a word of caution, now if you restart the server without allowing the 22 port, your server is lost! Because the default configuration of ufw is to block all the ports and you specifically need to tell it to allow any port you need to access from outside. Something that cost me the server first time!</p>
+<p>The last step was to allow the http port of our application in the firewalls ( in ufw and in the Amazon AWS Security Group). Enabling the port in ufw was fairly straight-forward. To enable the port in Amazon AWS security group, log in to AWS, go to Security Group, select the appropriate security group, go to the Inbound tab and add the custom TCP rule with the http port.</p>
+<p>That's it. The server is now ready to deploy the application. Since our application was packaged as a jar file with embedded server, I did not need to install the server separately. I copied the jar file using the below command and ran it as a Java application.</p>
+<pre>scp -i [path to your .pem key] [path to your local jar file] [username]@[remote machine ip]:/tmp</pre>
+<p>Or you can also use Filezilla or similar applications to access your remote EC2 instance but for that, there will be some additional steps to make it work with the AWS specific .pem key.</p>
+<p>I am working on an automated script to at least do the package installations and configurations automatically and I will share it in another post hopefully when it's done.</p>

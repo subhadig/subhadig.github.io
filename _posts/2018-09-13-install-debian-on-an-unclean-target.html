@@ -1,0 +1,12 @@
+---
+layout: post
+title: Install Debian on an unclean target
+date: 2018-09-13
+tags:
+- debian
+comments: true
+---
+<p>Recently I had to downgrade my main laptop from Debian testing to Debian stable (Stretch at the time of writing). Since I did not have a separate home partition, re-installation meant formatting the entire partition that would erase all my personal data and settings. But this time I did not want go over the pain of configuring everything from scratch, so I went ahead without formatting my root partition. After a few times of failures and analyzing the installation logs, I learnt the trick.</p>
+
+<p>You need to boot using a live CD instead of the regular one that will just let you install, then enter into a live session. Now you need to open a terminal or a file manager, go to the actual hard disk partition that you are going to use for the installation, remove all the files and directories except the /home directory. Now if you proceed with the installation, it will not fail anymore because of unclean target.</p>
+<p>Something you should keep in mind that if you're like me downgrading from a more recent release to an older release, some of the settings might not work after re-installation, especially the DE related settings. In those cases, drop to a shell (Ctrl + Alt + F1) if you are not able to access the desktop environment and  delete or rename the old settings directory or file.</p>

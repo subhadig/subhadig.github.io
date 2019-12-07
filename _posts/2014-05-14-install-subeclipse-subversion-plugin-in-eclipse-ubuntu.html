@@ -1,0 +1,25 @@
+---
+layout: post
+title: Install Subeclipse subversion plugin in Eclipse + Ubuntu
+date: 2014-05-14
+tags:
+- eclipse
+- ubuntu
+comments: true
+---
+<p>Subclipse is an Eclipse Team Provider plug-in providing support for Subversion within the Eclipse IDE. Installing Subeclipse plug-in in Eclipse running on Ubuntu (or any other Linux distribution) is a little more complex than on win-32 platform. You need to install an additional package that contains the JavaHL binaries. To install Subeclipse, follow the below simple steps:</p>
+
+<p>1.<strong>Go to Ubuntu Software Center and install the below package.</strong></p>
+<blockquote><p>libsvn-java</p></blockquote>
+<p>2.<strong>Note the installed version of the above package.</strong></p>
+<p><img class="wp-image-42 size-large" src="{{ site.baseurl }}/assets/libsvn-version.png" alt="libsvn-version" width="605" height="472" /> </p>
+<p>In this case, it is 1.8.x (default for Ubuntu 14.04 LTS). It will be different for other versions and distributions. This is needed to choose the appropriate version of Subeclipse as  Subclipse versions are tied to specific versions of the Subversion client API (libsvn-java in this case).</p>
+<p>3.<strong>Go to <a title="subeclipse: Download and Install" href="http://subclipse.tigris.org/servlets/ProjectProcess?pageID=p4wYuA" target="_blank">this</a> link. Choose the appropriate version of Subeclipse plugin depending upon your installed libsvn-java package version. </strong>As in this case it is 1.8.x, we will choose version 1.10.x.</p>
+<p><img class="alignright wp-image-46 size-large" src="{{ site.baseurl }}/assets/subeclipse-download_1.png" alt="subeclipse-download-version" width="605" height="114" /></p>
+<p>4. <strong>Copy the Eclipse update site URL for the chosen version.</strong></p>
+<p>5. <strong>Open Eclipse. Go to Help -&gt; Install New Software. Click on Add button in the newly opened window.</strong></p>
+<p>6. <strong>Paste the Eclipse update site URL as in the below screenshot. </strong>Click Ok.</p>
+<p><img class="aligncenter wp-image-48 size-medium" src="{{ site.baseurl }}/assets/add-repository.png" alt="Add-repository" width="300" height="107" /></p>
+<p>7. <strong>Select Subeclipse from the list and click next. Finish the installation.</strong></p>
+<p><strong><img class="aligncenter wp-image-52 size-large" src="{{ site.baseurl }}/assets/subeclipse-select.png" alt="subeclipse-select" width="605" height="425" /><br /></p>
+<p></strong>8.<strong>Restart Eclipse after the installation finishes.</strong> That's it. You have now Subeclipse SVN plugin installed in your Eclipse.</p>

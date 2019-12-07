@@ -1,0 +1,42 @@
+---
+layout: post
+title: Developing Node.js with Atom Editor
+date: 2015-09-27
+tags:
+- javascript
+- node
+- ubuntu
+---
+<p>Recently I have been playing with Node.js and for every developer, getting the perfect IDE/Editor and setting up the workspace is very important. Here's how I got my set up ready:</p>
+
+<p>I am using Xubuntu 14.04.3 LTS. So the steps that I am going to share will work in any of the Ubuntu flavours.</p>
+<p><strong>1. Installing Node.js:</strong> Node.js is already there in the default Ubuntu 14.04 repository and the version is 0.10.25. If you need more updated version, you have 2 ways. You can either download it from the official Node.js <a href="https://nodejs.org/" target="_blank">site</a>, or you can follow <a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-an-ubuntu-14-04-server" target="_blank">this</a> tutorial and add a third-party repository or use <em>nvm</em> to get it installed. In the first case, it will not be auto-updated though. However, I chose to use the default repository version as I didn't see the point in going through all these hassle unless I specifically want a feature that is only available in the newer versions.</p>
+<p>To install the default nodejs in Ubuntu 14.04, type the below command (or use your favourite package manager to install the package):</p>
+
+{% highlight bash %}
+sudo apt-get install nodejs
+{% endhighlight %}
+
+<p><strong>2. Installing Atom editor:</strong> While this is something that is not exactly required for Node.js and Node.js can be developed with any editor, I preferred Atom for it's set of features and open source nature. To install Atom on my system, I used the WebUpd8 PPA so that I get regular updates and I don't need to build from source to install the latest one. To use the WebUpd8 PPA, use the below commands:</p>
+
+{% highlight bash %}
+sudo add-apt-repository ppa:webupd8team/atom
+sudo apt-get update
+sudo apt-get install atom
+{% endhighlight %}
+
+<p>For further information, visit the WebUpd8 <a href="http://www.webupd8.org/2014/05/install-atom-text-editor-in-ubuntu-via-ppa.html" target="_blank">site</a>. You can also download the latest version of the software from Atom official <a href="https://atom.io/" target="_blank">site</a>.</p>
+<p><strong>3. Configuring Atom to run Node within Atom:</strong> While you can write your code in Atom and run it from the terminal separately, I prefer to run it within the IDE itself, it saves a lot of Alt + Tab. It's not supported by default, you need to add a package to get this functionality.</p>
+<p>Open Atom and go to Edit -&gt; Preferences -&gt; Install. Search for the package a<em>tom-runner</em> and hit Install. Atom-runner will now be installed. Although you need to change the default configuration to run Node using atom-runner. The reason is that in Ubuntu, the name of the Node.js package (hence the command) is not <em>node</em> (it is the default everywhere else) due to the conflict with some other package, rather it's <em>nodejs</em>.</p>
+<p>To update the configuration, open ~/.atom/config.cson with your favourite text editor where ~ stands for your home directory. Paste the below lines:</p>
+
+{% highlight bash %}
+runner:
+  scopes:
+    js:"nodejs"
+{% endhighlight %}
+
+<p>Do take care of the indentation. The first line of the above text should be indented a little right and the next two lines should each be indented further right.</p>
+<p>If you do the above steps correctly, you have your Atom editor ready to write some Node. Create a new file and name it to <em>somename.js</em>. Paste console.log('It's working.') in the editor and save it. Press Alt + R and it should print the output in a new tab.</p>
+<p>That's it for now. I will be adding more contents to it as I go with Node. Let me know in the comments if you have better suggestions about Node.js development. I will be sure to take a look.</p>
+<p>If you are looking into ways of tuning your Atom editor to be better suited for coding Javascript with the features like content-assist, go through this post about <a href="https://subhadipsblog.wordpress.com/2016/08/28/the-perfect-javascript-editor/">The Perfect Javascript Editor</a>.</p>
