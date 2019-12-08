@@ -1,0 +1,15 @@
+---
+layout: post
+title: Inconsistent space width across editors
+date: 2017-10-22
+tags:
+- geany
+comments: true
+---
+<p>I had a weird problem today when my perfectly indented code comments from Vi editor were looking like a mess in Geany.</p>
+
+<p><img class="aligncenter size-large wp-image-1030" src="{{ site.baseurl }}/assets/inconsistent-space-1.png" alt="" width="605" height="129" /></p>
+<p>The pound signs were all out of line though they look perfectly aligned when opened in Vi editor. Initially I thought that it was a problem with the tab settings in Geany. But after tweaking some of the tab settings did not produce any result, I noticed that spaces in Geany were having lesser width compared to other characters, which was the root of the problems. I found that the font that I was using in Geany was not fixed width. And for that I should use Mono variation of the fonts. So I changed the font setting in Edit &gt; Preference &gt; Interface &gt; Fonts &gt; Editor to below:</p>
+<p><img class="aligncenter size-full wp-image-1031" src="{{ site.baseurl }}/assets/inconsistent-space-2.png" alt="" width="451" height="371" /></p>
+<p>And after that, everything was perfectly aligned.</p>
+<p><img class="aligncenter size-large wp-image-1032" src="{{ site.baseurl }}/assets/inconsistent-space-3.png" alt="" width="605" height="139" /></p>

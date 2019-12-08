@@ -28,7 +28,23 @@
       <section id="main_content" class="inner">
           <h2>{{ page.title }}</h2>
           <div class="postDate">- Last updated on {{ page.date | date: "%-d %B, %Y" }}</div> 
+          
           {{ content }}
+
+          <div id="tags">
+              <br/>
+              <h4>Tags</h4>
+              <ul>
+              {% for tag in page.tags %}
+              <li><a href="/tags#{{ tag }}">{{ tag }}</a></li>
+              {% endfor %}
+              </ul>
+          </div>
+
+          {% if site.disqus.shortname %}
+              {% include disqus_comments.html %}
+          {% endif %}
+
       </section>
     </div>
 

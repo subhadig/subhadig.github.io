@@ -1,0 +1,31 @@
+---
+layout: post
+title: LXD Containers - First Experience
+date: 2017-04-02
+tags:
+- lxc/lxd
+- ubuntu
+comments: true
+---
+<p>Lately I have been playing around with LXD containers and I must say that I am quite impressed with it. LXD is the <span class="_Tgc">virtualization</span> technology that can be used to run a Linux container on a Linux host using the same kernel as the host.</p>
+
+<p>Well, it's a little difficult to grab the idea at first. Unless of course you interacted with it before. You can think of it as a virtual machine that you run using VirtualBox or VMWare on your Linux or Windows host machine but the difference is that when you run a virtual machine, you are running a separate kernel inside the virtual machine but in this case, you are fooling the guest OS running inside the LXD container into thinking that it's running its own kernel whereas it's just using the same kernel running on the host OS. And the result is that you get an isolated container with a much smaller memory footprint and little overhead compared to a full blown virtual machine.</p>
+<p>LXD is built on top the low level Linux container LXC and it provides a set of cleaner commands and a number of extra features. To install LXD on Ubuntu 16.04 (or flavours), use the command:</p>
+<pre>sudo apt-get install lxd</pre>
+<p>It installs lxd and its client. Before you can start using it, you need to set the default preferences for LXD. The below command takes care of it:</p>
+<pre>sudo lxd init</pre>
+<p>It will set some of the default options including setting up a bridge network that can be used by the containers. LXD is image based. That means, you need to get an image first to create a container. An image can be used from any sources, remote or local. To view all the available sources, use:</p>
+<pre>lxc remote list</pre>
+<p><img class="size-large wp-image-777 alignleft" src="{{ site.baseurl }}/assets/lxd-first-experience-1.png" alt="" width="605" height="140" /></p>
+<p>To get all the available images from the 'images' source:</p>
+<pre>lxc image list images:</pre>
+<p>You can choose any of the images from the list. To launch a container with the Ubuntu 17.04 64 bit image, use:</p>
+<pre>lxc launch images:ubuntu/zesty my-container</pre>
+<p>Where 'my-container' is the name of the container. To see a list of the existing containers and their running status, use:</p>
+<pre>lxc list</pre>
+<p><img class="size-large wp-image-779 alignleft" src="{{ site.baseurl }}/assets/lxd-first-experience-2.png" alt="" width="605" height="100" /></p>
+<p>To create and access a bash session inside the container:</p>
+<pre>lxc exec my-container bash</pre>
+<p>To stop the container:</p>
+<pre>lxc stop my-container</pre>
+<p>At this point, you should be able to launch and manage a basic container. In my next post, I will share some more uses of LXD and about changing some of the basic preferences.</p>

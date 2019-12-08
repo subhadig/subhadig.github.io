@@ -1,0 +1,13 @@
+---
+layout: post
+title: "[Solved] Flash player in Google Chrome keeps getting stuck under Ubuntu/Linux"
+date: 2015-03-28
+tags:
+- ubuntu
+comments: true
+---
+<p>Although I use both Firefox and Chrome on my Linux box, for playing any flash video (yes, I know flash is going to go away and I hate it too but for the time being, it's still here), sometimes Chrome is the only option as the Flash player plugin for Linux is very old and many websites do not support it already (Chrome separately packages it's own flash player which is not dependent directly upon your platform (which means it is available for Linux also) and it's version is regularly updated, if you didn't know already).</p>
+
+<p>But one issue I have faced with Chrome that while playing a video, the flash player keeps getting stuck (I have fairly low spec computer bought 7 years ago and didn't upgrade it much, so this problem might not be present for most people with newer hardware). I quickly realized that this was because my computer CPU was already running at its maximum speed and could not process the video any faster (so it would keep getting stuck). Here's what I did to fix the problem.</p>
+<p>Go to Google Chrome -&gt; Settings -&gt; 'Show advanced settings' -&gt; System. Then uncheck "Use hardware acceleration when available". Now restart Chrome.</p>
+<img src="{{ site.baseurl }}/assets/flash-google-chrome.png"/>

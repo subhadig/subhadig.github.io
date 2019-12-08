@@ -1,0 +1,49 @@
+---
+layout: post
+title: Permanently change Duplex settings and Network card speed in Ubuntu
+date: 2014-05-11
+tags:
+- ubuntu
+comments: true
+---
+<p>Users of Alliance or similar broadband services might have noticed that their network connection would sometimes get dropped while on Ubuntu or the network speed is somewhat less than what is advertised. The solution for this is that you need to change the duplex setting of your network connection. Don't freak out yet, it's not as hard as you might think. Follow the below simple steps:</p>
+
+<p>1. <strong>Get the desired duplex settings from your service provider. </strong>In this case, we will assume that it's "10 duplex half". Replace it with the appropriate speed in your case.</p>
+<p>2. <strong>Open Ubuntu Software Center, search for the following package and install. </strong></p>
+<blockquote><p>ethtool</p></blockquote>
+<p>3.<strong>Open Gedit or any other Text editor and paste the following:</strong></p>
+<blockquote><p>#!/bin/sh<br />
+ETHTOOL='/sbin/ethtool'<br />
+DEV='eth0'<br />
+SPEED='10 duplex half'<br />
+case $1 in<br />
+start)<br />
+echo -n "Setting eth1 speed 10 duplex half...";<br />
+$ETHTOOL -s $DEV autoneg off speed $SPEED;<br />
+echo " done.";;<br />
+stop)<br />
+;;<br />
+esac<br />
+exit 0</p></blockquote>
+<p>4. <strong>Check the following:</strong></p>
+<ul>
+<li>Open Terminal. Paste "which ethtool" without the quotes and Enter. If it is not "/sbin/ethtool", copy the result and replace it with "/sbin/ethtool" in the second line of the Text editor.</li>
+<li>Go to the network applet (top right corner region of the screen) and click on Connection Information (assuming you are connected to the network for which you are going to change the duplex setting. If you are not, go to Network Connections -&gt; Edit the connection -&gt; Ethernet tab, notice the name inside braces after Device Mac Address). Check for the line "Interface : Ethernet(eth0)". If it is not 'eth0' in your case, copy it ('ethX') and paste it in place of 'eth0' in the third line of the Text editor.</li>
+<li>Replace '10 duplex half' with the appropriate speed for your case in the fourth line of the Text editor.</li>
+</ul>
+<p>5. <strong>Save the untitled document in your home directory with any name. </strong>Lets say, we saved it with the name 10Mbps.sh (in the subsequent steps, if your file name is different, don't forget to replace '10Mbps.sh' with your file name wherever applicable).</p>
+<p>6. <strong>Open Terminal and paste the following one by</strong> <strong>one</strong> (if you are not using Ubuntu, then change 'nautilus' with your installed file manager in the below line)<strong> </strong>:</p>
+<blockquote><p>sudo nautilus /etc/init.d/</p></blockquote>
+<p>7. <strong>Copy the file (10Mbps.sh) to the newly opened window. Right click on the file, click on Properties, go to the Permission tab, check the Execute check-box and close it.</strong></p>
+<p>We are almost done now. In the next step, we check if everything we did is correct.</p>
+<p>8. <strong>Go the Terminal again and paste the following</strong> (one by one)<strong> :</strong></p>
+<blockquote><p>sudo /etc/init.d/10Mbps.sh start</p>
+<p>sudo ethtool eth0</p></blockquote>
+<p>Change 'eth0' if it's different in your case (step 4). After executing the above commands, look for these lines in the result:</p>
+<blockquote><p>Speed: 10Mb/s<br />
+Duplex: Half</p></blockquote>
+<p>If it matches with your input, then we are good to go. If you encounter any error at this stage, don't proceed before resolving those.</p>
+<p>9. Phew! We are at the final step of this long tutorial at last! <strong>Paste the below command in Terminal:</strong></p>
+<blockquote><p>sudo update-rc.d 10Mbps.sh defaults</p></blockquote>
+<p>Again, don't forget to replace file name '10Mbps.sh' if it's different in your case.</p>
+<p>We are done now. Restart your computer for the changes to take effect. Although this tutorial assumes that you are using Ubuntu, it should work on any Ubuntu or Debian based distro with little or no modification. Let me know in the comments section if you face any issue.</p>

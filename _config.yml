@@ -4,6 +4,8 @@ description: My experience with the computing world!
 author: subhadipg
 url: "https://subhadig.github.io"
 permalink: /:title:output_ext
+disqus:
+    shortname: subhadig
 
 plugins:
   - jekyll-seo-tag

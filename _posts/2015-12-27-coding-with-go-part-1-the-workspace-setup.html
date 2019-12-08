@@ -1,0 +1,25 @@
+---
+layout: post
+title: 'Coding with Go - Part 1 : The Workspace Setup'
+date: 2015-12-27
+tags:
+- golang
+- ubuntu
+comments: true
+---
+<p>Go (sometimes referred as Golang) is the system programming language from Google which is my new interest these days. Some of my favourite points about Go so far:</p>
+
+<ol>
+<li>It's a compiled language and I like compiled languages. To somebody who has used C/C++ and later Java for programming, this should come as no surprise.</li>
+<li>It has fairly easy syntax and it's not a lot different from C which definitely helps to learn the language quickly.</li>
+<li>It can be used like a scripting language.</li>
+<li>It has a fairly large built-in package collection.</li>
+<li>It has first class Linux support.</li>
+</ol>
+<p>Here's what I did to get my workstation ready to code with Go:</p>
+<ol>
+<li><strong>Installing Go</strong>: Since I am using Ubuntu 14.04 LTS and the Golang version in the official repository is very old, I downloaded the tar.gz for my platform from official Golang <a href="https://golang.org/dl/" target="_blank">website</a> and installed manually (the downside is that it will not be automatically updated when a new version comes out). The installation steps are given on the <a href="https://golang.org/doc/install" target="_blank">website</a> itself. The steps are easy enough for a newbie in Go like me to follow (I installed Go in a custom location, so I had to do some extra steps). A word of advice, if you are using Ubuntu and if you are to set an environment variable (like GOROOT, PATH), use .pam_environment instead of writing in the .bash_rc or .profile file (read the official <a href="https://help.ubuntu.com/community/EnvironmentVariables" target="_blank">documentation</a>).</li>
+<li><strong>Getting the editor ready</strong>: I am using Atom editor with the go-plus plugin. To install the go-plus plugin, go to Atom -&gt; Preferences -&gt; Install, search for go-plus package and install. It provides syntax and compilation error highlighting, auto-completion and some other features. One important point though, do not forget to set the GOPATH environment variable or else the go-plus plugin will not function properly. If Atom does not suit your taste, you can use one from a bunch of other editors listed <a href="https://github.com/golang/go/wiki/IDEsAndTextEditorPlugins" target="_blank">here</a>.</li>
+<li><strong>Coding with Go</strong>: One of the good things about Go is the quality of the official documentation. Instructions from <a href="https://golang.org/doc/code.html" target="_blank">here</a> should give you enough idea about compiling and running the Go code.</li>
+</ol>
+<p>Although, things are looking great now, something that I am missing a lot is a good debugger for Go. You can debug Go with GDB but it's not fully supported. There are some other debuggers available though, but I haven't had the time to evaluate them yet.</p>

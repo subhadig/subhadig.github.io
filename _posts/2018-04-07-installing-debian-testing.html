@@ -1,0 +1,82 @@
+---
+layout: post
+title: Installing Debian Testing
+date: 2018-04-07
+tags:
+- debian
+comments: true
+---
+<p>After my previous post about <a href="https://subhadipsblog.wordpress.com/2018/02/09/my-rolling-debian-system/">why I chose Debian Testing as my current distribution</a>, I wanted to share how I installed and configured Debian Testing. So that somebody out there looking for a guide to install their own Debian rolling system, will have at least a starting point.</p>
+
+<p>Before I proceed with the post, please know that although I am a long time Linux user, with Debian, I just started my journey a couple of months back. And by no mean I am a seasoned Debian user. So whatever steps I am going to list in this post are the ones that I thought would be best suited for my requirement when I installed it on my system.</p>
+<ol style="list-style-type:decimal;">
+<li><strong>Get the image</strong>: The Debian Free Software Guidelines (DFSG) does not allow to ship non-free software with the default cd-image. That means, if you are planning to install it on a Laptop and if your laptop has a wifi which is the case in most of the times, chances are that wifi will not work out of the box (OOTB) after your installation. Because the default cd image does not come with any non-free firmware and you need to install it separately after completing the default installation. Which may not be a great choice if wifi is the only way you can access the internet. But there is a better way. Debian also publishes separate cd images with the non-free firmware components. So if you also need wifi support OOTB, choose one of the latest stable release iso-dvd installers(current) from the location: <a class="uri" href="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/">https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/</a></li>
+<li><strong>Install the image</strong>: I am going to assume that you picked the non-free image and will skip the driver installation part after the installation. But the installation procedure is same irrespective of if you're using free or non-free image. I wrote the cd-image on a USB stick. The steps are fairly simple. Just follow the <a href="https://www.debian.org/releases/wheezy/amd64/ch04s03.html.en">documentation</a>. The installer is pretty standard and I am not going to explain the step by step installation procedure. You will be required to choose your desktop environment of choice during the installation procedure, the default is Gnome. Also I kept the root password blank because I wanted the root account to be disabled. I prefer to use sudo whenever root privilege is required. After you are done with the installation, restart your computer.</li>
+<li><strong>Enabling USB keyboard</strong>: This step may not be required for you. I use a USB keyboard with my laptop as I am not very fond of my laptop keyboard. In Ubuntu, I didn't have to do anything special in order to have my keyboard detected but in Debian, you need to have certain kernel modules enabled to be able to use it. Follow the first option on this <a href="https://wiki.debian.org/Keyboard#How_to_enable_USB_keyboard_in_initramfs">page</a> and change the driver-policy to include most modules.</li>
+<li><strong>Updating the apt sources</strong>: This is one of the most important steps after installation. After installation you will have something like below in your /etc/apt/sources.list:</li>
+</ol>
+
+{% highlight bash %}
+deb http://deb.debian.org/debian/ stretch main non-free contrib
+deb-src http://deb.debian.org/debian/ stretch main non-free contrib
+deb http://security.debian.org/debian-security stretch/updates main contrib non-free
+deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free
+
+deb http://deb.debian.org/debian/ stretch-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ stretch-updates main contrib non-free
+{% endhighlight %}
+
+<p style="padding-left:30px;">Edit the file with root privilege and replace the word <em>stretch</em> with <em>testing</em>. Update and dist-upgrade your system.</p>
+
+{% highlight bash %}
+sudo apt update && sudo apt dist-upgrade
+{% endhighlight %}
+
+<p style="padding-left:30px;">After you reboot, you will have your system updated to the current testing branch of Debian. In my case, it was Buster.</p>
+<ol style="list-style-type:decimal;" start="5">
+<li><strong>Enable tapping on touchpad:</strong> Although the touchpad on my Laptop was automatically detected, clicking by tapping was not enabled by default. Follow <a href="https://wiki.debian.org/SynapticsTouchpad#Enable_tapping_on_touchpad" target="_blank" rel="noopener">this</a> link to add this configuration to <em>/etc/X11/xorg.conf.d/40-libinput.conf</em> and then restart <em>lightdm</em> to enable tapping on touchpad. If you are not using a laptop, then this step is not required.</li>
+<li><strong>Installing latest Firefox</strong>: The current Debian testing version ie Buster repository does not contain the latest version of Firefox ie Firefox Quantum. It has the Firefox ESR which is the long term support version of Firefox and lags behind the current release. If your primary browser of choice is Chrome or Chromium, you can go ahead and install it very easily. The repo does contain the latest version of Chromium. The latest Firefox is available in the Debian unstable repository ie Sid. To install Firefox from the unstable repo, perform the below 2 steps:</li>
+</ol>
+<ul>
+<li>Add the below content in /etc/apt/preferences.d/preferences. This tells the system not to install packages from unstable unless told otherwise. This is very important as it will prevent the system to install any untested/unstable package without your consent.</li>
+</ul>
+
+{% highlight bash %}
+Package: *
+Pin: release a=testing
+Pin-Priority: 900
+
+Package: *
+Pin: release o=Debian
+Pin-Priority: -10
+{% endhighlight %}
+
+<ul>
+<li>Add the below two lines in /etc/apt/sources.list</li>
+</ul>
+
+{% highlight bash %}
+deb http://deb.debian.org/debian/ unstable main non-free contrib
+deb-src http://deb.debian.org/debian/ unstable main non-free contrib
+{% endhighlight %}
+
+<p style="padding-left:30px;">Then install Firefox.</p>
+
+{% highlight bash %}
+sudo apt install firefox/unstable
+{% endhighlight %}
+
+<ol style="list-style-type:decimal;" start="6">
+<li><strong>Install a couple of additional packages</strong>: These packages will warn you if there is any serious bug or important change in any of the packages you install or upgrade.</li>
+</ol>
+
+{% highlight bash %}
+sudo apt install apt-listbugs apt-listchanges
+{% endhighlight %}
+
+<p>That's it. You should now have a fully functional Debian testing system. Be sure to go through the links in the References section before you actually make the switch. If you have any question/suggestion, do let me know in the comments.</p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="https://wiki.debian.org/DebianTesting">Debian Wiki - Debian Testing</a></li>
+<li><a href="https://wiki.debian.org/DebianUnstable#What_are_some_best_practices_for_testing.2Fsid_users.3F">Debian Wiki - Best Practices for Testing Users</a></li>
+</ul>
