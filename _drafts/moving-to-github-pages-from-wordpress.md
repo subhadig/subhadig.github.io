@@ -5,7 +5,7 @@ layout: post
 I recently moved my personal blog to GitHub Pages from
 Wordpress.com. I have been thinking about doing it for
 sometime and this time I finally did it. And I wanted to
-share a few things about why I did it.
+share the inspiration behind it.
 
 ## What are GitHub Pages?
 GitHub Pages are public static webpages hosted and published through
@@ -14,7 +14,7 @@ the website are also hosted in a public repository in GitHub.
 
 ## What is Jekyll?
 Jekyll is a static site generator. You write contents in simple
-HTML or in Markdown and it creates pages out of it. It uses Liquid,
+HTML or Markdown and it creates pages out of it. It uses Liquid,
 a simple templating language which makes it very easy to have
 custom templates designed for all your pages and when you run
 Jekyll, it automatically combines the contents and the templates
@@ -22,12 +22,21 @@ and creates the final static pages.
 
 ## Why Jekyll?
 Although I did not do any extensive comparison between Jekyll and
-all other similar solutions, Jekyll did seem the one of the best
-solution to start with because
+the other similar solutions, Jekyll seemed one of the best
+choice to start with because
 - GitHub Pages have supports for Jekyll out of the box.
-- 
+- Although it is written in Ruby, it does not require any knowledge
+of Ruby to use it.
+- It seemed to have the right blend of simplicity and features.
 
 ## Why did I do it?
+I have been blogging with Wordpress since 2011 and when I started,
+it did seem one of the best choices out there. It's easy to start
+with, it has a nice editor, there are lots of ready-to-use themes 
+to choose from, there is a vast community of users. But over the
+years, my expectations about the way I blog have evolved, new needs
+have arised. Here are the main reasons why I made the switch.
+
 ### Freedom
 
 ### Transparency
