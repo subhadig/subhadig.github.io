@@ -7,6 +7,11 @@ Wordpress.com. I have been thinking about doing it for
 sometime and this time I finally did it. And I wanted to
 share the inspiration behind it.
 
+## What this post is and what it is not
+This post explains about how I switched my blog to Github
+Pages from Wordpress.com and the reasons behind it. It's most certainly is 
+not a rant about Wordpress.com.
+
 ## What are GitHub Pages?
 GitHub Pages are public static webpages hosted and published through
 GitHub. And it is completely free of cost. The source codes of
@@ -32,18 +37,47 @@ of Ruby to use it.
 ## Why did I do it?
 I have been blogging with Wordpress since 2011 and when I started,
 it did seem one of the best choices out there. It's easy to start
-with, it has a nice editor, there are lots of ready-to-use themes 
-to choose from, there is a vast community of users. But over the
+with, has a nice editor, there are lots of ready-to-use themes 
+to choose from, there is a vast community of users, so finding help was
+never very difficult. But over the
 years, my expectations about the way I blog have evolved, new needs
 have arised. Here are the main reasons why I made the switch.
 
 ### Freedom
+Although Wordpress.com has supports for themes and many aspects of the
+themes are customizable, the free version does not allow one to
+completely edit the themes and have a completely customized look and
+feel. Often times I don't need all the bells and whistles that come
+with a full blown theme but I want certain things in certain way.
+For example, I like to show a page listing all my post titles and links
+to my visitors which was apparently very hard to accomplish if not 
+impossible with Wordpress.com.
 
-### Transparency
+### Simplicity
+With Github Pages and Jekyll, everything is very transparent. The whole
+project is just a collection of some markup files, images and configurations.
+There is no database. There is no fancy editor. There is no bloat of 
+features. Out of the box, you get nothing more than a static HTML page.
+But it's easy to add the features you need whether they are natively 
+available or by using third party services.
 
 ### Vim and Markdown
+Vim is my editor of choice and I extensively use it wherever I can. And when 
+in some cases, I have to use another editor, I always look for ways to enable
+vi like key bindings. 
+Markdown is a simple markup language that makes it stupidly simple to write in
+rich text and is way better than WYSIWYS editors in browser in my opinion.
+Blogging with Jekyll and Github Pages gives me an option to use both vim and
+markdown.
 
 ## How did I do it?
+The first thing I did was heading over to the Github Pages 
+[Getting Started](https://guides.github.com/features/pages/) 
+page and followed the instructions for creating a project with one simple 
+HTML page with one of their featured css themes. After that I followed the
+[Step by step](https://jekyllrb.com/docs/step-by-step/01-setup/)
+tutorial for setting up a Jekyll blog that walked me through from installing
+Jekyll to creating templates for 
 
 ## Is it worth it?
 Absolutely. Now every time I want to write a new post, I just
