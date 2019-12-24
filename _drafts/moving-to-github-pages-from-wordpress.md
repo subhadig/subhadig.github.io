@@ -71,22 +71,54 @@ Blogging with Jekyll and Github Pages gives me an option to use both vim and
 markdown.
 
 ## How did I do it?
-The first thing I did was heading over to the Github Pages 
+The starting point was to head over to the Github Pages 
 [Getting Started](https://guides.github.com/features/pages/) 
-page and followed the instructions for creating a project with one simple 
+page and follow the instructions for creating a project with one simple 
 HTML page with one of their featured css themes. After that I followed the
 [Step by step](https://jekyllrb.com/docs/step-by-step/01-setup/)
 tutorial for setting up a Jekyll blog that walked me through from installing
-Jekyll to creating templates for 
+Jekyll to creating HTML templates for the pages to writing my first markdown 
+blog post.
+
+But at this point, the resulting site is so basic that if you are coming from
+a feature-rich platform like Wordpress.com, you'll see a lot of missing features,
+features that you always took for granted. Here you will have to add them
+manually either by adding small snippets of code or plugins or by using third 
+party services.
+
+### Sitemap
+Sitemap is a dedicated link on your blog that will contain the list of pages and 
+URLs from your blog. Adding a sitemap is effortless in Jekyll if you use the
+[Jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap) plugin.
+
+### But what about comments?
+An essential part of a blog site is the support for comments for posts.But Jekyll
+being a static site generator lacks inbuilt ability to support comments. For that, 
+I used a third party service called [Disqus](https://disqus.com/). They offer a 
+[Basic tier](https://disqus.com/pricing/)
+that should be more than sufficient for a personal blog site.
+
+### But isn't the site looking empty?
+So I imported my older posts from the previous blog to this one and with the
+[Jekyll-import](https://import.jekyllrb.com/docs/wordpressdotcom/) plugin, it
+was not much of a hassel. True, I had to do some editing to the imported posts
+to fix a few style issues.
+
+### Search engine optimization
+[Jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag) plugin automatically
+generates metadata and tags for search engines and social networks sites for
+better indexing. Also you can manually add tags and metadata to each posts.
 
 ## Is it worth it?
 Absolutely. Now every time I want to write a new post, I just
 need to do this.
 
-    vim
-    Write some markdown
-    git add
-    git commit
-    git push
+```
+vim
+<Type the content in markdown>
+git add
+git commit
+git push
+```
 
 And my new post post is published. Can it get any simpler?
