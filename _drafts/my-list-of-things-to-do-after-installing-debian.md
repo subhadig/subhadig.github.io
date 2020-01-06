@@ -51,7 +51,6 @@ sudo apt install \
         arc-theme \
         git \
         wget \
-        menu-libre \
         bash-completion \
         chromium \
         bsd-mailx \
@@ -66,7 +65,6 @@ multiplexer for the Terminal.
 - arc-theme - A nice GTK theme with three variants - normal, dark and darker.
 - git - git command line client.
 - wget - a download manager.
-- menu-libre - a utility for editing menus.
 - bash-completion - a utility for autocompletion on bash.
 - chromium - the open source variant of the Google Chrome browser.
 - bsd-mailx - a very simple mail client for Unix mails.
@@ -76,15 +74,25 @@ installed updates.
 
 ## Enable bash completion
 Unlike some of the other distributions, tab-completion for bash is not enabled
-in Debian by default. To enable it, uncomment the following section in
-*/etc/bash.bashrc*:
+in Debian by default. To enable it for all the users, uncomment the following
+section in */etc/bash.bashrc*:
 
-```
+```bash
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
 ```
 
 ## Enable auto-update
 Unlike the Gnome and KDE variants of Debian, there is no pre-installed utility
 for automatic installation of updates. I use *unattended-upgrades* for that.
+
+TODO
 
 ## Add firewall rules
 By default the Debian firewall policy allows all incoming and outgoing network
@@ -162,9 +170,32 @@ Execute the following command to link the Firefox executable to
 sudo ln -s /opt/firefox/firefox /usr/bin/firefox
 ```
 
-To create a launcher, paste the following content in 
+To create a launcher, create the file
+*/usr/share/applications/firefox.desktop* with the following content:
 
-## Generate ssh keys
+```
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Firefox
+GenericName=Web Browser
+Icon=/opt/firefox/browser/chrome/icons/default/default128.png
+Exec=/usr/lib/firefox %u
+Actions=new-window;new-private-window;
+MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
+Categories=Network;WebBrowser;
+Keywords=web;browser;internet;
+StartupNotify=true
+
+[Desktop Action new-window]
+Name=New Window
+Exec=/usr/lib/firefox --new-window %u
+
+[Desktop Action new-private-window]
+Name=New Private Window
+Exec=/usr/lib/firefox --private-window %u
+
+```
 
 ## Enable showing user lists at login
 Debian by default does not display the available usernames on graphical 
@@ -184,13 +215,14 @@ To create new users, use the following Debian command:
 adduser <username>
 ```
 
-To change/update passwords of users:
+To change/update passwords of the created users:
 
 ```bash
 passwd <username>
 ```
 
 ## Desktop Environment specific customizations
+I use 
 
 ### Panel customizations
 
