@@ -92,7 +92,7 @@ traffics. This is not necessarily insecure but I like restricting what goes in
 and comes out of my system. Here are the steps to setup a very simple
 firewall policy suitable for personal computers.
 
-## Create a script with the required rules
+### Create a script with the required rules
 Paste the following content in */etc/firewall/enable.sh*:
 
 ```
@@ -142,12 +142,53 @@ More information is available on the
 [Debian wiki](https://wiki.debian.org/DebianFirewall)
 
 ## Install latest Firefox
+Debian comes with the ESR version of Firefox. To install the latest stable
+version of Firefox, I use a bash script which is hosted on my GitHub.
+
+```bash
+git clone git@github.com:subhadig/firefox_updater.git
+cd firefox_updater
+/firefox-updater.sh
+```
+
+It downloads the latest tarball package of Firefox from the official site and
+unpacks it under /opt. This script can also be used to update Firefox when a
+new version is available.
+
+Execute the following command to link the Firefox executable to 
+*/usr/bin/firefox*:
+
+```bash
+sudo ln -s /opt/firefox/firefox /usr/bin/firefox
+```
+
+To create a launcher, paste the following content in 
 
 ## Generate ssh keys
 
 ## Enable showing user lists at login
+Debian by default does not display the available usernames on graphical 
+login screen but I like to show the list for easier selection of usernames.
+To enable user lists at login for *lightdm*, my display manager of choice,
+paste the following content in */etc/lightdm/lightdm.conf.d/01_my.conf*:
+
+```
+[Seat:*]
+greeter-hide-users=false
+```
 
 ## Create users
+To create new users, use the following Debian command:
+
+```bash
+adduser <username>
+```
+
+To change/update passwords of users:
+
+```bash
+passwd <username>
+```
 
 ## Desktop Environment specific customizations
 
