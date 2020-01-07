@@ -222,10 +222,21 @@ passwd <username>
 ```
 
 ## Desktop Environment specific customizations
-I use 
+I use XFCE as the desktop environment so the customizations here are specific
+to XFCE only.
 
 ### Panel customizations
+- Adding the following plugins to the top panel
+    - Whisker Menu
+    - System Load Monitor
+    - PulseAudio Plugin
+- Removing the following plugins from the top panel
+    - Applications Menu
+    - Workspace Switcher
+- Moving the bottom panel to the left
 
 ### Update appearances
+- Change the font settings: Fonts on Debian do not look the best out of the
+box. This is how I usually 
 
 ## Enable splash screen
