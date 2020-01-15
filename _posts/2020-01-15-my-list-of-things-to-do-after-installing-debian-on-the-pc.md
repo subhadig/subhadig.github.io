@@ -276,7 +276,7 @@ the top panel, I make the following changes:
     - Whisker Menu
     - System Load Monitor
     - PulseAudio Plugin
-- Remov the following plugins
+- Remove the following plugins
     - Applications Menu
     - Workspace Switcher
 
@@ -292,7 +292,7 @@ box. This is how my font settings looks like:
 
 ![XFCE font settings](assets/images/debian-after-install-xfce-font-settings.png)
 
-I usually play with the *Hinting* and *Sub-pixel order* settins till I get the
+I usually play with the *Hinting* and *Sub-pixel order* settings till I get the
 best combination because these settings is dependent on the hardware and can
 vary from one hardware combination to another.
 
