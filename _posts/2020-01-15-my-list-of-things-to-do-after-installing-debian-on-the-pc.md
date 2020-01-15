@@ -7,14 +7,19 @@ tags:
     - debian
 comments: true
 ---
-* TOC
-{:toc}
+### Introduction
 I like the fact that Debian does not do a lot of customizations over
 the upstream packages by default but this also means extra work for you for setting up
 things after installing Debian on the PC. The upside is that you get to customize 
 things exactly the way you like it. It definitely helps to have a list to start
 with and this post lists some of the customizations I make after installing a 
 fresh copy of Debian.
+
+---
+**Table of Contents**
+* TOC
+{:toc}
+---
 
 ### Adding a swap file
 Nowadays I prefer having swap files over swap partitions, mainly because files 
