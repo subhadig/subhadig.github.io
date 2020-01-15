@@ -7,7 +7,8 @@ tags:
     - github-pages
 comments: true
 ---
-### Introduction
+* TOC
+{:toc}
 I recently moved my personal blog to GitHub Pages from
 Wordpress.com. I have been thinking about doing it for
 sometime and this time I finally did it. And in this post 
