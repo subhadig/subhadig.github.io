@@ -1,7 +1,7 @@
 ---
 layout: post
 title: My list of things to do after installing Debian on the PC
-date: 2019-12-25
+date: 2020-01-15
 type: post
 tags:
     - debian
