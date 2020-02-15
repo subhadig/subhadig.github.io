@@ -4,3 +4,5 @@
   link: /about.html
 - name: Posts
   link: /posts.html
+- name: Search
+  link: /search.html
