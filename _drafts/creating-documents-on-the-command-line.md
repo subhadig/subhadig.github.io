@@ -12,7 +12,7 @@ comments: true
 The command line has always seemed to me something that is both fascinating and
 under-utilized at the same time to a large extent.
 Creating a document on the command line is easy and sometime it is more
-straightforward than using WYWIWYS tools like Libreoffice or MS Office or
+straightforward than using WYSIWYG tools like Libreoffice or MS Office or
 Google Docs. In this post I share how I use pandoc, vim and markdown for
 creating good professional grade documents using nothing but the command line.
 
@@ -33,8 +33,7 @@ array of
 [supported document types](https://github.com/jgm/pandoc/blob/master/README.md#the-universal-markup-converter)
 including markdown, .doc and .pdf.
 
-I will be using Pandoc for converting the raw documents to final
-presentable formats.
+I use Pandoc for converting the raw documents to final presentable formats.
 
 # Markdown
 Markdown is a simple markup language that is easy-to-read and easy-to-write.
@@ -42,13 +41,16 @@ It first appeared in 2014 and over the years, it has gain acceptance in the
 developer community and is widely used as a tool to write software
 documentations and README files.
 
-I will use Markdown for writing the raw document files.
+It has very intuitive syntaxes and supports most of the text styling.
+I use Markdown for writing the raw document files.
 
 # Vim
 [Vim](https://en.wikipedia.org/wiki/Vim_(text_editor))
 is a fantastic text editor for the command line that needs little introduction.
-It has inbuilt support for highlighting multiple languages among other things.
-I will be using Vim as an editor for creating the raw documents.
+It has inbuilt support for highlighting multiple languages including Markdown
+among other things.
+I use Vim as an editor for creating the raw documents. But any capable
+editor with Markdown support should do the job.
 
 # Stitching everything together
 
