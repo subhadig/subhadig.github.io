@@ -28,7 +28,7 @@ swap, execute the following commands:
 
 ```bash
 sudo dd if=/dev/zero of=/swapfile bs=1024 count=$((4*1024*1024))
-sudo chmod /swapfile
+sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 ```
