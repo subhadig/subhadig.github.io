@@ -27,10 +27,10 @@ can be resized more easily than partitions. To create a swap file and use as
 swap, execute the following commands:
 
 ```bash
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=$((4*1024*1024))
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=$((4*1024*1024)) #create an empty file of size 4GB
+sudo chmod 600 /swapfile #restric the permissions of the file
+sudo mkswap /swapfile #convert the file type to a swap file
+sudo swapon /swapfile #use the file as swap
 ```
 
 And to reload the swap configurations after restart, append the following to 
