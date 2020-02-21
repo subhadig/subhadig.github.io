@@ -33,7 +33,36 @@ array of
 [supported document types](https://github.com/jgm/pandoc/blob/master/README.md#the-universal-markup-converter)
 including markdown, .doc and .pdf.
 
-I use Pandoc for converting the raw documents to final presentable formats.
+I use Pandoc for converting the raw documents to the final presentable
+formats(pdf).
+
+Something to note here is that pandoc uses another software called
+[Latex](https://www.latex-project.org/) internally to convert the raw
+document files to some intermediate format before finally converting it to
+the indended output format, which is pdf in this case. So some of the Latex
+project packages will also need to be installed along with Pandoc in the next
+section.
+
+## Installation
+Pandoc and Latex packages are available in the official repository of almost
+all of major Linux distributions although the package names may vary.
+Here's how I install it on Debian:
+
+```bash
+sudo apt install pandoc \
+                 texlive \
+                 texlive-pstricks \
+                 texlive-latex-extra \
+                 texlive-xetex
+```
+
+For MacOS, the required packages can be installed with
+[HomeBrew](https://brew.sh/).
+
+```bash
+brew install pandoc
+brew cask install mactex-no-gui
+```
 
 # Markdown
 Markdown is a simple markup language that is easy-to-read and easy-to-write.
@@ -49,9 +78,23 @@ I use Markdown for writing the raw document files.
 is a fantastic text editor for the command line that needs little introduction.
 It has inbuilt support for highlighting multiple languages including Markdown
 among other things.
-I use Vim as an editor for creating the raw documents. But any capable
+I use Vim as the editor for creating the raw documents. But any capable
 editor with Markdown support should do the job.
 
+## Installation
+For Debian
+
+```bash
+sudo apt install vim
+```
+
+or for MacOS HomeBrew
+
+```bash
+brew install macvim
+```
+
 # Stitching everything together
+
 
 # Conclusion
