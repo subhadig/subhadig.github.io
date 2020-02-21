@@ -28,7 +28,7 @@ swap, execute the following commands:
 
 ```bash
 sudo dd if=/dev/zero of=/swapfile bs=1024 count=$((4*1024*1024)) #create an empty file of size 4GB
-sudo chmod 600 /swapfile #restric the permissions of the file
+sudo chmod 600 /swapfile #restrict the permissions of the file
 sudo mkswap /swapfile #convert the file type to a swap file
 sudo swapon /swapfile #use the file as swap
 ```
