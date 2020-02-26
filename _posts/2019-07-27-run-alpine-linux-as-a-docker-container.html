@@ -47,12 +47,24 @@ EXPOSE 8000
 
 <h4>Create the Docker Image</h4>
 <p>Run the following command to create the Docker image. Make sure you are in the same directory as the Dockerfile.</p>
-<p>[code language="bash"]docker build -t alpine-python-server:latest .[/code]</p>
+
+{% highlight bash %}
+docker build -t alpine-python-server:latest .
+{% endhighlight %}
+
 <p>Execute the following command to verify that an image has been created with the name "alpine-python-server".</p>
-<p>[code language="bash"]docker images[/code]</p>
+
+{% highlight bash %}
+docker images
+{% endhighlight %}
+
 <h4>Run the image</h4>
 <p>To run the image that was created in the previous step, execute the following command:</p>
-<p>[code language="bash"]docker run -d -p 8000:8000 --name test-server alpine-python-server[/code]</p>
+
+{% highlight bash %}
+docker run -d -p 8000:8000 --name test-server alpine-python-server
+{% endhighlight %}
+
 <p>This command does the following things:<br />
 - Creates a container from the "test-server" image created in the previous step.<br />
 - "-d" tells docker to run the container in detached mode ie in the back ground.<br />
