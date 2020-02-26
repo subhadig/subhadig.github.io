@@ -73,3 +73,11 @@ docker run -d -p 8000:8000 --name test-server alpine-python-server
 <h4>Visit the web-server from host</h4>
 <p>Since we have mapped the container port on which the web-server is running to the same port on host, if you visit the URL <em>http://localhost:8000 </em>from any web-browser from your host system, you should see something like this:</p>
 <p><img class="size-full wp-image-1235 alignleft" src="{{ site.baseurl }}/assets/alpine-docker.png" alt="" width="400" height="108" /></a></p>
+
+<h3>Note</h3>
+<p>
+These steps were tested on a Debian Linux host. If you are using <em>Docker desktop</em> on Windows or MacOS, the docker container port mapping
+with the host OS may not work the way it is described in the post or may require additional steps as I have come to know.
+Please do your research before proceeding.
+</p>
+
