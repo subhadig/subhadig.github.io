@@ -2,6 +2,7 @@
 layout: post
 title: Moving My Blog to GitHub Pages from Wordpress.com
 date: 2019-12-25
+lastModifiedDate: 2020-03-12
 type: post
 tags:
     - github-pages
@@ -81,6 +82,12 @@ Markdown is a simple markup language that makes it stupidly simple to write in
 rich text and is way better than WYSIWYG editors in browser in my opinion.
 Blogging with Jekyll and GitHub Pages gives me an option to use both vim and
 markdown.
+
+#### The ability to work offline
+Because the whole repository of source files including the posts are cloned
+locally and Jekyll server is so easy to setup and run, an added advantage of
+this approach is the ability to create posts and preview them locally without
+the need to reach to the internet before publishing them on GitHub.
 
 ### How did I do it?
 The starting point was to head over to the GitHub Pages 
