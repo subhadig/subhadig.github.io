@@ -4,6 +4,7 @@ description: My experience with the computing world!
 author: subhadipg
 url: "https://subhadig.github.io"
 permalink: /:title:output_ext
+timezone: Asia/Kolkata
 disqus:
     shortname: subhadig
 
