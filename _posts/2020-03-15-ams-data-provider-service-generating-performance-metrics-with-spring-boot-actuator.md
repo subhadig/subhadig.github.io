@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'AMS: Data Provider Service - Generating performance metrics with Spring Actuator'
+title: 'AMS: Data Provider Service - Generating performance metrics with Spring Boot Actuator'
 date: 2020-03-15
 type: post
 tags:
