@@ -2,6 +2,7 @@
 layout: post
 title: Installing qemu with kvm and virt-manager
 date: 2016-04-02
+lastModifiedDate: 2020-04-05
 tags:
 - ubuntu
 - kvm
@@ -18,7 +19,19 @@ comments: true
 sudo apt-get install qemu virt-manager virt-viewer libvirt-bin
 {% endhighlight %}
 
-<p>I didn't install the qemu-kvm package as this package is not needed for a x86_64 hardware. After I restarted the system, I launched the Virtual Machine Manager and it looked like this.</p>
+<p>I didn't install the qemu-kvm package as this package is not needed for a x86_64 hardware.</p>
+
+<p>To install on Debian 10, following commands should be used.</p>
+
+{% highlight bash %}
+#Install the required packages.
+sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system virt-manager
+
+#Required to create and manage vms without root. <user-name> should be replaced with actual user name.
+sudo adduser <user-name> libvirt
+{% endhighlight %}
+
+<p>After I restarted the system, I launched the Virtual Machine Manager and it looked like this.</p>
 <p><img class=" size-full wp-image-224 aligncenter" src="{{ site.baseurl }}/assets/installing-qemu-1.png" alt="Screenshot - Wednesday 30 March 2016 - 09:00:40 IST" width="552" height="577" /></p>
 <p>Next few screenshots quickly show the steps of creating and launching a new VM where I had to provide a name for the VM, select the installation CD image and specify the amount of RAM, number of cores and the size of the hard disk image for the virtual machine.</p>
 <p><img class="aligncenter size-full wp-image-225" src="{{ site.baseurl }}/assets/installing-qemu-2.png" alt="Screenshot - Wednesday 30 March 2016 - 09:01:08 IST" width="423" height="403" /><br />
