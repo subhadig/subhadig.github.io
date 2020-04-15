@@ -9,9 +9,12 @@ tags:
 comments: true
 ---
 ### Introduction
-I will be publishing a series of opinionated posts on how to get started with
-Kubernetes using Minikube. This is the first one in the series where I share
-about how to install Minikube in your local workstation.
+I am working on a series of opinionated posts on how to get started with the
+basics of Kubernetes using Minikube. In this series, I will discuss on a range
+of topics starting from installation of Minikube to the deployment of pods and
+also fixes to a few annoying issues I faced along the way. This is the first
+article in the series where I talk about how to install Minikube in your local
+workstation.
 
 ---
 **Table of Contents**
@@ -20,6 +23,13 @@ about how to install Minikube in your local workstation.
 ---
 
 ### Kubernetes
+From the [Wikipedia](https://en.wikipedia.org/wiki/Kubernetes):
+
+> Kubernetes is an open-source container-orchestration system for automating
+> application deployment, scaling, and management.
+
+Kubernetes is probably the most popular and widely used system for deploying
+and managing scalable and highly available applications world wide.
 
 ### Minikube
 
@@ -30,5 +40,7 @@ about how to install Minikube in your local workstation.
 #### Hypervisor
 
 #### minikube
+
+### Starting up
 
 ### Conclusion
