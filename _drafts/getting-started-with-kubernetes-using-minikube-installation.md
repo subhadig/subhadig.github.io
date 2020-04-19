@@ -77,7 +77,7 @@ On MacOS, if you have installed
 already have *kubectl* installed. Otherwise the package can be easily installed
 using [Homebrew](https://brew.sh/)
 
-```eash
+```bash
 brew install kubectl
 ```
 
@@ -86,10 +86,92 @@ an executable binary and used without installing. I like the above mentioned
 approaches because they give me the flexibiltiy of managing the packages with
 a package manager.
 
-#### Hypervisor
+#### VM Driver
+Minikube can be deployed as a VM, a container or bare-metal. My preferred way
+is to run it as a VM. To do so, we are going to need a hypervisor or
+[VM driver](https://minikube.sigs.k8s.io/docs/drivers/). On Linux I prefer
+using [kvm](https://minikube.sigs.k8s.io/docs/drivers/kvm2/) and on MacOS, I
+prefer using [Hyperkit](https://minikube.sigs.k8s.io/docs/drivers/hyperkit/).
+
+To install kvm on Debian 10, run the following command:
+
+```bash
+sudo apt install qemu-kvm \
+                 libvirt-clients \
+                 libvirt-daemon-system
+```
+
+You may need to turn on Intel VT-x or AMD-V depending on your chipset to benefit
+from hardware acceleration capabilities of your CPU.
+
+On MacOS, if you are running Docker Desktop then you already have Hyperkit
+installed. If not, you can install it using Homebrew.
+
+```bash
+brew install hyperkit
+```
 
 #### minikube
 
+##### Install on Debian
+To install minikube on Debian follow the steps.
+
+- Download the *.deb* file for the
+[latest minikube release](https://github.com/kubernetes/minikube/releases).
+At the time of writing the post, the latest version was 1.9.2.
+
+```bash
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_1.9.2-0_amd64.deb
+```
+
+- Install the downloaded package. Replace *minikube_1.9.2-0_amd64.deb* with
+the actual downloaded package name. 
+
+```bash
+sudo dpkg -i minikube_1.9.2-0_amd64.deb
+```
+
+##### Install on MacOS
+With Homebrew, it's fairly easy to install minikube on MacOS.
+
+```bash
+brew install minikube
+```
+
 ### Starting up
+To start minikube on Debian, I use the following command:
+
+```bash
+minikube start --driver=kvm2
+```
+*--driver=kvm2* flag tells minikube to use the *kvm2* VM driver.
+
+If everything is properly configured and minikube is successfully started, you
+should see something like this:
+
+![minikube-start-debian](assets/images/install-minikube-success-debian.png)
+
+Similarly here is the command to start minikube on MacOS:
+
+```bash
+minikube start --driver=hyperkit
+```
+
+*--driver=hyperkit* tells minikube to use the hyperkit VM driver.
+
+I also have *Docker Desktop* installed on my Mac and if *Docker Desktop* is
+started first, then I get the following error while starting minikube:
+
+![]()
+
+I could not determine whether the *Docker Desktop* or the VPN software running
+on my Mac is causing the error. Due to this problem, the minikube VM fails to
+resolve any domain name and deployment of *Docker* images fails.
+As a workaround, I use the following command to start minikube on my Mac:
+
+```bash
+minikube start --driver=hyperkit \
+               --hyperkit-vpnkit-sock=/Users/${USER}/Library/Containers/com.docker.docker/Data/vpnkit.eth.sock
+```
 
 ### Conclusion
