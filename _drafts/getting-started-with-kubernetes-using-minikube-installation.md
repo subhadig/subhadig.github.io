@@ -162,16 +162,34 @@ minikube start --driver=hyperkit
 I also have *Docker Desktop* installed on my Mac and if *Docker Desktop* is
 started first, then I get the following error while starting minikube:
 
-![]()
+![install-minikube-error-macos](assets/images/install-minikube-error-macos.png)
 
 I could not determine whether the *Docker Desktop* or the VPN software running
-on my Mac is causing the error. Due to this problem, the minikube VM fails to
+on my Mac is causing this error. Due to this problem, the minikube VM fails to
 resolve any domain name and deployment of *Docker* images fails.
 As a workaround, I use the following command to start minikube on my Mac:
 
 ```bash
 minikube start --driver=hyperkit \
                --hyperkit-vpnkit-sock=/Users/${USER}/Library/Containers/com.docker.docker/Data/vpnkit.eth.sock
+```
+
+To check the running status of minikube cluster, use the following command:
+
+```bash
+minikube status
+```
+
+To stop the minikube cluster, use:
+
+```bash
+minikube stop
+```
+
+To delete the local minikube cluster, use:
+
+```bash
+minikube delete
 ```
 
 ### Conclusion
