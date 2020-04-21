@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Getting started with Kubernetes using Minikube - Installation
-date: 2020-04-14
+date: 2020-04-21
 type: post
 tags:
     - kubernetes
@@ -10,8 +10,8 @@ comments: true
 ---
 ### Introduction
 I am working on a series of opinionated posts on how to get started with the
-basics of Kubernetes using Minikube. In this series, I will discuss on a range
-of topics starting from installation of Minikube to the deployment of pods and
+basics of Kubernetes using Minikube. In these posts, I will discuss on a range
+of topics starting from the installation of Minikube to the deployment of pods and
 also workarounds for a few annoying issues I faced along the way. This is the
 first article of the series where I talk about how to install Minikube in your
 local computer.
@@ -30,7 +30,7 @@ From the [Wikipedia](https://en.wikipedia.org/wiki/Kubernetes):
 
 Kubernetes is probably the most popular and widely used system for deploying
 and managing scalable and highly available applications world wide. Not only
-Kubernetes can be self-hosted, managed Kubernetes cluster services are
+that Kubernetes can be self-hosted, managed Kubernetes cluster services are
 available on most of the major cloud service providers including AWS, Azure
 and Google Cloud.
 
@@ -47,18 +47,18 @@ or production environment.
 It is worth noting that Minikube is not the only available
 [learning environment](https://kubernetes.io/docs/setup/#learning-environment)
 solution for Kubernetes but Minikube is one of the most mature ones and is
-supported on all three platforms - MacOS, Linux and Windows.
+supported on all three major platforms - MacOS, Linux and Windows.
 
 ### Installation
 In this section, I will share the steps of installing Minikube and the required
-components on MacOS and Debian Linux. The steps should be almost similar if not
-same for any other Debian based Linux distributions including Ubuntu. However
+components on MacOS and Debian Linux. These steps should work on
+any other Debian based Linux distributions including Ubuntu. However
 if you are using a different variant of Linux, the steps might be different. To
 install on other operating systems, follow this
 [official guide](https://kubernetes.io/docs/tasks/tools/install-minikube/)
 from Kubernetes.
 
-#### kubectl
+#### Kubectl
 [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) is not
 exactly a part of Minikube but it's a command-line tool for interacting with
 a Kubernetes cluster and perform various administrative tasks including
@@ -116,7 +116,7 @@ installed. If not, you can install it using Homebrew.
 brew install hyperkit
 ```
 
-#### minikube
+#### Minikube
 
 ##### Install on Debian
 To install Minikube on Debian follow the steps.
@@ -164,6 +164,8 @@ minikube start --driver=hyperkit
 
 The *--driver=hyperkit* tells Minikube to use the *hyperkit* VM driver.
 
+#### DNS issue on Mac when Docker Desktop is running
+
 I have *Docker Desktop* installed on my Mac and if *Docker Desktop* is
 started first, then I get the following error while starting Minikube:
 
@@ -171,7 +173,8 @@ started first, then I get the following error while starting Minikube:
 
 I could not determine whether the *Docker Desktop* or the VPN software running
 on my Mac was causing this error. Because of this problem, the Minikube VM
-fails to resolve any domain name and deployment of *Docker* images fails.
+fails to resolve any domain name and deployment of *Docker* images from
+[Docker Hub](https://hub.docker.com) fails.
 As a workaround, I use the following command to start Minikube on my Mac:
 
 ```bash
@@ -183,6 +186,7 @@ The
 *--hyperkit-vpnkit-sock=/Users/${USER}/Library/Containers/com.docker.docker/Data/vpnkit.eth.sock*
 flag tells *minikube* to use the *Docker Desktop* vpnkit sock.
 
+### A few additional Minikube commands
 To check the running status of the Minikube cluster, use the following command:
 
 ```bash
@@ -202,7 +206,7 @@ minikube delete
 ```
 
 ### Conclusion
-These steps were tested on Debian 10 and MacOS Catalina.
+These steps were tested on Debian 10 Buster and MacOS Mojave.
 *kubectl* and *minikube* can be installed in various other ways including
 downloading as executable binaries and using without installing. But I like the
 above approaches because they give me the flexibility of managing the packages
