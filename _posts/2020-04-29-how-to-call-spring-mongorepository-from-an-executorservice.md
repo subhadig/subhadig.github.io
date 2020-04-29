@@ -1,15 +1,18 @@
 ---
 layout: post
-title: How to call Spring MongoRepository methods from an ExecutorService
-date: 2020-04-14
+title: How to call Spring MongoRepository from an ExecutorService
+date: 2020-04-29
 type: post
 tags:
+    - java
+    - spring-boot
 comments: true
 ---
 ### The problem
-Recently I found an unexpected issue when I tried to call the
+Recently I encountered an issue in code when I tried to call the
 [Spring MongoRepository](https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/repository/MongoRepository.html)
-from a non-Spring-managed thread in a Java *Spring Boot* application.
+from a non-Spring-managed thread in a Java *Spring Boot* application. Here is a
+brief description of the issue.
 
 #### The Repository interface
 
@@ -19,6 +22,8 @@ public interface ResponseRepository extends MongoRepository<Response, String> {
 }
 
 ```
+
+It's a standard *Spring Repository* interface without any custom methods.
 
 #### The calling class
 ```java
@@ -38,8 +43,9 @@ public class AnImaginaryComponent {
 }
 ```
 
-When `anImaginaryComponent.saveResponseInANewThread(r)` method is invoked, it
-never saves the *r* `Response` to the database.
+When `anImaginaryComponent.saveResponseInANewThread(r)` is invoked, it
+never saves the *r* `Response` into the database. And the worst part is that
+it doesn't throw any exceptions or print any log messages for the failure.
 
 ### The solution
 Rewrite the `ResponseRepository` interface as below:
@@ -55,14 +61,14 @@ public interface ResponseRepository extends MongoRepository<Response, String> {
 
 ```
 
-Also enable sync.
+And enable sync.
 
 ```java
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
-public class DataCollectionServiceApplication {
+public class MySuperImportantSpringBootApplication {
 
 ```
 
@@ -71,6 +77,6 @@ annotation tells Spring to execute the annotated methods asynchronously and not
 to wait for the main thread.
 
 It was not easy to find the workaround as there were very few resources on the
-internet talking about this issue (which is why I decided to write this post)
+internet on this issue (which is why I decided to post it on my blog)
 but [this](https://stackoverflow.com/questions/47654221/call-to-mongorepository-in-an-executorservice-fails-to-complete)
 StackOverflow post did help.
