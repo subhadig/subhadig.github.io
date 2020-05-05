@@ -11,6 +11,7 @@ tags:
     - spring-security
     - docker
 comments: true
+collection_keyword: ams
 ---
 ### Introduction
 This is the first article in a series of upcoming articles on designing and
