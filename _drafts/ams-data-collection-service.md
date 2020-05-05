@@ -43,8 +43,11 @@ the authentication page, here's how the API page looks like:
 
 ![The API page](assets/images/ams-data-collection-service-api-page.png)
 
-### Configs
-*Configs* is the short for the *JSON configuration* objects
+### DataCollectionConfig
+A *DataCollectionConfig* contains the types and details of the source system
+that provides the data, type of the destination system where the collected
+data (metrics) will be pushed and an optional description field.
+Multiple *DataCollectionConfigs* are fed to a *Data Collection Service* system.
 
 #### Source configs
 
