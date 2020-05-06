@@ -11,10 +11,11 @@ tags:
     - spring-security
     - docker
 comments: true
+collection_keyword: ams
 ---
 ### Introduction
 This is the first article in a series of upcoming articles on designing and
-creating an **Application Monitoring System**.
+creating an [Application Monitoring System](collections/application-monitoring-system.html).
 An Application Monitoring System (AMS) is a system that can monitor
 performance of other running applications. I am building this application
 component by component from scratch and I will publish it here on this blog.
