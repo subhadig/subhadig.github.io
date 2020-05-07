@@ -21,11 +21,11 @@ Kernel driver in use: radeon<br />
 <p>The issue occurs as soon as you open a media file of type mkv or mp4 with VLC media player. Immediately after opening, it crashes silently. But if you check the /var/log/syslog, you should be able to see segmentation fault messages.</p>
 <p>The issue probably occurs because VLC by default uses VDAPU (a shared API between a number of graphics driver for Linux) for video decoding. To turn it off, go to <em>VLC Player &gt; Tools &gt; Preferences &gt; Input / Codecs</em> and select <em>Disable </em>from the dropdown.</p>
 
-<p><img class="aligncenter wp-image-1057" src="{{ site.baseurl }}/assets/vlc_1.png" alt="" width="480" height="433" /></p>
+<p><img class="aligncenter wp-image-1057" src="{{ site.baseurl }}/assets/images/vlc_1.png" alt="" width="480" height="433" /></p>
 
 <p>Also, I changed the <em>Output</em> value at <em>VLC Player &gt; Tools &gt; Preferences &gt; Video</em> to <em>XVideo output (XCB)</em>.</p>
 
-<p><img class="aligncenter wp-image-1058" src="{{ site.baseurl }}/assets/vlc_2.png" alt="" width="480" height="433" /></p>
+<p><img class="aligncenter wp-image-1058" src="{{ site.baseurl }}/assets/images/vlc_2.png" alt="" width="480" height="433" /></p>
 <p>And after that, VLC started working fine on my friend's computer. I hope it helps.</p>
 <p>Helpful link:</p>
 <ul>

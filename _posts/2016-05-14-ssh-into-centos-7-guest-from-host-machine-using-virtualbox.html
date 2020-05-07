@@ -11,14 +11,14 @@ comments: true
 
 <p>After I did a little searching on the Internet, it turned out to be rather easier than I thought. I had the CentOS 7 minimal image installed and running in VirtualBox already. Here's what I did to get the ssh working:</p>
 <ol>
-<li>Added a VirtualBox Host-only network. The option can be found at VirtualBox -&gt; File -&gt; Preferences -&gt; Network tab -&gt; Host-only network tab. After that, I restarted the vm.<img class="aligncenter size-full wp-image-267" src="{{ site.baseurl }}/assets/ssh-centos-1.png" alt="Host-only network add screen" width="558" height="394" /></a></li>
+<li>Added a VirtualBox Host-only network. The option can be found at VirtualBox -&gt; File -&gt; Preferences -&gt; Network tab -&gt; Host-only network tab. After that, I restarted the vm.<img class="aligncenter size-full wp-image-267" src="{{ site.baseurl }}/assets/images/ssh-centos-1.png" alt="Host-only network add screen" width="558" height="394" /></a></li>
 <li>Since it was a minimal install of CentOS, I had to install net-tools package to use the <em>ifconfig</em> command. The below command took care of the installation.
 <pre>sudo yum install net-tools</pre>
 </li>
 <li>I ran the <em>ifconfig</em> command and got the below output:<br />
-<img class="aligncenter size-large wp-image-269" src="{{ site.baseurl }}/assets/ssh-centos-2.png" alt="ifconfig result" width="605" height="378" />The network interface in the middle with name <em>enp0s8</em> is the one that I set up in step 1.</li>
+<img class="aligncenter size-large wp-image-269" src="{{ site.baseurl }}/assets/images/ssh-centos-2.png" alt="ifconfig result" width="605" height="378" />The network interface in the middle with name <em>enp0s8</em> is the one that I set up in step 1.</li>
 <li>Next I created a file named "<em>ifcfg-enp0s8</em>" in "<em>/etc/sysconfig/network-scripts/</em>" location. The second part of file name after the hyphen (-) had to match with the network interface name in step 3. And then typed the below content in the file:<br />
-<img class="aligncenter size-full wp-image-271" src="{{ site.baseurl }}/assets/ssh-centos-3.png" alt="ifcfg-enp0s8" width="447" height="290" /><br />
+<img class="aligncenter size-full wp-image-271" src="{{ site.baseurl }}/assets/images/ssh-centos-3.png" alt="ifcfg-enp0s8" width="447" height="290" /><br />
 The "NAME" should match with the network interface name. And the "IPADDR" could be any valid IPv4 address value and it will be used to ssh to the guest vm from host machine.</li>
 <li>After saving the file I just had to reboot the vm. I could have only restarted the networking service though instead of rebooting. Anyway, the next step is quite simple. Ssh into the CentOS vm from the host. And it's done!</li>
 </ol>

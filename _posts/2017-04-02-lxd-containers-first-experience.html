@@ -16,14 +16,14 @@ comments: true
 <pre>sudo lxd init</pre>
 <p>It will set some of the default options including setting up a bridge network that can be used by the containers. LXD is image based. That means, you need to get an image first to create a container. An image can be used from any sources, remote or local. To view all the available sources, use:</p>
 <pre>lxc remote list</pre>
-<p><img class="size-large wp-image-777 alignleft" src="{{ site.baseurl }}/assets/lxd-first-experience-1.png" alt="" width="605" height="140" /></p>
+<p><img class="size-large wp-image-777 alignleft" src="{{ site.baseurl }}/assets/images/lxd-first-experience-1.png" alt="" width="605" height="140" /></p>
 <p>To get all the available images from the 'images' source:</p>
 <pre>lxc image list images:</pre>
 <p>You can choose any of the images from the list. To launch a container with the Ubuntu 17.04 64 bit image, use:</p>
 <pre>lxc launch images:ubuntu/zesty my-container</pre>
 <p>Where 'my-container' is the name of the container. To see a list of the existing containers and their running status, use:</p>
 <pre>lxc list</pre>
-<p><img class="size-large wp-image-779 alignleft" src="{{ site.baseurl }}/assets/lxd-first-experience-2.png" alt="" width="605" height="100" /></p>
+<p><img class="size-large wp-image-779 alignleft" src="{{ site.baseurl }}/assets/images/lxd-first-experience-2.png" alt="" width="605" height="100" /></p>
 <p>To create and access a bash session inside the container:</p>
 <pre>lxc exec my-container bash</pre>
 <p>To stop the container:</p>
