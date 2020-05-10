@@ -2,6 +2,7 @@
 layout: post
 title: Creating word documents on the command line
 date: 2020-02-23
+lastModifiedDate: 2020-05-10
 type: post
 tags:
     - command-line
@@ -177,6 +178,40 @@ Here is a
 if you are new to it. This official
 [Pandoc manual](https://pandoc.org/MANUAL.html) contains plenty of
 configuration options and tricks.
+
+##### Tables
+Tables in markdown are the only unintuitive feature that I have found so far.
+Tables were not supported by the
+[original markdown specifications](https://daringfireball.net/projects/markdown/)
+designed by *John Gruber*. But
+[Pandoc markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) is an
+extended version of the original markdown that has support for tables.
+
+Pandoc supports four formats to create tables. I prefer using the *pipe_tables*
+format.
+
+```markdown
+Header 1 | Right aligned header | Left aligned header | Center aligned header
+---------|---------------------:|:--------------------|:---------------------:
+Value 1 | The quick brown fox jumps over the lazy dog | Another long text | 156.76
+Value 1 | 60 | A string | The next row is a blank row
+ | | |
+```
+
+When Pandoc converts it, it looks like this.
+![pandoc table](assets/images/pandoc-table.png)
+
+A few points about creating tables in markdown:
+- The `|` character works as a delimiter between two cells.
+- Leave a blank line above and below the table.
+- Notice the positions of the colons in the row below the header row. These
+colons determine if a column will be treated as right-aligned or left-aligned.
+- Merging cells are not allowed.
+
+Although it works fine, creating complex tables should be avoided whenever
+possible in my opinion.
+Refer to the [Pandoc manual on tables](https://pandoc.org/MANUAL.html#tables)
+to learn about the other table formats.
 
 #### Convert the Markdown document to PDF using Pandoc
 Now comes the fun part. I use the following Pandoc command to convert
