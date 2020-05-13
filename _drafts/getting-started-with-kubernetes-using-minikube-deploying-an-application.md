@@ -46,11 +46,11 @@ cluster.
 ### Deployment
 [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 are a way to tell Kubernetes how you want to have your application deployed.
-And a *Deployement* is described by a `deployment.xml` file. Following is an
-example of a `deployment.xml` that I am going to use to deploy our
+And a *Deployement* is described by a `deployment.yaml` file. Following is an
+example of a `deployment.yaml` that I am going to use to deploy our
 *Simple Web service*.
 
-```xml
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -74,26 +74,171 @@ spec:
           - containerPort: 8080
 ```
 
-A few important notes about the above `deployment.xml`:
-- The `metadata.name` fields tells the name of the *Deployment*.
+A few important points about the above `deployment.yaml`:
+- The `metadata.name` field says the name of the *Deployment*.
 - The `metadata.labels` field asks *Kubernetes* to add the
 `app: simple-web-service` label to our deployment.
 - In the `spec` section, the `replica` field tells *Kubernetes* to create 2
 *replicas* of our application.
 - The `spec.template.metadata.labels` field defines what tags
-(*app: simple-web-service*) will be added to the *Pods* running our application
+(`app: simple-web-service`) will be added to the *Pods* running our application
 and the `spec.selector` field tells that our *Deployment* will only manage the
 [Pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) labeled with
-*app: simple-web-service*.
-- The 
+`app: simple-web-service`.
+- The `template.spec` field says that each *Pod* will run one container with
+the name *simple-web-service-application*. The container will be created from
+the *subhadig/simple-web-service* image which is available on the *DockerHub*
+and it will have the *8080* port exposed.
 
-### Ingress
+Now to apply this `deployment.yaml` in our *Minikube* cluster, I will use the
+following command:
 
+```bash
+//cd to the directory that contains the deployment.yaml
+kubectl apply -f deployment.yaml
+```
+
+To check the created *Pods* and their status, use:
+
+```bash
+kubectl get pods
+```
+
+And you should see something like this:
+
+![get-pods](assets/images/minikube-deploy-get-pods.png)
 
 ### Service
+In the previous section, I deployed our *Simple Web service* which is running
+inside *Pods*. But *Pods* are mortal, they are not static, they are
+automatically created and destroyed by *Kubernetes*. Because of this, the
+*Pods* IP addresses can not be relied upon if I need to access them from
+outside or from another *Pod*. So I will need a level of abstraction that will
+talk to the *Pods* on behalf of my and will be static in nature.
+[Services](https://kubernetes.io/docs/concepts/services-networking/service/)
+are that abstraction.
 
+Here is how our `service.yaml`, the definition of our *Service* will look like:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-web-service-cluster-ip
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: simple-web-service
+  type: ClusterIP
+```
+
+A few points to note:
+- The `metadata.name` specifies the name of this service. This is going to be
+used in the next section to refer to this service.
+- In the `spec` section, I am mapping the TCP 8080 port of all the *Pods* that
+have the label `app: simple-web-service` to the 80 port of this service.
+- The `type` field tells which
+[type of *Service*](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
+this is. A *ClusterIP* service exposes the service on a *cluster-internal* IP
+address.
+
+### Ingress
+Stress on the last line of the previous section. Although our application has
+a stable IP address now, it is still not reachable from the outside world.
+What this means for us is that we can't invoke the `/details` REST endpoint of
+our *Simple Web service* from outside *Minikube* yet. To fix this, I will have
+to set up our
+[Ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
+first.
+
+An *Ingress controller* is a component within *Kubernetes* that acts as a
+bridge between the services and the external world, allowing HTTP(S) connection
+to reach from the outside world to the services running inside *Kubernetes*.
+
+*Minikube* comes with the built-in
+[NGINX Ingress Controller](https://www.nginx.com/products/nginx/kubernetes-ingress-controller)
+but it's disabled by default. To enable it, I will run the following command:
+
+```bash
+minikube addons enable ingress
+```
+
+After that, I will use the following command to check for the
+*Ingress controller* status.
+
+```bash
+kubectl get pods -n kube-system
+```
+
+I am going to wait for the `nginx-ingress-controller` to be running.
+
+![ingress controller status](assets/images/minikube-deploy-ingress-controller-up.png)
+
+After our *Ingress controller* is up, I need to 
+[configure it](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/).
+I will need to prepare an *Ingress resource* similar to our
+*Deployment resource* that we used in the previous section. I am going to call
+it `ingress.yaml`.
+
+```yaml
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: simple-web-service-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: simple-web-service-cluster-ip
+          servicePort: 80
+```
+
+A few points to note about the `ingress.yaml`:
+- The `kind` field says that it is an *Ingress* type resource.
+- The `metadata.name` field specifies the name of this resource.
+- The `path` field specifies that all the HTTP requests coming to the `/`
+conext root should be forwarded to the *simple-web-service-cluster-ip* service
+that I am going to create in the next section.
+
+To run the *Ingress* config, I will execute the following command:
+
+```bash
+kubectl apply -f ingress.yaml
+```
 
 ### Accessing the web service
+Now that we have everything in place, it's time to access our
+*Simple Web service*. *Minikube* is exposed to the host system with a
+host-only IP address. This IP address can be obtained with the below command:
 
+```bash
+minikube ip
+```
+
+In my case, this outputs the following IP address: 192.168.64.24. Now if I go
+to the following link from my web browser: `http://192.168.64.24/details`, I
+will get the following response:
+
+![simple web service details 1](assets/images/minikube-deploy-simple-web-service-details-1.png)
+
+If I try the link multiple times, I will get another response where the
+`Host name` and the `IP address` will be different.
+
+![simple web service details 2](assets/images/minikube-deploy-simple-web-service-details-2.png)
+
+This is because in the *Deployment* section, I have deployed two pods of our
+*Simple Web service* application and the `simple-web-service-cluster-ip`
+*Service* will route the incoming requests to each of the *Pods* alternatively.
 
 ### Conclusion
+The steps were tested with the *Minikube* version `v1.9.2`.
+The source code of the resources files along with the source code of the
+*Simple Web service* can be found in this
+[GitHub repository](https://github.com/subhadig/kubernetes-with-minikube).
+If you have any feedback or comment about any of the steps, please let me know
+in the comments.
