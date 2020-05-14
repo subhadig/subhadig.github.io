@@ -6,7 +6,7 @@ type: post
 tags:
     - application-monitoring-service
 comments: true
-collection_keyword: ams
+collectionKeyword: ams
 ---
 ### Introduction
 This is the second article in my

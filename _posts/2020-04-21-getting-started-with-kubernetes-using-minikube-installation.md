@@ -7,14 +7,16 @@ tags:
     - kubernetes
     - minikube
 comments: true
+collectionKeyword: kubernetes-with-minikube
 ---
 ### Introduction
 I am working on a series of opinionated posts on how to get started with the
-basics of Kubernetes using Minikube. In these posts, I will discuss on a range
-of topics starting from the installation of Minikube to the deployment of pods and
-also workarounds for a few annoying issues I faced along the way. This is the
-first article of the series where I talk about how to install Minikube in your
-local computer.
+basics of
+[Kubernetes using Minikube](collections/kubernetes-with-minikube.html). In
+these posts, I will discuss on a range of topics starting from the installation
+of Minikube to the deployment of pods and also workarounds for a few annoying
+issues I faced along the way. This is the first article of the series where I
+talk about how to install Minikube in your local computer.
 
 ---
 **Table of Contents**
@@ -212,4 +214,6 @@ downloading as executable binaries and using without installing. But I like the
 above approaches because they give me the flexibility of managing the packages
 with a package manager.
 
-In the next post, I will discuss about deploying pods in our Minikube cluster.
+In the
+[next post](getting-started-with-kubernetes-using-minikube-deploying-an-application.html),
+I will discuss about deploying pods in our Minikube cluster.
