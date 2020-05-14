@@ -93,11 +93,11 @@ the name *simple-web-service-application*. The container will be created from
 the *subhadig/simple-web-service* image which is available on the *Docker Hub*
 and it will have the *8080* port exposed.
 
-Now to apply this `deployment.yaml` in our *Minikube* cluster, I will use the
+Now to apply this `deployment.yaml` in our *Minikube* cluster, use the
 following command:
 
 ```bash
-//cd to the directory that contains the deployment.yaml
+# cd to the directory containing the deployment.yaml file
 kubectl apply -f deployment.yaml
 ```
 
@@ -115,9 +115,9 @@ And you should see something like this:
 In the previous section, I deployed our *Simple Web service* which is running
 inside *Pods*. But *Pods* are mortal, they are not static, they are
 automatically created and destroyed by *Kubernetes*. Because of this, the
-*Pods* IP addresses can not be relied upon if I need to access them from
+*Pod* IP addresses can not be relied upon if I need to access them from
 outside or from another *Pod*. So I will need a level of abstraction that will
-talk to the *Pods* on behalf of my and will be static in nature.
+talk to the *Pods* on behalf of me and will be static in nature.
 [Services](https://kubernetes.io/docs/concepts/services-networking/service/)
 are that abstraction.
 
@@ -161,30 +161,29 @@ An *Ingress controller* is a component within *Kubernetes* that acts as a
 bridge between the services and the external world, allowing HTTP(S) connection
 to reach from the outside world to the services running inside *Kubernetes*.
 
-*Minikube* comes with the built-in
+*Minikube* comes with a built-in
 [NGINX Ingress Controller](https://www.nginx.com/products/nginx/kubernetes-ingress-controller)
-but it's disabled by default. To enable it, I will run the following command:
+but it's disabled by default. To enable it, run the following command:
 
 ```bash
 minikube addons enable ingress
 ```
 
-After that, I will use the following command to check for the
+After that, use the following command to check for the
 *Ingress controller* status.
 
 ```bash
 kubectl get pods -n kube-system
 ```
 
-I am going to wait for the `nginx-ingress-controller` to be running.
+Wait for the `nginx-ingress-controller` to be running.
 
 ![ingress controller status](assets/images/minikube-deploy-ingress-controller-up.png)
 
 After our *Ingress controller* is up, I need to 
 [configure it](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/).
-I will need to prepare an *Ingress resource* similar to our
-*Deployment resource* that we used in the previous section. I am going to call
-it `ingress.yaml`.
+I will need to prepare an *Ingress resource* similar to the other resources
+that we used in the previous sections. I am going to call it the `ingress.yaml`.
 
 ```yaml
 apiVersion: networking.k8s.io/v1beta1
@@ -205,10 +204,11 @@ A few points to note about the `ingress.yaml`:
 - The `kind` field says that it is an *Ingress* type resource.
 - The `metadata.name` field specifies the name of this resource.
 - The `path` field specifies that all the HTTP requests coming to the `/`
-context root should be forwarded to the *simple-web-service-cluster-ip* service
-that I am going to create in the next section.
+context root from outside should be forwarded to the
+*simple-web-service-cluster-ip* service that I am going to create in the next
+section.
 
-To push the *Ingress* resource, I will execute the following command:
+To push the *Ingress* resource, execute the following command:
 
 ```bash
 kubectl apply -f ingress.yaml
@@ -225,7 +225,7 @@ minikube ip
 
 In my case, this outputs the following IP address: 192.168.64.24. Now if I go
 to the following link from my web browser: `http://192.168.64.24/details`, I
-will get the following response:
+will get the below response:
 
 ![simple web service details 1](assets/images/minikube-deploy-simple-web-service-details-1.png)
 
@@ -239,6 +239,8 @@ This is because in the *Deployment* section, I have deployed two pods of our
 *Service* will route the incoming requests to each of the *Pods* alternatively.
 
 ### Conclusion
+This article gives a basic idea about the steps involved in deploying an
+application in *Kubernetes*.
 The steps were tested with the *Minikube* version `v1.9.2`.
 The source code of the resources files along with the source code of the
 *Simple Web service* can be found in this
