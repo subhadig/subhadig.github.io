@@ -35,7 +35,7 @@
               <h3>Posts</h3>
               <ul>
               {% for post in site.posts reversed %}
-                  {% if post.collection_keyword == page.keyword %}
+                  {% if post.collectionKeyword == page.keyword %}
                   <li><a href={{ post.url }}>{{ post.title }}</a></li>
                   {% endif %}
               {% endfor %}

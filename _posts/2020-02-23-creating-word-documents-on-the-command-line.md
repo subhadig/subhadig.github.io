@@ -180,7 +180,7 @@ if you are new to it. This official
 configuration options and tricks.
 
 ##### Tables
-Tables in markdown are the only unintuitive feature that I have found so far.
+Tables in markdown is the only unintuitive feature that I have found so far.
 Tables were not supported by the
 [original markdown specifications](https://daringfireball.net/projects/markdown/)
 designed by *John Gruber*. But
@@ -198,14 +198,15 @@ Value 1 | 60 | A string | The next row is a blank row
  | | |
 ```
 
-When Pandoc converts it, it looks like this.
+When Pandoc converts it to PDF, it looks like this.
 ![pandoc table](assets/images/pandoc-table.png)
 
 A few points about creating tables in markdown:
 - The `|` character works as a delimiter between two cells.
 - Leave a blank line above and below the table.
-- Notice the positions of the colons in the row below the header row. These
-colons determine if a column will be treated as right-aligned or left-aligned.
+- Note the positions of the colons in the row below the header row in the table
+definition. These colons determine if a column will be treated as right-aligned
+or left-aligned.
 - Merging cells are not allowed.
 
 Although it works fine, creating complex tables should be avoided whenever
