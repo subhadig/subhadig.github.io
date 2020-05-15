@@ -1,0 +1,51 @@
+<div id="relatedPosts">
+
+    <h4>Related Posts:</h4>
+
+    <ul>
+
+    {% assign maxRelated = 4 %}
+    {% assign minCommonTags =  1 %}
+    {% assign maxRelatedCounter = 0 %}
+
+    {% for post in site.posts %}
+
+        {% if post.url != page.url %}
+
+            {% assign sameTagCount = 0 %}
+
+            {% for tag in post.tags %}
+
+                {% if page.tags contains tag %}
+
+                    {% assign sameTagCount = sameTagCount | plus: 1 %}
+
+                {% endif %}
+
+            {% endfor %}
+
+            {% if sameTagCount >= minCommonTags %}
+
+                    <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+
+                {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+
+                {% if maxRelatedCounter >= maxRelated %}
+                    {% break %}
+                {% endif %}
+
+            {% endif %}
+
+        {% endif %}
+
+    {% endfor %}
+
+    {% if maxRelatedCounter == 0 %}
+
+        {% for post in site.posts limit:4 %}
+                    <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+
+    {% endif %}
+    </ul>
+</div>

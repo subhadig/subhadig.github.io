@@ -39,6 +39,7 @@
 
           <div id="tags">
               <br/>
+              <hr/>
               <h4>Tags</h4>
               <ul>
               {% for tag in page.tags %}
@@ -46,6 +47,8 @@
               {% endfor %}
               </ul>
           </div>
+
+          {% include related-posts.html %}
 
           {% if site.disqus.shortname %}
               {% include disqus_comments.html %}
