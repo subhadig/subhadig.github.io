@@ -1,4 +1,4 @@
-<div id="relatedPosts">
+<div id="relatedPosts" class="relatedPosts">
 
     <h4>Related Posts:</h4>
 
@@ -26,7 +26,7 @@
 
             {% if sameTagCount >= minCommonTags %}
 
-                    <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+                    <li><a class="postEntry" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
 
                 {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
 
@@ -43,7 +43,7 @@
     {% if maxRelatedCounter == 0 %}
 
         {% for post in site.posts limit:4 %}
-                    <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+                    <li><a class="postEntry" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
         {% endfor %}
 
     {% endif %}
