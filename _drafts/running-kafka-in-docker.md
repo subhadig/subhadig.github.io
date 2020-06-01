@@ -11,7 +11,7 @@ comments: true
 ### Introduction
 Running *Apache Kafka* as a *Docker* container can be harder than it should be.
 Or perhaps it's easy once you know what exactly you need to do. In this post,
-I am going to discuss about my prefered way to run Kafka as a *Docker*
+I'm going to discuss about my prefered way to run Kafka in a *Docker*
 container.
 
 ---
@@ -21,6 +21,8 @@ container.
 ---
 
 ### What is Kafka?
+[Apache Kafka](https://kafka.apache.org/) is a distributed event streaming
+platform that is capable of streaming very large volume of data.
 
 ### Zookeeper
 
