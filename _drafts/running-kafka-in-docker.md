@@ -95,17 +95,40 @@ A few points about the above command:
 - `--network kafka-net` ensures that our Kafka broker also joins the same
 Docker network as Zookeeper.
 - `-e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181`: Our Kafka container reads
-this environment variable to know how to reach our Zookeeper container on the
+this environment variable to know where to reach our Zookeeper container on the
 Docker network.
-- `-e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP`: This map defines the *security
-protocol* to use for each *listener* that we are going to use. The *INTERNAL*
-listener will be used by the clients internal to the *kafka-net* Docker
-network and the *EXTERNAL* listener will be used by the clients outside the
-*kafka-net* network.
-- `-e KAFKA_CFG_LISTENERS`:
-
+- `-e KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP`: This map specifies the *security
+protocol* to use for each *listener* that we are going to use.
+The *INTERNAL* listener will be used by the clients internal to the *kafka-net*
+Docker network and the *EXTERNAL* listener will be used by the clients outside
+the *kafka-net* network.
+- `-e KAFKA_CFG_LISTENERS`: This map specifies that our *INTERNAL* listener
+will listen on port 9092 and the *EXTERNAL* listener will listen on port 29092
+for any incoming connection from clients.
+- `-e KAFKA_CFG_ADVERTISED_LISTENERS`: This contains the host and port
+combinations of Kafka brokers which are passed on to the clients when they
+first connect, depending on which listener they connect to.
+These are the Kafka broker addresses that the clients will finally connect to.
+This means that the internal clients will connect to the broker on *kafka* host
+and the
+external clients will connect to *localhost*. This is reasonable since our 
+Kafka broker container has the hostname *kafka* inside the *kafka-net* Docker
+network but is exposed on *localhost* outside of it.
+- I have used the `2.5.0` version. This can be replaced by `latest` or any other
+future versions.
 
 ### Testing the cluster
+Now that we have our local Kafka cluster up and running, it's time for testing
+it out.
+For this we will need a Kafka producer that will publish data to our
+Kafka and a consumer that will listen to it.
+While we can use the *kafka-console-producer.sh* and the
+*kafka-console-consumer.sh* scripts that come with Kafka, I will use a utility
+called [kafkacat](https://github.com/edenhill/kafkacat).
+
+#### The producer
+
+#### The consumer
 
 ### Start/stop scripts
 
