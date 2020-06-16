@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The easiest way to stay always connected to IRC
+title: The easiest way to stay always connected on IRC
 date: 2020-04-14
 type: post
 tags:
@@ -14,7 +14,7 @@ of members working from different locations and timezones spanned across the
 globe and if you don't want to miss out messages while you are offline, you
 may find yourself in a tricky situation.
 In this post I am going to discuss about the easiest and the most
-cost-effective way to stay always connected to IRC using
+cost-effective way to stay always connected on IRC using
 [Matrix](https://en.wikipedia.org/wiki/Matrix_(protocol)).
 
 ---
