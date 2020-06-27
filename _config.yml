@@ -2,7 +2,7 @@ theme: jekyll-theme-slate
 title: Subhadip's Blog
 description: My experience with the computing world!
 author: subhadig
-url: "https://subhadig.github.io"
+url: "https://www.subhadig.net"
 permalink: /:title:output_ext
 timezone: Asia/Kolkata
 disqus:
