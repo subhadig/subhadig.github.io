@@ -168,6 +168,12 @@ iptables -A INPUT -s 127.0.0.0/8 -d 127.0.0.0/8 -i lo -j ACCEPT
 # iptables -A INPUT -s 10.20.0.2 -p tcp --dport 22 -m state --state NEW -j ACCEPT
 ```
 
+To make the script executable, run:
+
+```bash
+sudo chmod +x /etc/firewall/enable.sh
+```
+
 #### Add a systemd service
 This is required for automatically loading the rules at startup. Paste the
 following content in */etc/systemd/system/firewall.service*:
@@ -183,6 +189,13 @@ ExecStart=/etc/firewall/enable.sh
 
 [Install]
 WantedBy=multi-user.target
+```
+
+#### Enable the service
+Run the following command:
+
+```bash
+systemctl enable firewall.service --now
 ```
 
 More information is available on the 
@@ -203,8 +216,9 @@ It downloads the latest tarball package of Firefox from the official site and
 unpacks it under /opt. This script can also be used to update Firefox when a
 new version is available.
 
-Execute the following command to link the Firefox executable to 
-*/usr/bin/firefox*:
+The script already links the *firefox* executable to */usr/bin/firefox-latest*
+to make sure that it's on the PATH.
+Execute the following command to also link it to */usr/bin/firefox*:
 
 ```bash
 sudo ln -s /opt/firefox/firefox /usr/bin/firefox
@@ -220,7 +234,7 @@ Type=Application
 Name=Firefox
 GenericName=Web Browser
 Icon=/opt/firefox/browser/chrome/icons/default/default128.png
-Exec=/usr/lib/firefox %u
+Exec=/usr/bin/firefox-latest %u
 Actions=new-window;new-private-window;
 MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
 Categories=Network;WebBrowser;
@@ -229,11 +243,11 @@ StartupNotify=true
 
 [Desktop Action new-window]
 Name=New Window
-Exec=/usr/lib/firefox --new-window %u
+Exec=/usr/bin/firefox-latest --new-window %u
 
 [Desktop Action new-private-window]
 Name=New Private Window
-Exec=/usr/lib/firefox --private-window %u
+Exec=/usr/bin/firefox-latest --private-window %u
 
 ```
 
