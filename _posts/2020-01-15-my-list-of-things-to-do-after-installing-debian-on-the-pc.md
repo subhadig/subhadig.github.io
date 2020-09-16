@@ -2,6 +2,7 @@
 layout: post
 title: My list of things to do after installing Debian on the PC
 date: 2020-01-15
+lastModifiedDate: 2020-09-16
 type: post
 tags:
     - debian
@@ -52,7 +53,7 @@ sudo apt update
 sudo apt upgrade
 sudo apt install \
         tmux \
-        vim \
+        neovim \
         arc-theme \
         git \
         wget \
@@ -66,7 +67,7 @@ sudo apt install \
 Here are the brief descriptions about the installed packages:
 - tmux - tmux is a multiplexer for the Terminal. I spend a lot of time on the
 Terminal and tmux makes it easy to manage multiple open Terminals.
-- vim - my text editor of choice.
+- neovim - vim is my text editor of choice. neovim is my vim of choice.
 - arc-theme - A nice GTK theme with three variants - normal, dark and darker.
 - git - git command line client.
 - wget - a download manager.
