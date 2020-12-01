@@ -35,6 +35,14 @@
     opacity: 0.7;
 }
 
+.noHighlightLink {
+    color: #222;
+}
+
+a.noHighlightLink, a.noHighlightLink:hover, a.noHighlightLink:active a.noHighlightLink:focus {
+    text-decoration: none;
+}
+
 #header_wrap .inner {
     padding: 40px 10px 20px 10px;
 }
@@ -84,4 +92,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Liberation Sans', 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+}
+
+h3 {
+    padding-top: 20px;
 }
