@@ -2,7 +2,7 @@
 layout: post
 title: My list of things to do after installing Debian on the PC
 date: 2020-01-15
-lastModifiedDate: 2020-09-16
+lastModifiedDate: 2020-12-27
 type: post
 tags:
     - debian
@@ -53,6 +53,7 @@ sudo apt update
 sudo apt upgrade
 sudo apt install \
         tmux \
+        fzf \
         neovim \
         arc-theme \
         git \
@@ -67,6 +68,7 @@ sudo apt install \
 Here are the brief descriptions about the installed packages:
 - tmux - tmux is a multiplexer for the Terminal. I spend a lot of time on the
 Terminal and tmux makes it easy to manage multiple open Terminals.
+- fzf - A fuzzy finder for the command line.
 - neovim - vim is my text editor of choice. neovim is my vim of choice.
 - arc-theme - A nice GTK theme with three variants - normal, dark and darker.
 - git - git command line client.
@@ -132,6 +134,13 @@ the user to which the reports should be sent:
 
 ```
 Unattended-Upgrade::Mail "subhadip";
+```
+
+To enable the unattended-uggrades to run periodically, run the following
+command:
+
+```
+sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
 ### Add firewall rules
