@@ -2,7 +2,7 @@
 layout: post
 title: My list of things to do after installing Debian on the PC
 date: 2020-01-15
-lastModifiedDate: 2020-12-27
+lastModifiedDate: 2021-03-07
 type: post
 tags:
     - debian
@@ -127,6 +127,14 @@ Unattended-Upgrade::Origins-Pattern {
     //      "o=Debian Backports,a=${distro_codename}-backports,l=Debian Backports";
 };
 
+```
+
+If you also have Google Chrome installed and you want unattended upgrade to
+take care of the Google Chrome updates automatically, add the following line to
+the above section.
+
+```
+    "origin=Google LLC,codename=stable,label=Google";
 ```
 
 To enable update reports over mail, uncomment the following section and add
