@@ -154,6 +154,6 @@ the installations were not very straightforward and not necessarily
 supported by the native vim package manager (which I use to manage the handful
 of vim plugins that I use).
 So instead I wrote my own solution which is simple, does not depend on
-external dependencies that I wouldn't otherwise have in your system and gets
+external dependencies that I wouldn't otherwise have in my system and gets
 the job done.
 And it only shows how powerful an editor vim is.
