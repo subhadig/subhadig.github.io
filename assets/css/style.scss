@@ -51,13 +51,13 @@ a.noHighlightLink:hover, a.noHighlightLink:focus {
 .aboutRow {
     display: flex;
 }
-.aboutColumnLeft {
-    flex: 40%;
-    padding-right: 15px;
-}
 .aboutColumnRight {
+    flex: 40%;
+    padding-top: 15px;
+}
+.aboutColumnLeft {
     flex: 60%;
-    padding-left: 15px;
+    padding-right: 25px;
 }
 .profileImg {
     border-radius: 50%;
