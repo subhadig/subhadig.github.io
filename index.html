@@ -7,9 +7,9 @@ seo:
 
 <h1>Latest Posts</h1>
 
-<hr/>
+<br/>
 
-<ul>
+<ul class="homePageList">
   {% for post in site.posts limit:5 %}
     <li>
       <h2><a class="noHighlightLink" href="{{ post.url }}">{{ post.title }}</a></h2>

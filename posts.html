@@ -6,20 +6,21 @@ title: Posts
 
 <ul>
   {% for collection in site.my_collections %}
-    <li>
-        <a class="postEntry" href="{{ collection.url }}">{{ collection.title }}</a>
+    <li style="margin-bottom: 10px;">
+        <a class="postEntry noHighlightLink" href="{{ collection.url }}">{{ collection.title }}</a>
     </li>
   {% endfor %}
 </ul>
 
-<hr/>
+<br/>
 
 <h1>All Posts</h1>
 
 <ul>
   {% for post in site.posts %}
-    <li>
-        <span style="font-weight: bold;">{{ post.date | date: "%Y-%m-%d" }} - </span><a class="postEntry" href="{{ post.url }}">{{ post.title }}</a>
+    <li style="margin-bottom: 10px;">
+        <span style="font-weight: 500;">{{ post.date | date: "%Y-%m-%d" }} - </span>
+        <a class="postEntry noHighlightLink" href="{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
 </ul>
