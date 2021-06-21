@@ -1,10 +1,10 @@
 # Introduction
-This repository has the source code of my personal blog. To see it in action,
-head over to [subhadig.net](https://www.subhadig.net).
+This repository has the source code of my personal blog.
+To see it in action, head over to [subhadig.net](https://www.subhadig.net).
 
 # Building
-This site uses [Jekyll](https://jekyllrb.com/), a static website builder. To
-locally run this website, follow the below steps:
+This site uses [Jekyll](https://jekyllrb.com/), a static website builder.
+To locally run this website, follow the below steps:
 
 - Follow this Jekyll [guide](https://jekyllrb.com/docs/installation/) to setup
 Ruby and Jekyll. 
@@ -14,7 +14,8 @@ Ruby and Jekyll.
 - Go to `http://localhost:4000`.
 
 # Contributing
-Contributions are welcome. Feel free to send me a Pull Request.
+Contributions and corrections are welcome.
+Feel free to send me a Pull Request.
 
 # License
 The content of this project itself is licensed under the 
