@@ -330,9 +330,11 @@ vary from one hardware combination to another.
 
 ### Conclusion
 The steps are tested on a Debian 10 Buster installation.
-The choices made in this post are based on my personal needs and taste, it will
-almost certainly be different for other users. So the steps shared in this
+The choices made in this post are based on my personal requirements and
+preferences, it will
+almost certainly be different in your case. So the steps shared in this
 post should not be
-followed without understanding what they do and if they are required for your case.
-For me, this post will definitely make it easier when next time I install
+followed without understanding what they are meant for and if they are required
+for your case.
+For me, this post will definitely make it a lot easier when next time I install
 Debian on a new system.
