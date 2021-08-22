@@ -36,14 +36,38 @@ directly on the top panel.
 
 ![MacOS app menu](assets/images/maos-default-window-menu.png)
 
-Apart from MacOS, it was most prominently used in the
+Apart from MacOS, global menu was most prominently used in the
 [Unity DE](https://en.wikipedia.org/wiki/Unity_(user_interface)) by Ubuntu.
 
 ### xfce4-appmenu-plugin
 
+The Xfce plugin that makes it all possible is the `xfce4-appmenu-plugin`.
+This plugin uses the implementation of Global menu used by the Unity DE and
+supports all features found in the Unity implementation.
+To install it on Debian, run
+
+```
+sudo apt install xfce4-appmenu-plugin
+```
+
 ### Load GTK_MODULES="appmenu-gtk-module"
 
+The `xfce4-appmenu-plugin` does not support every menu implementations out of
+the box.
+`appmenu-gtk-module` exports the unsupported menus to the supported format so
+that `xfce4-appmenu-plugin` can consume them.
+`appmenu-gtk-module` gets installed as a transitive dependency of the
+`xfce4-appmenu-plugin` but it needs to be loaded on start.
+To do that, edit the `/etc/environment` file with root permisson and append the
+following:
+
+```
+GTK_MODULES="appmenu-gtk-module"
+```
+
 ### Configure the top panel
+
+![Xfce4 panel items](assets/images/xfce4-appmenu-plugin.png)
 
 ### Conclusion
 Having been used to a Mac on my work computer for quite some time now, there
