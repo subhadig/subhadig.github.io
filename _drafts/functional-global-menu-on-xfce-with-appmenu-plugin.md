@@ -69,6 +69,8 @@ GTK_MODULES="appmenu-gtk-module"
 
 ![Xfce4 panel items](assets/images/xfce4-appmenu-plugin.png)
 
+![Xfce4 panel separator](assets/images/xfce4-appmenu-plugin-separator.png)
+
 ### Conclusion
 Having been used to a Mac on my work computer for quite some time now, there
 are a few features I liked.
