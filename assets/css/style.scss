@@ -99,6 +99,9 @@ h3 {
 .highlight {
     background-color: #fff;
 }
+.gist-data td {
+    border: none;
+}
 @media (prefers-color-scheme: dark) {
     body, header, footer, p {
         color: #efefef; /*shade of white*/
