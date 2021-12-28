@@ -2,6 +2,7 @@
 layout: post
 title: Getting started with Kubernetes using Minikube - Deploying an application
 date: 2020-05-14
+lastModifiedDate: 2021-12-28
 type: post
 tags:
     - kubernetes
@@ -204,9 +205,8 @@ A few points to note about the `ingress.yaml`:
 - The `kind` field says that it is an *Ingress* type resource.
 - The `metadata.name` field specifies the name of this resource.
 - The `path` field specifies that all the HTTP requests coming to the `/`
-context root from outside should be forwarded to the
-*simple-web-service-cluster-ip* service that I am going to create in the next
-section.
+context root from outside should be forwarded to the `80` port of the 
+*simple-web-service-cluster-ip* service that I created in the previous section.
 
 To push the *Ingress* resource, execute the following command:
 
@@ -236,14 +236,18 @@ If I try the link multiple times, I will get another response where the
 
 This is because in the *Deployment* section, I have deployed two pods of our
 *Simple Web service* application and the `simple-web-service-cluster-ip`
-*Service* will route the incoming requests to each of the *Pods* alternatively.
+*Service* will route the incoming requests to both the *Pods* alternatively.
 
 ### Conclusion
 This article gives a basic idea about the steps involved in deploying an
 application in *Kubernetes*.
 The steps were tested with the *Minikube* version `v1.9.2`.
+For accessing the service `simple-web-service-cluster-ip` from outside,
+alternatively I could have used `NodePort` or `LoadBalancer` methods as
+explained [here](https://minikube.sigs.k8s.io/docs/handbook/accessing/).
+
 The source code of the resources files along with the source code of the
 *Simple Web service* can be found in this
-[GitHub repository](https://github.com/subhadig/kubernetes-with-minikube).
+[GitHub repository](https://github.com/subhadig/kubernetes-with-minikube/tree/master/deploy-application).
 If you have any feedback or comment about any of the steps, please let me know
 in the comments.
