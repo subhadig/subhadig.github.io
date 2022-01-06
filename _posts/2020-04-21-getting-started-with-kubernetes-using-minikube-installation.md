@@ -227,6 +227,13 @@ To delete the local Minikube cluster, use:
 minikube delete
 ```
 
+To launch the [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/),
+use:
+
+```bash
+minikube dashboard
+```
+
 ### Conclusion
 These steps were tested on Debian 10 Buster and MacOS Mojave.
 *kubectl* and *minikube* can be installed in various other ways including
