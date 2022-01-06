@@ -28,10 +28,9 @@
       <section id="main_content" class="inner">
           <h2>{{ page.title }}</h2>
           <div class="postDate">
+                  - Published on {{ page.date | date: "%-d %B, %Y" }} 
               {%- if page.lastModifiedDate -%}
-                  - Last updated on {{ page.lastModifiedDate | date: "%-d %B, %Y" }}
-              {%- else -%}
-                  - Last updated on {{ page.date | date: "%-d %B, %Y" }}
+                  &nbsp;and last updated on {{ page.lastModifiedDate | date: "%-d %B, %Y" }}
               {%- endif -%}
           </div> 
           
