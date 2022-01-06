@@ -2,6 +2,7 @@
 layout: post
 title: Getting started with Kubernetes using Minikube - Installation
 date: 2020-04-21
+lastModifiedDate: 2022-01-06
 type: post
 tags:
     - kubernetes
@@ -97,6 +98,9 @@ way is to run it as a VM. To do so, we are going to need a hypervisor or a
 [VM driver](https://minikube.sigs.k8s.io/docs/drivers/). On Linux I prefer
 using [kvm](https://minikube.sigs.k8s.io/docs/drivers/kvm2/) and on MacOS, I
 prefer using [Hyperkit](https://minikube.sigs.k8s.io/docs/drivers/hyperkit/).
+If you are using any VPN software on your Mac, then you might want to check
+[this section](getting-started-with-kubernetes-using-minikube-installation.html#routing-issue-on-mac-with-hyperkit-when-cisco-anyconnect-vpn-is-running)
+before selecting a VM driver.
 
 To install *kvm* on Debian 10, run the following command:
 
@@ -187,6 +191,22 @@ minikube start --driver=hyperkit \
 The
 *--hyperkit-vpnkit-sock=/Users/${USER}/Library/Containers/com.docker.docker/Data/vpnkit.eth.sock*
 flag tells *minikube* to use the *Docker Desktop* vpnkit sock.
+
+#### Routing issue on Mac with Hyperkit when Cisco Anyconnect VPN is running
+
+In recent years, I have had less success in running Minikube with *hyperkit* or
+even *virtualbox* as the VM driver on a Mac where Cisco Anyconnect is also
+running.
+As a workaround, I am now using the *Docker Desktop* as the VM driver for
+running Minikube even though I am not a fan of it especially after their recent
+[licence update](https://www.docker.com/blog/updating-product-subscriptions/).
+
+To start Minikube on MacOS with *docker* as the VM driver, use the following
+command:
+
+```bash
+minikube start --driver=docker
+```
 
 ### A few additional Minikube commands
 To check the running status of the Minikube cluster, use the following command:
