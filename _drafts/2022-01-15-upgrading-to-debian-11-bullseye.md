@@ -44,7 +44,7 @@ image](https://www.debian.org/releases/stable/amd64/ch04s03.en.html#usb-copy-iso
 If things go sideways, you can always use the USB to live boot your system and
 do investigations.
 
-### Disable third party sources
+### Remove third party packages
 If you have installed any third party packages (packages that do not come from
 the official Debian repositories) in your system, it's always a good idea to
 uninstall them before going the upgrade so that there are least chances of
@@ -62,24 +62,110 @@ Uninstall the packages from the output list using the following command:
 sudo apt remove <package-name(s)>
 ```
 
-### Remove third party packages
+Also disable the third party sources.
+The third party sources should have their own `.sources` files in the
+`/etc/apt/sources.list.d` directory or added to the `/etc/apt/sources.list`
+file.
+Rename the `*.sources` files under the `/etc/apt/sources.list.d` directory by
+appending `.disabled` at the end of the file names.
+If any third party sources are added in the `/etc/apt/sources.list` file,
+comment out the lines by prefixing them with a `#`.
 
 ### Update Buster system
+Run the following commands to make sure that the Buster system is fully updated
+before continuing with the upgrade.
+
+```bash
+sudo apt update
+sudo apt upgrade
+```
 
 ### Remove obsolete packages
+To search for the obsolete packages, use following the command:
+
+```bash
+sudo aptitude search '~o'
+```
+
+And to remove, use:
+```bash
+sudo aptitude purge '~o'
+```
 
 ### Modify apt sources
+Before modifying the apt sources and updating to point to bullseye, make a copy
+of the existing `/etc/apt/sources.list` file.
+
+```bash
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.buster
+```
+
+After this, open the `/etc/apt/sources.list` file as root with your favourite
+text editor and replace the following:
+- `buster/updates` with `bullseye-security`.
+- `buster` with `bullseye` in the remaining places.
 
 ### Start recording the session
+It's a good idea to record the terminal session when the upgrade is running.
+If something goes wrong, the session can be replayed to debug the issue.
+To record the session, an utility called `script` will be used.
+Install it if it is not already installed.
 
-### Update packages
+To start the recording, use this command:
+
+```bash
+script -t 2>~/upgrade-bullseye.time -a ~/upgrade-bullseye.script
+```
+
+After this all the commands ran from the same terminal session and their
+outputs will be recorded in those two files.
+To exit the recording, simply enter `exit`.
+After that, to replay the session later, use the following command:
+
+```bash
+scriptreplay ~/upgrade-bullseye.time ~/upgrade-bullseye.script
+```
+
+### Update package cache
+Update the APT's package cache with the bullseye package information:
+
+```bash
+sudo apt update
+```
 
 ### Dry run upgrade
+Before running the actual upgrade, do a dry run of the upgrade process to make
+sure that there are sufficient disk spaces for doing the upgrade.
+
+```bash
+sudo apt -o APT::Get::Trivial-Only=true full-upgrade
+```
 
 ### Minimal system upgrade
+While the upgrade can be done in one go, I prefer to do it in two steps.
+In the first step, do minimal system upgrade where only the installed packages
+are upgraded and no new packages are installed or existing packages are
+removed.
+
+```bash
+sudo apt upgrade --without-new-pkgs
+```
 
 ### Full system upgrade
+Finally to fully upgrade the system, fun this command:
+
+```bash
+sudo apt full-upgrade
+```
 
 ### Purge removed packages
+Not very unexpected, the last two commands may take a long time to complete
+depending on the Internet speed.
+Once complete, use the following command to remove the left-over configuration
+files for the removed packages during the upgrade:
+
+```bash
+dpkg -l | awk '/^rc/ { print $2 }'; sudo apt purge $(dpkg -l | awk '/^rc/ { print $2 }')
+```
 
 ### Conclusion
