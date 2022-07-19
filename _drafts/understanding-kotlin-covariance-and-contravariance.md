@@ -130,9 +130,10 @@ So Contravariance is the Kotlin Generics feature that allows us to use a Printer
 of any `Paper` in place of a Printer of `Premium` papers.
 
 ### Limitations of Covariant and Contravariant
-Covariant and Contravariant do not come without their limitations over Invariant
-(that does not use either of the `out` or `in` keywords and is rigid in terms of
-accepting either the subtype of the supertype Classes) generic types.
+Covariant and Contravariant do not come without their limitations over the
+Invariant types (that does not use either of the `out` or `in` keywords and is
+rigid in terms of accepting either the subtype of the supertype Classes) generic
+types.
 
 A Class using a Covariant type can only be used as a Producer of the Covariant
 type, never a Consumer.
@@ -147,5 +148,7 @@ class Box<out T> {
     fun put(t: T) {} //This line does not compile
 }
 ```
+This is not an unreasonable ask when you think about it from the perspective of the
+compiler - given that the generics information is erased in the runtime, 
 
 ### Conclusion
