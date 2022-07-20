@@ -148,7 +148,42 @@ class Box<out T> {
     fun put(t: T) {} //This line does not compile
 }
 ```
-This is not an unreasonable ask when you think about it from the perspective of the
-compiler - given that the generics information is erased in the runtime, 
+This is not an unreasonable ask when you think about it from the perspective of
+the compiler - given that the generics type information is erased in the
+runtime, if we could somehow use a Covariant type as an input, there would have
+been nothing to stop us from inserting a `Premium` paper in a list of purely
+`Regular` papers which could have caused all types of issues afterwards.
+```kotlin
+val regularPapers: List<Regular> = listOf(Regular())
+val papers: List<Paper> = regularPapers
+papers.add(Premium()) //This line does not compile, thankfully!
+```
+
+Similarly a Class using a Contravariant type can only be used as a Consumer of
+the Contravariant type, never a Producer.
+In other words, our Printer class can only have functions that take `T` as
+inputs but never a function that outputs `T`.
+
+```kotlin
+class Printer<in T> {
+    fun take(t: T) {}
+
+    fun eject(): T { //This line does not compile!
+    }
+}
+```
+
+Which is again understandable since the Contravariant `mutableRegularPapers` has
+not way to ensure in the runtime that the paper it returns is of type `Regular`.
+```kotlin
+val mutablePapers: MutableList<Paper> = mutableListOf(Paper())
+val mutableRegularPapers: MutableList<in Regular> = mutablePapers
+val regular: Regular = mutableRegularPapers.removeAt(0) //This line does not compile as the mutableRegularPapers.removeAt(0) returns an object of type Any?
+```
 
 ### Conclusion
+The Covariant and Contravariant examples used in this article are called
+Declaration-site variance as they are used in Class or Interface declaration.
+When Covariant and Contravariant types are used in function declaration, it's
+called Use-site variance.
+Although both work in the same way, it is important to know the distinction.
