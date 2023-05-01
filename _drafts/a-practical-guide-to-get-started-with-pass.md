@@ -42,16 +42,63 @@ and sync features, it may not sound very practical to have separate piece of
 software for storing your passwords.
 There can be 
 [arguments](https://www.howtogeek.com/447345/why-you-shouldnt-use-your-web-browsers-password-manager/)
-on both sides but it's generally a more secure practice to use a password
-manager to manage your passwords and trust a browser for what it does best -
+on both sides but it's generally a more secure practice to not give too many
+responsibilities to one software and trust a browser for what it does best -
 browse the internet.
 
 ### Why Pass
- the Unix password manager
+Pass is a command-line password manager.
+It may not sound very attactive compared to various cloud-based alternatives
+that are available today especially if you are not a command-line person but the
+main power of Pass comes from it's simplicity and transperency.
+At it's core, Pass does not do much by itself and makes use of other unix
+software that are already available and are industry standards.
+Namely it uses gpg for encryption of the stored passwords and git for version
+control and cloud syncing.
+
+Another reason to use Pass is if you are not too inclined to blindly trust a
+cloud-based and closed-source password manager.
 
 ### GPG key for Pass
+Before we can use Pass, the very first step is to create a GPG key that will be
+used by Pass if you don't already have one or you don't wish to reuse the
+existing one(s).
+If you are using a Linux or Mac system, chances are that GPG is already
+installed in your system. Try entering this command which will print the
+installed version of GPG to make sure that it's already installed.
+
+```bash
+gpg --version
+```
+
+If not, use your package manager to install it.
 
 #### Coming up with a good pass phrase
+Before you create your GPG key, it's extremely important to come up with a good
+pass phrase that you can use for your key.
+And the characteristics of a
+[good pass phrase](https://theintercept.com/2015/03/26/passphrases-can-memorize-attackers-cant-guess/)
+are that it should as random as possible and yet it should be easy to remember.
+The
+[Diceware](https://theworld.com/~reinhold/diceware.html)
+method is an excellent way to generate a truly random pass phrase.
+
+You can use the
+[diceware](https://github.com/ulif/diceware)
+tool on the command-line for this.
+Use apt to install it in Debian.
+
+```bash
+sudo apt install diceware
+```
+
+You can also install it using pip.
+To generate a random 6-words long pass phrase with space as the delimiter, use
+the following command:
+
+```bash
+diceware -d ' '
+```
 
 #### Create the GPG key
 
