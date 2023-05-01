@@ -85,13 +85,8 @@ method is an excellent way to generate a truly random pass phrase.
 
 You can use the
 [diceware](https://github.com/ulif/diceware)
-tool on the command-line for this.
-Use apt to install it in Debian.
-
-```bash
-sudo apt install diceware
-```
-
+command-line tool for this.
+It's available in the Debian package repository.
 You can also install it using pip.
 To generate a random 6-words long pass phrase with space as the delimiter, use
 the following command:
@@ -101,8 +96,30 @@ diceware -d ' '
 ```
 
 #### Create the GPG key
+Creating a GPG key is easy, just use the following command:
+
+```bash
+gpg --full-gen-key
+```
+
+Use the maximum allowed length: 4096.
+Also you can use the comment field to differentiate between keys sharing the
+same email address.
+This will create a private and public key pair.
 
 #### Take back up of the GPG key
+It's awfully crucial to take backup of the GPG private key that you just
+created.
+It will help you to restore access to your passwords from backups and also to
+share the passwords between computers.
+
+Use the following command to list all your GPG keys:
+
+```bash
+gpg --list-secret-keys
+```
+
+Copy the ID of the key that you created.
 
 ### Initializing Pass
 
