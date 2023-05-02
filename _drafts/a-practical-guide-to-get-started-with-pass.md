@@ -96,16 +96,22 @@ diceware -d ' '
 ```
 
 #### Create the GPG key
-Creating a GPG key is easy, just use the following command:
+Creating a GPG key is easy, just use the following command to interactively
+create one:
 
 ```bash
 gpg --full-gen-key
 ```
+- Go with the default crypto algorithm.
+- Use the maximum allowed length: 4096.
+- It's not recommended to have keys that never expire.
+  2y should be a reasonable expiry period.
+- Enter your name and email address.
+- You can use the comment field to differentiate between keys sharing the
+  same email address.
+- Enter the pass phrase from the above section when prompted.
 
-Use the maximum allowed length: 4096.
-Also you can use the comment field to differentiate between keys sharing the
-same email address.
-This will create a private and public key pair.
+This ought to create a private and public key pair for you.
 
 #### Take back up of the GPG key
 It's awfully crucial to take backup of the GPG private key that you just
@@ -118,8 +124,30 @@ Use the following command to list all your GPG keys:
 ```bash
 gpg --list-secret-keys
 ```
+![](assets/images/gpg-list-keys.png){: width="50%" }
 
-Copy the ID of the key that you created.
+Copy the ID of the key that you created from the list.
+Next use the following command to export it to a file.
+Put the actual path where the private key will be exported and replace `<key
+ID>` with the ID copied from the above step.
+
+```bash
+gpg --export-secret-keys --armor --output </path/to/secret-key-backup.asc> <key ID>
+```
+
+The above exported private key is already secure with the pass phrase that you
+entered earlier.
+But to put an additional layer of security around it, let's compress and encrypt
+the content.
+
+```bash
+tar -cvJf - </path/to/secret-key-backup.asc>|gpg --symmetric --output keys.tar.xz.gpg
+```
+
+Enter a new password for the encryption when prompted.
+This password will be required when you will need to access the key later.
+You can now safely store the `keys.tar.xz.gpg` file in a CD or in your back up
+hard drive.
 
 ### Initializing Pass
 
@@ -130,3 +158,4 @@ Copy the ID of the key that you created.
 ### Common issues and solutions
 
 ### Conclusion
+In the next article, talk about replicating in a new computer or restore.
