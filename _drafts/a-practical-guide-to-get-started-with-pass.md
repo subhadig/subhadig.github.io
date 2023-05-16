@@ -139,21 +139,99 @@ The above exported private key is already secure with the pass phrase that you
 entered earlier.
 But to put an additional layer of security around it, let's compress and encrypt
 the content.
+Also remove the `secret-key-backup.asc` file afterwards.
 
 ```bash
 tar -cvJf - </path/to/secret-key-backup.asc>|gpg --symmetric --output keys.tar.xz.gpg
+rm </path/to/secret-key-backup.asc>
 ```
 
 Enter a new password for the encryption when prompted.
-This password will be required when you will need to access the key later.
+This password will be required again when you will decrypt the content of the
+archive later.
 You can now safely store the `keys.tar.xz.gpg` file in a CD or in your back up
 hard drive.
 
 ### Initializing Pass
+It's incredibly easy to initialize Pass.
+
+```bash
+pass init <key ID>
+```
+Replace `<key ID>` with the actual GPG key ID.
 
 ### Store and retrieve a password in Pass
+Pass encrypts your passwords with the GPG key and keeps the encrypted files
+organizes in a directory structure under the default root directory
+`~/.password-store`.
+To insert a new password for the webesite `example.com` into Pass, use the
+following command:
+```bash
+pass insert example.com
+```
+Enter the password for `example.com` when prompted.
+This will create an encrypted file named `example.com.gpg` inside
+`~/.password-store` and store the password in it.
+If you have multiple accounts for a website, you may use the following
+convention:
+```bash
+pass insert example.com/username1
+```
+This will an encrypted file named `username1.gpg` inside
+`~/.password-store/example.com` to store the password.
+
+To print a password to the terminal, use the following:
+```bash
+pass example.com
+```
+You will need to enter your GPG pass phrase.
+Alternatively to copy the password securely in your clipboard, use the `-c`
+flag.
+```bash
+pass -c example.com
+```
+This command also automatically clears the copied password from the clipboard
+after 45 seconds.
+
+You can also auto-generate a random password with the following command:
+```bash
+pass generate example.com
+```
 
 ### Git integration with Pass
+Pass also provides integration with Git - the revision control system.
+This in turn can be used to back up the passwords to an online remote repository
+like GitHub or GitLab.
+This is also useful if you want to replicate your passwords in more than one
+computer.
+
+Follow this
+[guide](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository)
+to create a private GitHub repository.
+Any other online version control system that uses Git can also be utilized
+instead of GitHub.
+
+Now, to initialize the Pass root directory as a git repository, run the
+following:
+```bash
+pass git init
+```
+
+And to add the remote Git repository url, use the following:
+```bash
+pass git remote add origin git@github.com:<username>/<repository-name>.git
+```
+Replace your username and the newly created repository name in the above
+command.
+
+With every `insert` , `edit` and `generate` operations, Pass will automatically
+make a new commit to your local Git repository.
+You can use the following commands to push or pull your changes to and from the
+remote repository.
+```bash
+pass git push
+pass git pull
+```
 
 ### Common issues and solutions
 
