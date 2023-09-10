@@ -5,8 +5,6 @@ author: subhadig
 url: "https://www.subhadig.net"
 permalink: /:title:output_ext
 timezone: Asia/Kolkata
-disqus:
-    shortname: subhadig
 collections:
     my_collections:
         output: true
