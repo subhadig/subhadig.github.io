@@ -49,7 +49,9 @@
 
           {% include related-posts.html %}
 
-          {% include giscus_comments.html %}
+          {% if site.enable_giscus %}
+              {% include giscus_comments.html %}
+          {% endif %}
 
       </section>
     </div>
