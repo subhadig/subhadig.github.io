@@ -2,7 +2,7 @@
 layout: post
 title: My list of things to do after installing Debian on the PC
 date: 2020-01-15
-lastModifiedDate: 2023-10-22
+lastModifiedDate: 2023-10-20
 type: post
 tags:
     - debian
