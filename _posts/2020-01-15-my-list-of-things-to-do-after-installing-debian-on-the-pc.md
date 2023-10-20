@@ -2,7 +2,7 @@
 layout: post
 title: My list of things to do after installing Debian on the PC
 date: 2020-01-15
-lastModifiedDate: 2021-03-07
+lastModifiedDate: 2023-10-22
 type: post
 tags:
     - debian
@@ -13,8 +13,8 @@ I like the fact that Debian does not do a lot of customizations over
 the upstream packages by default but this also means extra work for you for setting up
 things after installing Debian on the PC. The upside is that you get to customize 
 things exactly the way you like it. It definitely helps to have a list to start
-with and this post lists some of the customizations I make after installing a 
-fresh copy of Debian.
+with and this post lists down some of the customizations I make after installing
+a fresh copy of Debian.
 
 ---
 **Table of Contents**
@@ -24,8 +24,9 @@ fresh copy of Debian.
 
 ### Adding a swap file
 Nowadays I prefer having swap files over swap partitions, mainly because files 
-can be resized more easily than partitions. To create a swap file and use as
-swap, execute the following commands:
+can be resized more easily than partitions.
+This is useful when I want to change the swap size.
+To create a swap file and use as swap, execute the following commands:
 
 ```bash
 sudo dd if=/dev/zero of=/swapfile bs=1024 count=$((4*1024*1024)) #create an empty file of size 4GB
@@ -55,14 +56,17 @@ sudo apt install \
         tmux \
         fzf \
         neovim \
-        arc-theme \
         git \
         wget \
         bash-completion \
         chromium \
         bsd-mailx \
         unattended-upgrades \
-        apt-listchanges
+        apt-listchanges \
+        pass \
+        pwgen \
+        firewalld \
+        thunderbird
 ```
 
 Here are the brief descriptions about the installed packages:
@@ -70,7 +74,6 @@ Here are the brief descriptions about the installed packages:
 Terminal and tmux makes it easy to manage multiple open Terminals.
 - fzf - A fuzzy finder for the command line.
 - neovim - vim is my text editor of choice. neovim is my vim of choice.
-- arc-theme - A nice GTK theme with three variants - normal, dark and darker.
 - git - git command line client.
 - wget - a download manager.
 - bash-completion - a utility for autocompletion on bash.
@@ -79,11 +82,18 @@ Terminal and tmux makes it easy to manage multiple open Terminals.
 - unattended-upgrades - required for installation of automatic system updates.
 - apt-listchanges - required by unattended-upgrades for sending change-list of
 installed updates.
+- pass - a command-line based password manager.
+  More [here](a-practical-guide-to-get-started-with-pass.html).
+- pwgen - a command-line based random password generation utility.
+- firewalld - a command-line based firewall.
+- thunderbird - an email client.
 
 ### Enable bash completion
-Unlike some of the other Linux distributions, tab-completion for bash is not enabled
-in Debian by default. To enable it for all the users, uncomment the following
-section in */etc/bash.bashrc*:
+In the earlier versions for Debian, tab-completion for bash did not come enabled
+by default.
+But at least in Debian 12, this automatically gets enabled.
+If it is not enabled by default for you, uncomment the following section in
+*/etc/bash.bashrc* to enable it for all users:
 
 ```bash
 if ! shopt -oq posix; then
@@ -93,8 +103,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
 ```
+
+If you only want to enable it for selected users, paste the above content in the
+`~/.bashrc` file.
 
 ### Enable auto-update
 The Gnome and KDE variants of Debian come with pre-installed utilities
@@ -144,7 +156,7 @@ the user to which the reports should be sent:
 Unattended-Upgrade::Mail "subhadip";
 ```
 
-To enable the unattended-uggrades to run periodically, run the following
+To enable the unattended-upgrades to run periodically, run the following
 command:
 
 ```
@@ -154,84 +166,42 @@ sudo dpkg-reconfigure -plow unattended-upgrades
 ### Add firewall rules
 By default the Debian firewall policy allows all incoming and outgoing network
 traffics. This is not necessarily insecure but I prefer restricting what goes in
-and comes out of my system. Here are the steps to setup a very simple
-firewall policy suitable for personal computers.
+and comes out of my system.
+In the past, I used to use an iptables based script to customize the firewall
+policy.
+But as of Debian 10,
+[iptables is replaced by nftables](https://wiki.debian.org/iptables)
+and the usage of firewall management utilities like
+[firewalld](https://packages.debian.org/bookworm/firewalld) is recommended.
 
-#### Create a script with the required rules
-Paste the following content in */etc/firewall/enable.sh*:
-
-```
-#!/bin/sh
-# A very basic IPtables / Netfilter script /etc/firewall/enable.sh
-
-PATH='/sbin'
-
-# Flush the tables to apply changes
-iptables -F
-
-# Default policy to drop 'everything' but our output to internet
-iptables -P FORWARD DROP
-iptables -P INPUT   DROP
-iptables -P OUTPUT  ACCEPT
-
-# Allow established connections (the responses to our outgoing traffic)
-iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-
-# Allow local programs that use loopback (Unix sockets)
-iptables -A INPUT -s 127.0.0.0/8 -d 127.0.0.0/8 -i lo -j ACCEPT
-
-# Uncomment this line to allow incoming SSH/SCP conections to this machine,
-# for traffic from 10.20.0.2 (you can use also use a network definition as
-# source like 10.20.0.0/22).
-# iptables -A INPUT -s 10.20.0.2 -p tcp --dport 22 -m state --state NEW -j ACCEPT
-```
-
-To make the script executable, run:
+firewalld does not come installed by default and needs to be installed manually.
+OOTB, firewalld uses the public zone as default which allows outgoing traffic
+but blocks incoming traffic on all ports except ssh and dhcpv6-client.
+To disable them, use the following commands:
 
 ```bash
-sudo chmod +x /etc/firewall/enable.sh
+sudo firewall-cmd --remove-service=ssh --permanent
+sudo firewall-cmd --remove-service=dhcpv6-client --permanent
 ```
-
-#### Add a systemd service
-This is required for automatically loading the rules at startup. Paste the
-following content in */etc/systemd/system/firewall.service*:
-
-```
-[Unit]
-Description=Add Firewall Rules to iptables
-
-[Service]
-Type=oneshot
-ExecStart=/etc/firewall/enable.sh
-#ExecStart=/etc/firewall/enable6.sh  #For IPV6
-
-[Install]
-WantedBy=multi-user.target
-```
-
-#### Enable the service
-Run the following command:
-
-```bash
-systemctl enable firewall.service --now
-```
-
-More information is available on the 
-[Debian wiki](https://wiki.debian.org/DebianFirewall)
 
 ### Install latest Firefox
 Debian comes with the ESR version of Firefox. To install the latest stable
-version of Firefox, I use a bash script which is hosted on my GitHub account.
-Here are the steps to clone the script and install Firefox.
+version of Firefox, I use a [bash script](https://github.com/subhadig/dotfiles/blob/master/bin/firefox-updater)
+which is hosted on my GitHub account.
+Download and run the script as executable.
 
 ```bash
-git clone git@github.com:subhadig/firefox_updater.git
-cd firefox_updater
-/firefox-updater.sh
+wget -O firefox-updater.sh https://raw.githubusercontent.com/subhadig/dotfiles/master/bin/firefox-updater
+chmod u+x firefox-updater.sh
+./firefox-updater.sh
 ```
 
-It downloads the latest tarball package of Firefox from the official site and
-unpacks it under /opt. This script can also be used to update Firefox when a
+The script downloads the latest tarball package of Firefox from the official
+site and unpacks it under */opt* along with creating a `.desktop` file in
+*/usr/share/applications*.
+It automatically detects if the user has sudo privileges and prompts for the
+user or the root password accordingly during the installation.
+This script can also be used to update Firefox when a
 new version is available.
 
 The script already links the *firefox* executable to */usr/bin/firefox-latest*
@@ -240,33 +210,6 @@ Execute the following command to also link it to */usr/bin/firefox*:
 
 ```bash
 sudo ln -s /opt/firefox/firefox /usr/bin/firefox
-```
-
-To create a launcher, create the file
-*/usr/share/applications/firefox.desktop* with the following content:
-
-```
-[Desktop Entry]
-Version=1.1
-Type=Application
-Name=Firefox
-GenericName=Web Browser
-Icon=/opt/firefox/browser/chrome/icons/default/default128.png
-Exec=/usr/bin/firefox-latest %u
-Actions=new-window;new-private-window;
-MimeType=text/html;text/xml;application/xhtml+xml;application/vnd.mozilla.xul+xml;text/mml;x-scheme-handler/http;x-scheme-handler/https;
-Categories=Network;WebBrowser;
-Keywords=web;browser;internet;
-StartupNotify=true
-
-[Desktop Action new-window]
-Name=New Window
-Exec=/usr/bin/firefox-latest --new-window %u
-
-[Desktop Action new-private-window]
-Name=New Private Window
-Exec=/usr/bin/firefox-latest --private-window %u
-
 ```
 
 ### Enable showing user lists at login
@@ -305,20 +248,19 @@ move the bottom panel which is a launcher for applications to the left. Also in
 the top panel, I make the following changes:
 
 - Add the following plugins:
-    - Whisker Menu
     - System Load Monitor
     - PulseAudio Plugin
 - Remove the following plugins
-    - Applications Menu
     - Workspace Switcher
 
 #### Update appearances
 This section includes changing themes, updating fonts settings and general 
 look and feel of the desktop.
 
-- Change the theme: I use *ark-darker* theme for both the desktop and the windows.
-Also I move the window's controls (minimize, maximize and close buttons) to
-the left to mimic the MacOS behaviour.
+- Change the theme: I use [WhiteSur Gtk Theme](https://www.pling.com/s/XFCE/p/1403328)
+  theme for both the desktop and the windows.
+  Also I move the window's controls (minimize, maximize and close buttons) to
+  the left to mimic the MacOS behaviour.
 - Change the font settings: Fonts on Debian do not look the best out of the
 box. This is how my font settings looks like:
 
@@ -329,12 +271,10 @@ best combination because these settings is dependent on the hardware and can
 vary from one hardware combination to another.
 
 ### Conclusion
-The steps are tested on a Debian 10 Buster installation.
+The steps are tested on a Debian 12 Bookworm installation.
 The choices made in this post are based on my personal requirements and
-preferences, it will
-almost certainly be different in your case. So the steps shared in this
-post should not be
-followed without understanding what they are meant for and if they are required
-for your case.
+preferences, it almost certainly will be different in your case.
+So the steps shared in this post should not be followed without understanding
+what they are meant for and if they are required for your case.
 For me, this post will definitely make it a lot easier when next time I install
 Debian on a new system.
