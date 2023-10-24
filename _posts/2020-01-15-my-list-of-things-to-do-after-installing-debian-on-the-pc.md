@@ -2,7 +2,7 @@
 layout: post
 title: My list of things to do after installing Debian on the PC
 date: 2020-01-15
-lastModifiedDate: 2023-10-20
+lastModifiedDate: 2023-10-24
 type: post
 tags:
     - debian
@@ -21,6 +21,36 @@ a fresh copy of Debian.
 * TOC
 {:toc}
 ---
+
+### Update apt sources
+The [Debian package archive](https://www.debian.org/releases/stable/amd64/release-notes/ch-whats-new.en.html#archive-areas)
+contains the following areas:
+- main: the Debian distribution
+- contrib: supplemental packages intended to work with the Debian distribution,
+  but which require software outside of the distribution to either build or
+  function;
+- non-free: supplemental packages intended to work with the Debian distribution
+  that do not comply with the DFSG or have other problems that make their
+  distribution problematic. 
+- non-free-firmware: non-free firmware related packages that have a separated
+  archive area for easy preparation of the installation media containing these
+  packages.
+
+On a default installation of Debian, the apt sources.list only includes the main
+archive area.
+To also include the other archives, edit the `/etc/apt/sources.list` with root
+permission and add them as below.
+
+```
+deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+
+deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
+```
 
 ### Adding a swap file
 Nowadays I prefer having swap files over swap partitions, mainly because files 
