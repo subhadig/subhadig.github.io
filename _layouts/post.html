@@ -49,8 +49,8 @@
 
           {% include related-posts.html %}
 
-          {% if site.disqus.shortname %}
-              {% include disqus_comments.html %}
+          {% if site.enable_giscus %}
+              {% include giscus_comments.html %}
           {% endif %}
 
       </section>
