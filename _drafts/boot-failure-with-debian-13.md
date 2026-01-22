@@ -47,4 +47,27 @@ initialized.
 So there was no logs stored in the system.
 
 #### Boot Logs
-Next 
+Next to print more information during the boot process, I enabled additional
+logging by following the steps:
+
+Edit the `/etc/default/grub` file as root.
+
+Remove `quiet spash` and add `loglevel=7 earlyprintk=vga` to the
+`GRUB_CMDLINE_LINUX_DEFAULT` line so that it looks as the following:
+
+```
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=7 earlyprintk=vga"
+```
+
+Update grub by doing the following as root:
+
+```
+update-grub
+```
+
+After restart, it started printing additional log during the boot process.
+But even the additional logs didn't give any clue as to why the boot was
+intermittently failing.
+
+### The solution
+To test out the theory 
