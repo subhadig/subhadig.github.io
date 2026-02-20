@@ -15,4 +15,4 @@ gem 'jekyll-sitemap'
 gem 'jekyll-gist'
 gem 'kramdown-parser-gfm'
 
-gem "webrick", "~> 1.7"
+gem "webrick", "~> 1.8"
