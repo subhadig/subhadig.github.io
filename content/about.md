@@ -13,7 +13,7 @@ My name is Subhadip Ghosh.
 
 I am  
 &ensp; &ensp; a) A Software Architect at [Pegasystems](https://www.pega.com/)  
-&ensp; &ensp; b) A father to a two years old girl  
+&ensp; &ensp; b) A father to a 2-year-old girl  
 &ensp; &ensp; c) A hobbyist blogger  
 &ensp; &ensp; d) A curious person
 
@@ -27,7 +27,7 @@ I occassionally write blog posts on this website to explain
 &ensp; &ensp; a) one of my latest technological (often mis-)adventures  
 &ensp; &ensp; b) a technical topic that I have just learnt  
 
-Views shared are strictly my personal.
+Views are my personal.
 
 GitHub: https://github.com/subhadig  
 LinkedIn: https://www.linkedin.com/in/subhadig  
