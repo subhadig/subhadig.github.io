@@ -10,7 +10,9 @@ tags:
 - spring-security
 - docker
 title: 'AMS: Data Provider Service - Generating performance metrics with Spring Boot Actuator'
-type: post
+slug: ams-data-provider-service-generating-performance-metrics-with-spring-boot-actuator
+aliases:
+- /ams-data-provider-service-generating-performance-metrics-with-spring-boot-actuator.html
 ---
 ### Introduction
 This is the first article in a series of upcoming articles on designing and
@@ -21,11 +23,6 @@ component by component from scratch and I will publish it here on this blog.
 In this post, I talk about how to create and run services that provide
 application performance metrics using Java, Spring Boot and Docker.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### What are *applications performance metrics*?
 Understanding the health and performance of the deployed applications is
@@ -57,7 +54,7 @@ To create a basic Spring Boot project, head over to
 [start.spring.io](https://start.spring.io), populate the required details and
 click on *Generate*.
 
-![Spring boot initializer](assets/images/spring-initializer-dataproviderservice.png)
+![Spring boot initializer](/assets/images/spring-initializer-dataproviderservice.png)
 
 In the above screenshot, I have selected
 the following Spring modules under the *Dependencies* section:
@@ -88,7 +85,7 @@ management.endpoints.web.exposure.include=health, metrics
 Now if I run the application and head over to *http://localhost:8080/actuator*,
 I should see all the available *Spring Boot Actuator* endpoints.
 
-![Spring Actuator endpoints](assets/images/data-provider-service-spring-actuator.png)
+![Spring Actuator endpoints](/assets/images/data-provider-service-spring-actuator.png)
 
 In this example, I have only enabled the *health* and *metrics* endpoints.
 [Here](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html#production-ready-endpoints)
@@ -97,14 +94,14 @@ is the full list of available endpoints.
 *http://localhost:8080/actuator/metrics* should show a list of available
 metrics.
 
-![Spring Actuator endpoints](assets/images/data-provider-service-actuator-metrics.png)
+![Spring Actuator endpoints](/assets/images/data-provider-service-actuator-metrics.png)
 
 And if I want to see the current value of any metric from the list like
 *jvm.memory.max*, I can go to the URL
 *http://localhost:8080/actuator/metrics/jvm.memory.max* and it should show me
 something like the below screenshot.
 
-![Spring Actuator endpoints](assets/images/data-provider-service-actuator-metrics-jvm.memory.max.png)
+![Spring Actuator endpoints](/assets/images/data-provider-service-actuator-metrics-jvm.memory.max.png)
 
 ### Securing the endpoints with Spring Security
 Additionally, you might want to secure the metrics REST endpoints exposed by
@@ -138,7 +135,7 @@ spring.security.user.password=admin@123
 Now if you restart your application and go to *http://localhost:8080/actuator*,
 you should be presented with the following login screen:
 
-![Spring Actuator endpoints](assets/images/data-provider-service-spring-security-login.png)
+![Spring Actuator endpoints](/assets/images/data-provider-service-spring-security-login.png)
 
 ### Running as a Docker container
 I usually package my applications as *Docker* images due to the ease of

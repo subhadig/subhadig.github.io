@@ -6,7 +6,9 @@ tags:
 - command-line
 - pandoc
 title: Creating word documents on the command line
-type: post
+slug: creating-word-documents-on-the-command-line
+aliases:
+- /creating-word-documents-on-the-command-line.html
 ---
 ### Introduction
 The command line has always seemed to me something that is both fascinating and
@@ -16,11 +18,6 @@ straightforward than using WYSIWYG tools like LibreOffice or MS Office or
 Google Docs. In this post I share how I use Pandoc, Vim and Markdown for
 creating good professional grade documents on the command line.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### Pandoc
 From the [Wikipedia](https://en.wikipedia.org/wiki/Pandoc):
@@ -198,7 +195,7 @@ Value 1 | 60 | A string | The next row is a blank row
 ```
 
 When Pandoc converts it to PDF, it looks like this.
-![pandoc table](assets/images/pandoc-table.png)
+![pandoc table](/assets/images/pandoc-table.png)
 
 A few points about creating tables in markdown:
 - The `|` character works as a delimiter between two cells.

@@ -5,7 +5,9 @@ tags:
 - irc
 - debian
 title: The easiest way to stay always connected on IRC
-type: post
+slug: the-easiest-way-to-stay-always-connected-on-irc
+aliases:
+- /the-easiest-way-to-stay-always-connected-on-irc.html
 ---
 ### Introduction
 Connecting to an IRC room may not be a difficult task but if you communicate
@@ -16,11 +18,6 @@ In this post I am going to share the easiest and the most
 cost-effective way to always stay connected on IRC using
 [Matrix](https://en.wikipedia.org/wiki/Matrix_(protocol)).
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### Internet Relay Chat
 Chances are that if you are reading this post then you already know about

@@ -4,7 +4,9 @@ date: '2022-01-14T00:00:00Z'
 tags:
 - gimp
 title: 'GIMP - Crop to the edges of a document and change Perspective'
-type: post
+slug: gimp-crop-to-the-edges-of-a-document-and-change-perspective
+aliases:
+- /gimp-crop-to-the-edges-of-a-document-and-change-perspective.html
 ---
 ### Introduction
 Since I don't have a scanner at home, if I need to quickly share a soft copy of
@@ -25,22 +27,17 @@ The problem with this is that:
 So I use [GIMP](https://www.gimp.org/) now for cropping a document image and I
 will explain how quick and painless the process is in this post.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### The Image
 Here's a picture of an empty notebook page that we will use for demonstration.
 I placed it on a reddish background and took this picture from my mobile phone
 camera.
 
-![](assets/images/gimp-crop-1.jpg){: width="50%" }
+![](/assets/images/gimp-crop-1.jpg)
 
 We will open the image with GIMP for editing.
 
-![](assets/images/gimp-crop-2.jpg)
+![](/assets/images/gimp-crop-2.jpg)
 
 ### Crop it first
 First we will crop the document to a rectangular frame with it's edges as close
@@ -50,7 +47,7 @@ tool.
 - Open the *Crop* tool from Menu > Tools > Transform Tools > Crop.
 Draw a rectangle around the edges of the document like this.
 
-![](assets/images/gimp-crop-3.jpg)
+![](/assets/images/gimp-crop-3.jpg)
 
 <br/>
 
@@ -64,7 +61,7 @@ Go to Menu > Tools > Selection Tools and open *Free Select*.
 Put a point on each of the corners of the document in the image to select it
 like this.
 
-![](assets/images/gimp-crop-4.jpg)
+![](/assets/images/gimp-crop-4.jpg)
 
 <br/>
 
@@ -72,7 +69,7 @@ Go to Menu > Select > Invert to invert the selection so that the outer area is
 selected instead of the document.
 Press `Delete` to delete the selected area.
 
-![](assets/images/gimp-crop-5.jpg)
+![](/assets/images/gimp-crop-5.jpg)
 
 ### Do Perspective transformation
 In this step we will transform the shape of the document so that becomes a
@@ -85,20 +82,20 @@ Go to Menu > Tools > Transform Tools and select *Perspective* to open the
 Perspective tool.
 Drag the corners so that the inner document area fills the whole frame.
 
-![](assets/images/gimp-crop-6.jpg)
+![](/assets/images/gimp-crop-6.jpg)
 
 <br/>
 
 When you are satisfied with the result, click on the *Transform* button on the
 *Perspective* tool pop-up window.
 
-![](assets/images/gimp-crop-7.jpg)
+![](/assets/images/gimp-crop-7.jpg)
 
 ### Export the image
 Click on Menu > File > Export As... to export the final image.
 This is how our final image looks like.
 
-![](assets/images/gimp-crop-final.jpg){: width="50%" }
+![](/assets/images/gimp-crop-final.jpg)
 
 ### Conclusion
 GIMP is a free and open-source alternative of the more popular photo-editing

@@ -5,7 +5,9 @@ tags:
 - xfce
 - debian
 title: Functional Global Menu with Xfce Appmenu plugin
-type: post
+slug: functional-global-menu-on-xfce-with-appmenu-plugin
+aliases:
+- /functional-global-menu-on-xfce-with-appmenu-plugin.html
 ---
 ### Introduction
 After tinkering with it for a while now I finally have got a very much
@@ -13,11 +15,6 @@ functional global menu working on my Xfce4 desktop running on Debian 10.
 I will list down the steps I followed to get the global menu configured on my
 Debian Xfce box in this post.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### Global menu vs Local menu
 For those of you who might be wondering what a *global menu* is, it is a way of
@@ -26,14 +23,14 @@ does.
 By default the Xfce4 desktop displays the menus right below the Window title
 bar separately in each Window.
 
-![Xfce4 window menu](assets/images/xfce4-default-window-menu.png)
+![Xfce4 window menu](/assets/images/xfce4-default-window-menu.png)
 
 But if you have a small display screen (eg. a laptop display), this may not be
 the most efficient use of the vertical screen space.
 The MacOS does a better job at this by displaying the application menus on the
 top panel.
 
-![MacOS app menu](assets/images/maos-default-window-menu.png)
+![MacOS app menu](/assets/images/maos-default-window-menu.png)
 
 Apart from MacOS, global menu was most prominently featured in the
 [Unity DE](https://en.wikipedia.org/wiki/Unity_(user_interface)) by Ubuntu.
@@ -71,16 +68,16 @@ And restart the system.
 1. Edit the top panel and replace the `Windows Buttons` plugin with the `AppMenu
 Plugin`.
 
-![Xfce4 panel items](assets/images/xfce4-appmenu-plugin.png)
+![Xfce4 panel items](/assets/images/xfce4-appmenu-plugin.png)
 
 2. Edit the `Separator` plugin that appears right after the `AppMenu Plugin`
 and uncheck the `Expand` option.
 
-![Xfce4 panel separator](assets/images/xfce4-appmenu-plugin-separator.png)
+![Xfce4 panel separator](/assets/images/xfce4-appmenu-plugin-separator.png)
 
 Here's how it looks like in the end.
 
-![Xfce4 panel with appmenu](assets/images/xfce4-appmenu-plugin-view.png)
+![Xfce4 panel with appmenu](/assets/images/xfce4-appmenu-plugin-view.png)
 
 ### Conclusion
 The steps have been tested in Debian 10.

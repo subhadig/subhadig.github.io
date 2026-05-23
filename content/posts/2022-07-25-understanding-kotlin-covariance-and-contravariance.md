@@ -4,7 +4,9 @@ date: '2022-07-25T00:00:00Z'
 tags:
 - kotlin
 title: Understanding Kotlin Covariance and Contravariance
-type: post
+slug: understanding-kotlin-covariance-and-contravariance
+aliases:
+- /understanding-kotlin-covariance-and-contravariance.html
 ---
 # 1.  Introduction
 To someone coming from the Java world to the world of Kotlin, the concepts of

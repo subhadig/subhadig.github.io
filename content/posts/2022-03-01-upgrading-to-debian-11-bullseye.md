@@ -4,7 +4,9 @@ date: '2022-03-01T00:00:00Z'
 tags:
 - debian
 title: Upgrading to Debian 11 Bullseye
-type: post
+slug: upgrading-to-debian-11-bullseye
+aliases:
+- /upgrading-to-debian-11-bullseye.html
 ---
 ### Introduction
 Although Debian 11 codenamed *Bullseye* was released almost 7 months
@@ -17,11 +19,6 @@ distribution of choice!
 In this post, I am going to share my experience and the steps I used while
 doing the actual upgrade.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### A word of caution
 This post should not be considered as a guide about how to do Debian upgrades.

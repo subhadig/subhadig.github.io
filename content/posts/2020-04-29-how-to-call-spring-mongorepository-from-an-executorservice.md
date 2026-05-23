@@ -5,7 +5,9 @@ tags:
 - java
 - spring-boot
 title: How to call Spring MongoRepository from an ExecutorService
-type: post
+slug: how-to-call-spring-mongorepository-from-an-executorservice
+aliases:
+- /how-to-call-spring-mongorepository-from-an-executorservice.html
 ---
 ### The problem
 Recently I encountered an issue in code when I tried to call the

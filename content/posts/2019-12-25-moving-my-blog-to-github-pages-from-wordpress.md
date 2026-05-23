@@ -5,7 +5,9 @@ lastModifiedDate: '2020-03-12'
 tags:
 - github-pages
 title: Moving My Blog to GitHub Pages from Wordpress.com
-type: post
+slug: moving-my-blog-to-github-pages-from-wordpress
+aliases:
+- /moving-my-blog-to-github-pages-from-wordpress.html
 ---
 ### Introduction
 I recently moved my personal blog to GitHub Pages from
@@ -13,11 +15,6 @@ Wordpress.com. I have been thinking about doing it for
 sometime and this time I finally did it. And in this post 
 I wanted to share the a few things about it.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### What this post is and what it is not
 This post talks about about how I made the switch to Jekyll and GitHub

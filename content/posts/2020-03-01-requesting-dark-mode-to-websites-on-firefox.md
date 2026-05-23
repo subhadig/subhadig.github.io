@@ -4,7 +4,9 @@ date: '2020-03-01T00:00:00Z'
 tags:
 - firefox
 title: Requesting dark mode to websites on Firefox
-type: post
+slug: requesting-dark-mode-to-websites-on-firefox
+aliases:
+- /requesting-dark-mode-to-websites-on-firefox.html
 ---
 ### Introduction
 Most mainstream web-browsers including Firefox now-a-days come with a feature
@@ -13,11 +15,6 @@ them.  If the website supports this feature, then you are presented with a
 light or dark version of the website based on your preference. In this post I
 will share how to manually configure it in Firefox.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### prefers-color-scheme
 [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
@@ -43,12 +40,12 @@ websites you are visiting . Here is the *duckduckgo.com* search website in
 both dark and light mode.
 
 #### Duckduckgo in dark mode
-![duckduckgo in dark mode](assets/images/duckduckgo-dark-mode.png)
+![duckduckgo in dark mode](/assets/images/duckduckgo-dark-mode.png)
 <br/>
 <br/>
 
 #### Duckduckgo in light mode
-![duckduckgo in light mode](assets/images/duckduckgo-light-mode.png)
+![duckduckgo in light mode](/assets/images/duckduckgo-light-mode.png)
 <br/>
 <br/>
 

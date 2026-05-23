@@ -5,7 +5,9 @@ lastModifiedDate: '2023-10-24'
 tags:
 - debian
 title: My list of things to do after installing Debian on the PC
-type: post
+slug: my-list-of-things-to-do-after-installing-debian-on-the-pc
+aliases:
+- /my-list-of-things-to-do-after-installing-debian-on-the-pc.html
 ---
 ### Introduction
 I like the fact that Debian does not do a lot of customizations over
@@ -15,11 +17,6 @@ things exactly the way you like it. It definitely helps to have a list to start
 with and this post lists down some of the customizations I make after installing
 a fresh copy of Debian.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### Update apt sources
 The [Debian package archive](https://www.debian.org/releases/stable/amd64/release-notes/ch-whats-new.en.html#archive-areas)
@@ -293,7 +290,7 @@ look and feel of the desktop.
 - Change the font settings: Fonts on Debian do not look the best out of the
 box. This is how my font settings looks like:
 
-![XFCE font settings](assets/images/debian-after-install-xfce-font-settings.png)
+![XFCE font settings](/assets/images/debian-after-install-xfce-font-settings.png)
 
 I usually play with the *Hinting* and *Sub-pixel order* settings till I get the
 best combination because these settings is dependent on the hardware and can

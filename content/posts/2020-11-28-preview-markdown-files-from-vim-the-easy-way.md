@@ -6,7 +6,9 @@ tags:
 - markdown
 - pandoc
 title: 'Preview markdown files from Vim - The easy way'
-type: post
+slug: preview-markdown-files-from-vim-the-easy-way
+aliases:
+- /preview-markdown-files-from-vim-the-easy-way.html
 ---
 ### Introduction
 I primarily take notes in vim in markdown format.
@@ -20,11 +22,6 @@ your browser directly from your vim editor with the help of a small vim script
 and an utility called *pandoc* in just a couple of keystroke.
 All without a fancy external vim plugin.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### My note-taking setup
 
@@ -139,7 +136,7 @@ And assuming that the image file `a-grumpy-frog.png` is also present in the
 same location as the markdown file, if I press the `\` (localleader) and `v`
 keys, it will open the preview in my Firefox browser.
 
-![kafka-on-docker-internal-clients](assets/images/vim-markdown-preview.png)
+![kafka-on-docker-internal-clients](/assets/images/vim-markdown-preview.png)
 
 And now going back to vim, if I press `Enter`, it will place the cursor back
 inside the editor.

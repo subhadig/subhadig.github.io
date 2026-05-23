@@ -7,7 +7,9 @@ tags:
 - kubernetes
 - minikube
 title: 'Getting started with Kubernetes using Minikube - Installation'
-type: post
+slug: getting-started-with-kubernetes-using-minikube-installation
+aliases:
+- /getting-started-with-kubernetes-using-minikube-installation.html
 ---
 ### Introduction
 I am working on a series of opinionated posts on how to get started with the
@@ -18,11 +20,6 @@ of Minikube to the deployment of pods and also workarounds for a few annoying
 issues I faced along the way. This is the first article of the series where I
 talk about how to install Minikube in your local computer.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### Kubernetes
 From the [Wikipedia](https://en.wikipedia.org/wiki/Kubernetes):
@@ -159,7 +156,7 @@ The *--driver=kvm2* flag tells Minikube to use the *kvm2* VM driver.
 If everything is properly configured and Minikube is successfully started, you
 should see something like this:
 
-![minikube-start-debian](assets/images/install-minikube-success-debian.png)
+![minikube-start-debian](/assets/images/install-minikube-success-debian.png)
 
 Similarly here is the command to start Minikube on MacOS:
 
@@ -174,7 +171,7 @@ The *--driver=hyperkit* tells Minikube to use the *hyperkit* VM driver.
 I have *Docker Desktop* installed on my Mac and if *Docker Desktop* is
 started first, then I get the following error while starting Minikube:
 
-![install-minikube-error-macos](assets/images/install-minikube-error-macos.png)
+![install-minikube-error-macos](/assets/images/install-minikube-error-macos.png)
 
 I could not determine whether the *Docker Desktop* or the VPN software running
 on my Mac was causing this error. Because of this problem, the Minikube VM

@@ -5,7 +5,9 @@ date: '2020-05-06T00:00:00Z'
 tags:
 - application-monitoring-service
 title: 'AMS: Data Collection Service'
-type: post
+slug: ams-data-collection-service
+aliases:
+- /ams-data-collection-service.html
 ---
 ### Introduction
 This is the second article in my
@@ -14,11 +16,6 @@ This is the second article in my
 of other applications. In this post, I will be discussing about the second
 component, the **Data Collection Service**.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### Data Collection Service
 The *Data Collection Service* is a
@@ -41,7 +38,7 @@ protected by a basic authentication. The default username is *admin* and the
 password is also *admin* although it can be configured to use something else.
 Once you go past the authentication page, here's how the API page looks like:
 
-![The API page](assets/images/ams-data-collection-service-api-page.png)
+![The API page](/assets/images/ams-data-collection-service-api-page.png)
 
 ### DataCollectionConfig
 A *DataCollectionConfig* contains the required details for the *Data Collection

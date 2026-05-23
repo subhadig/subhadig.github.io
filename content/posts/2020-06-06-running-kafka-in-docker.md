@@ -5,18 +5,15 @@ tags:
 - kafka
 - docker
 title: Running Kafka in Docker
-type: post
+slug: running-kafka-in-docker
+aliases:
+- /running-kafka-in-docker.html
 ---
 ### Introduction
 Running *Apache Kafka* with *Docker* can be harder than it should be.
 Or perhaps it's easy once you know what exactly you need to do. In this post,
 I'm going to discuss about how I run Kafka in *Docker*.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### What is Kafka?
 [Apache Kafka](https://kafka.apache.org/) is a distributed real-time event
@@ -166,7 +163,7 @@ docker run -it --network kafka-net edenhill/kafkacat:1.5.0 \
 Now when you type something in the producer terminal and press enter, you
 should see the same text being printed by our consumer on the consumer terminal.
 
-![kafka-on-docker-internal-clients](assets/images/kafka-on-docker-internal-clients.png)
+![kafka-on-docker-internal-clients](/assets/images/kafka-on-docker-internal-clients.png)
 
 > Press `Ctrl + D` to end the producer session.
 

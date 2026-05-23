@@ -126,7 +126,7 @@ Use the following command to list all your GPG keys:
 ```bash
 gpg --list-secret-keys
 ```
-![](/assets/images/gpg-list-keys.png){: width="100%" }
+![](/assets/images/gpg-list-keys.png)
 
 The above image highlights the ID part of a GPG key.
 Copy the ID of the key that you created from your output list.

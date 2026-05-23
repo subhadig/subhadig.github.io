@@ -4,7 +4,9 @@ date: '2020-01-20T00:00:00Z'
 tags:
 - command-line
 title: Linux equivalent for MacOS open
-type: post
+slug: linux-equivalent-for-macos-open
+aliases:
+- /linux-equivalent-for-macos-open.html
 ---
 ### Introduction
 I have been using a Mac at my work for a few months now and there's one command
@@ -12,11 +14,6 @@ line utility
 in MacOS that I am quite impressed with called *open*. In this post I talk about
 a similar alternative in Linux world.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### What is *open*?
 From the *open* man page:

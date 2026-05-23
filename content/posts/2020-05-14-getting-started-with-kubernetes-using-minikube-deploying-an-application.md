@@ -7,7 +7,9 @@ tags:
 - kubernetes
 - minikube
 title: 'Getting started with Kubernetes using Minikube - Deploying an application'
-type: post
+slug: getting-started-with-kubernetes-using-minikube-deploying-an-application
+aliases:
+- /getting-started-with-kubernetes-using-minikube-deploying-an-application.html
 ---
 ### Introduction
 This is my second article in the
@@ -18,11 +20,6 @@ I discussed about how to create a local Kubernetes cluster with *Minikube*. In
 this article, I will be talking about deploying an application in a local
 *Minikube* cluster.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### Simple Web service
 *Simple Web service* is a [Spring Boot](https://spring.io/projects/spring-boot)
@@ -109,7 +106,7 @@ kubectl get pods
 
 And you should see something like this:
 
-![get-pods](assets/images/minikube-deploy-get-pods.png)
+![get-pods](/assets/images/minikube-deploy-get-pods.png)
 
 ### Service
 In the previous section, I deployed our *Simple Web service* which is running
@@ -178,7 +175,7 @@ kubectl get pods -n kube-system
 
 Wait for the `nginx-ingress-controller` to be running.
 
-![ingress controller status](assets/images/minikube-deploy-ingress-controller-up.png)
+![ingress controller status](/assets/images/minikube-deploy-ingress-controller-up.png)
 
 After our *Ingress controller* is up, I need to 
 [configure it](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/).
@@ -226,12 +223,12 @@ In my case, this outputs the following IP address: 192.168.64.24. Now if I go
 to the following link from my web browser: `http://192.168.64.24/details`, I
 will get the below response:
 
-![simple web service details 1](assets/images/minikube-deploy-simple-web-service-details-1.png)
+![simple web service details 1](/assets/images/minikube-deploy-simple-web-service-details-1.png)
 
 If I try the link multiple times, I will get another response where the
 `Host name` and the `IP address` will be different.
 
-![simple web service details 2](assets/images/minikube-deploy-simple-web-service-details-2.png)
+![simple web service details 2](/assets/images/minikube-deploy-simple-web-service-details-2.png)
 
 This is because in the *Deployment* section, I have deployed two pods of our
 *Simple Web service* application and the `simple-web-service-cluster-ip`

@@ -5,7 +5,9 @@ tags:
 - vim
 - markdown
 title: Easily format markdown tables in Vim
-type: post
+slug: easily-format-markdown-tables-in-vim
+aliases:
+- /easily-format-markdown-tables-in-vim.html
 ---
 ### Introduction
 Creating markdown tables in Vim is not very intuitive.
@@ -17,11 +19,6 @@ functionalities.
 Recently I spent some time to make the task of creating and keeping markdown
 tables formatted a little easier in Vim.
 
----
-**Table of Contents**
-* TOC
-{:toc}
----
 
 ### Vim plugins that could do the job
 Although there were a handful of Vim plugins available out there that had the
@@ -70,7 +67,7 @@ vnoremap <localleader>mft :!/path/to/markdown_table_format.py<cr>
 After this, the script can be invoked by just pressing `<Leader>mft` in visual
 mode.
 
-![Vim markdown format table](assets/images/vim-markdown-format-table.gif)
+![Vim markdown format table](/assets/images/vim-markdown-format-table.gif)
 
 ### Conclusion
 I am not a fan of adding plugins to my Vim configuration unless I am very
