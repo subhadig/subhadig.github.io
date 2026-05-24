@@ -5,6 +5,9 @@ tags:
 - debian
 - lxc/lxd
 title: Creating an unpriviledged lxc container on Debian Stretch
+slug: creating-an-unpriviledged-lxc-container-on-debian-stretch
+aliases:
+- /creating-an-unpriviledged-lxc-container-on-debian-stretch.html
 ---
 <p>After a few earlier failed attempts, today I was successfully able to create an unprivileged LXC container on Debian Stretch for the first time. I had experience of using LXC's more user friendly cousin LXD before I moved to Debian but unfortunately LXD is not available on Debian yet. While LXC is more low level compared to LXD, if you just need a basic container, it's still pretty solid. The Debian wiki on LXC container is fairly straight forward and easy to follow, but still for someone who is a novice to both Debian and LXC, it is very easy to get lost. So I am writing this post so that it can be a good place to start if you need a very basic setup.</p>
 <p>LXC containers can be of two types depending on the level of access they have to their host system:</p>
