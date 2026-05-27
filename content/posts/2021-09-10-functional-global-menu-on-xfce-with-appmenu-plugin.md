@@ -1,5 +1,4 @@
 ---
-comments: true
 date: '2021-09-10T00:00:00Z'
 tags:
 - xfce

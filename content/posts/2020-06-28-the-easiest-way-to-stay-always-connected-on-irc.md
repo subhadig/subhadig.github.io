@@ -1,5 +1,4 @@
 ---
-comments: true
 date: '2020-06-28T00:00:00Z'
 tags:
 - irc

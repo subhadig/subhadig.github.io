@@ -1,5 +1,4 @@
 ---
-comments: true
 date: '2020-01-20T00:00:00Z'
 tags:
 - command-line

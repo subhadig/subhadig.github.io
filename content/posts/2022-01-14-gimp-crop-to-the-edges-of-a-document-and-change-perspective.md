@@ -1,5 +1,4 @@
 ---
-comments: true
 date: '2022-01-14T00:00:00Z'
 tags:
 - gimp

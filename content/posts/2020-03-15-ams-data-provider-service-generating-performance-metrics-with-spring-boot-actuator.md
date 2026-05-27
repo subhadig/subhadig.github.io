@@ -1,6 +1,5 @@
 ---
 collectionKeyword: ams
-comments: true
 date: '2020-03-15T00:00:00Z'
 tags:
 - application-monitoring-service

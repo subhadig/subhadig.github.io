@@ -1,5 +1,4 @@
 ---
-comments: true
 date: '2022-07-25T00:00:00Z'
 tags:
 - kotlin

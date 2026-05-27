@@ -1,5 +1,4 @@
 ---
-comments: true
 date: '2020-03-01T00:00:00Z'
 tags:
 - firefox

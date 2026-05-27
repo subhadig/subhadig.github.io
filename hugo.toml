@@ -75,6 +75,19 @@ copyright = "Subhadip Ghosh"
   creator = ""
   site = ""
 
+[params.giscus]
+  repo = "subhadig/subhadig.github.io"
+  repoID = "MDEwOlJlcG9zaXRvcnkyMjE4NzQ2MTk="
+  category = "Giscus Comments"
+  categoryID = "DIC_kwDODTmJu84CZNlG"
+  mapping = "pathname"
+  reactionsEnabled = "1"
+  emitMetadata = "0"
+  inputPosition = "top"
+  theme = "fro"
+  lang = "en"
+  loading = "lazy"
+
 [languages]
   [languages.en]
     languageName = "English"

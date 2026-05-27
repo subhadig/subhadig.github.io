@@ -1,6 +1,5 @@
 ---
 collectionKeyword: kubernetes-with-minikube
-comments: true
 date: '2020-05-14T00:00:00Z'
 lastModifiedDate: '2021-12-28'
 tags:

@@ -1,5 +1,4 @@
 ---
-comments: true
 date: '2021-10-15T00:00:00Z'
 tags:
 - vim
