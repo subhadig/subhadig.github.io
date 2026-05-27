@@ -12,9 +12,9 @@ aliases:
 ---
 ### Introduction
 This is my second article in the
-[Kubernetes with Minikube](collections/kubernetes-with-minikube.html) series.
+[Kubernetes with Minikube](/tags/minikube/) series.
 In the
-[first article](getting-started-with-kubernetes-using-minikube-installation.html)
+[first article](/posts/getting-started-with-kubernetes-using-minikube-installation/)
 I discussed about how to create a local Kubernetes cluster with *Minikube*. In
 this article, I will be talking about deploying an application in a local
 *Minikube* cluster.

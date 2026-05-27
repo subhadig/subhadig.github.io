@@ -10,7 +10,7 @@ aliases:
 ---
 ### Introduction
 This is the second article in my
-[Application Monitoring System](collections/application-monitoring-system.html)
+[Application Monitoring System](/tags/application-monitoring-service/)
 (AMS) series where I am building an open source application to monitor performances
 of other applications. In this post, I will be discussing about the second
 component, the **Data Collection Service**.
@@ -52,7 +52,7 @@ publishing to multiple destination types, currently it uses a polling
 based mechanism for data collection and only the applications exposing the
 [Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/) APIs like
 the
-[Data Provider Service](ams-data-provider-service-generating-performance-metrics-with-spring-boot-actuator.html)
+[Data Provider Service](/posts/ams-data-provider-service-generating-performance-metrics-with-spring-boot-actuator)
 are supported.
 
 A *SourceConfig* specifies the source system details within a

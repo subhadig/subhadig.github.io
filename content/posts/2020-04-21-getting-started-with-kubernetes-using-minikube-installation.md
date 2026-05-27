@@ -13,7 +13,7 @@ aliases:
 ### Introduction
 I am working on a series of opinionated posts on how to get started with the
 basics of
-[Kubernetes using Minikube](collections/kubernetes-with-minikube.html). In
+[Kubernetes using Minikube](/tags/minikube/). In
 these posts, I will discuss on a range of topics starting from the installation
 of Minikube to the deployment of pods and also workarounds for a few annoying
 issues I faced along the way. This is the first article of the series where I
@@ -237,5 +237,5 @@ above approaches because they give me the flexibility of managing the packages
 with a package manager.
 
 In the
-[next post](getting-started-with-kubernetes-using-minikube-deploying-an-application.html),
+[next post](/posts/getting-started-with-kubernetes-using-minikube-deploying-an-application),
 I will discuss about deploying pods in our Minikube cluster.

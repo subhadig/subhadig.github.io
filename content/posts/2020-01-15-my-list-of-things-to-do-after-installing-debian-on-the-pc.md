@@ -108,7 +108,7 @@ Terminal and tmux makes it easy to manage multiple open Terminals.
 - apt-listchanges - required by unattended-upgrades for sending change-list of
 installed updates.
 - pass - a command-line based password manager.
-  More [here](a-practical-guide-to-get-started-with-pass.html).
+  More [here](/posts/a-practical-guide-to-get-started-with-pass).
 - pwgen - a command-line based random password generation utility.
 - firewalld - a command-line based firewall.
 - thunderbird - an email client.

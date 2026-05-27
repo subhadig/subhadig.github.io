@@ -15,7 +15,7 @@ aliases:
 ---
 ### Introduction
 This is the first article in a series of upcoming articles on designing and
-creating an [Application Monitoring System](collections/application-monitoring-system.html).
+creating an [Application Monitoring System](/tags/application-monitoring-service/).
 An Application Monitoring System (AMS) is a system that can monitor
 performance of other running applications. I am building this application
 component by component from scratch and I will publish it here on this blog.
