@@ -2,11 +2,10 @@ Subhadip's Blog
 ===============
 
 A website:
-
-    - built with [Hugo](https://gohugo.io/).
-    - uses the [Terminal](https://github.com/panr/hugo-theme-terminal) with a
-      modified colour scheme.
-    - hosted using [GitHub Pages](https://docs.github.com/en/pages).
+- built with [Hugo](https://gohugo.io/).
+- uses the [Terminal](https://github.com/panr/hugo-theme-terminal) with a
+  modified colour scheme.
+- hosted using [GitHub Pages](https://docs.github.com/en/pages).
 
 Access the website at [subhadig.net](https://www.subhadig.net).
 
