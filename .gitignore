@@ -1,5 +1,2 @@
-_site/
-.bundle
-.sass-cache
-vendor
-*.swp
+public/
+.hugo_build.lock
