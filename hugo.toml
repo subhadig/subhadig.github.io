@@ -128,3 +128,14 @@ copyright = "Subhadip Ghosh"
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[security]
+  allowContent = ['text/markdown', 'text/html']
+
+# Derive the date from the filename
+# And then use the remaining part of the filename as slug
+# Caution: If 'date' is defined in a post frontmatter, slug resolution is also
+# skipped
+[frontmatter]
+  date = ['date', ':filename']
+  slug = ['slug', ':filename']
