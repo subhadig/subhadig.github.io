@@ -1,5 +1,4 @@
 baseURL = "https://www.subhadig.net/"
-languageCode = "en-us"
 # Add it only if you keep the theme in the `themes` directory.
 # Remove it if you use the theme as a remote Hugo Module.
 theme = "terminal"
@@ -90,8 +89,9 @@ copyright = "Subhadip Ghosh"
 
 [languages]
   [languages.en]
-    languageName = "English"
+    label = "English"
     title = "Subhadip's Blog"
+    locale = "en-us"
 
     [languages.en.params]
       subtitle = "My experience with the computing world!"
